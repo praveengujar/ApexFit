@@ -10,6 +10,10 @@ struct HomeView: View {
 
     @State private var selectedDate = Date()
     @State private var showSleepDashboard = false
+    @State private var showRecoveryDashboard = false
+    @State private var showStrainDashboard = false
+    @State private var showAddActivity = false
+    @State private var showStartActivity = false
     @State private var gaugeRowInitialOffset: CGFloat? = nil
     @State private var gaugeRowCurrentOffset: CGFloat = 0
 
@@ -58,8 +62,8 @@ struct HomeView: View {
                             metric: selectedMetric,
                             collapseProgress: collapseProgress,
                             onSleepTap: { showSleepDashboard = true },
-                            onRecoveryTap: {},
-                            onStrainTap: {}
+                            onRecoveryTap: { showRecoveryDashboard = true },
+                            onStrainTap: { showStrainDashboard = true }
                         )
                         .background(
                             GeometryReader { geo in
@@ -141,9 +145,9 @@ struct HomeView: View {
                     DashboardGaugeRow(
                         metric: selectedMetric,
                         collapseProgress: 1.0,
-                        onSleepTap: {},
-                        onRecoveryTap: {},
-                        onStrainTap: {}
+                        onSleepTap: { showSleepDashboard = true },
+                        onRecoveryTap: { showRecoveryDashboard = true },
+                        onStrainTap: { showStrainDashboard = true }
                     )
                     .transition(.opacity)
                 }
@@ -152,6 +156,18 @@ struct HomeView: View {
             .navigationBarHidden(true)
             .navigationDestination(isPresented: $showSleepDashboard) {
                 SleepDashboardView()
+            }
+            .navigationDestination(isPresented: $showRecoveryDashboard) {
+                RecoveryDashboardView()
+            }
+            .navigationDestination(isPresented: $showStrainDashboard) {
+                StrainDashboardView()
+            }
+            .sheet(isPresented: $showAddActivity) {
+                AddActivityView()
+            }
+            .fullScreenCover(isPresented: $showStartActivity) {
+                StartActivityView()
             }
         }
     }
@@ -198,7 +214,7 @@ struct HomeView: View {
 
             // Add/Start Activity Buttons
             HStack(spacing: AppTheme.spacingSM) {
-                Button(action: {}) {
+                Button(action: { showAddActivity = true }) {
                     HStack {
                         Image(systemName: "plus")
                         Text("ADD ACTIVITY")
@@ -211,7 +227,7 @@ struct HomeView: View {
                     .clipShape(RoundedRectangle(cornerRadius: AppTheme.cornerRadiusSmall))
                 }
 
-                Button(action: {}) {
+                Button(action: { showStartActivity = true }) {
                     HStack {
                         Image(systemName: "timer")
                         Text("START ACTIVITY")

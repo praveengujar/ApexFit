@@ -1109,9 +1109,6 @@ struct SleepDashboardView: View {
                     .foregroundStyle(AppColors.textPrimary)
                     .tracking(0.5)
                 Spacer()
-                Image(systemName: "chevron.right")
-                    .font(.system(size: 12))
-                    .foregroundStyle(AppColors.textTertiary)
             }
 
             content()
