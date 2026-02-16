@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.apexfit.shared.engine.CollectionExtensionsTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-02-16T20:34:36" hostname="Gujar-M4-MacBook-Pro.local" time="0.001">
+  <properties/>
+  <testcase name="mean_emptyList_returnsZero[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.CollectionExtensionsTest" time="0.0"/>
+  <testcase name="mean_validList_returnsAverage[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.CollectionExtensionsTest" time="0.0"/>
+  <testcase name="standardDeviation_singleElement_returnsZero[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.CollectionExtensionsTest" time="0.001"/>
+  <testcase name="standardDeviation_uniformValues_returnsZero[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.CollectionExtensionsTest" time="0.0"/>
+  <testcase name="standardDeviation_validList_returnsPopulationStdDev[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.CollectionExtensionsTest" time="0.0"/>
+  <testcase name="median_emptyList_returnsZero[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.CollectionExtensionsTest" time="0.0"/>
+  <testcase name="median_oddCount_returnsMiddle[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.CollectionExtensionsTest" time="0.0"/>
+  <testcase name="median_evenCount_returnsAverageOfMiddleTwo[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.CollectionExtensionsTest" time="0.0"/>
+  <testcase name="clamped_withinRange_returnsSameValue[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.CollectionExtensionsTest" time="0.0"/>
+  <testcase name="clamped_belowRange_returnsMin[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.CollectionExtensionsTest" time="0.0"/>
+  <testcase name="clamped_aboveRange_returnsMax[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.CollectionExtensionsTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.apexfit.shared.engine.SleepPlannerEngineTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-02-16T20:34:14" hostname="Gujar-M4-MacBook-Pro.local" time="0.0">
+  <properties/>
+  <testcase name="plan_peakGoal_fullSleepDuration[iosSimulatorArm64]" classname="com.apexfit.shared.engine.SleepPlannerEngineTest" time="0.0"/>
+  <testcase name="plan_performGoal_reducedDuration[iosSimulatorArm64]" classname="com.apexfit.shared.engine.SleepPlannerEngineTest" time="0.0"/>
+  <testcase name="plan_getByGoal_minimumDuration[iosSimulatorArm64]" classname="com.apexfit.shared.engine.SleepPlannerEngineTest" time="0.0"/>
+  <testcase name="plan_bedtimeIsCorrectOffset[iosSimulatorArm64]" classname="com.apexfit.shared.engine.SleepPlannerEngineTest" time="0.0"/>
+  <testcase name="estimateWakeTime_empty_returns7AM[iosSimulatorArm64]" classname="com.apexfit.shared.engine.SleepPlannerEngineTest" time="0.0"/>
+  <testcase name="estimateWakeTime_withHistory_returnsAverage[iosSimulatorArm64]" classname="com.apexfit.shared.engine.SleepPlannerEngineTest" time="0.0"/>
+  <testcase name="estimateOnsetLatency_empty_returns15[iosSimulatorArm64]" classname="com.apexfit.shared.engine.SleepPlannerEngineTest" time="0.0"/>
+  <testcase name="estimateOnsetLatency_withHistory_returnsAverage[iosSimulatorArm64]" classname="com.apexfit.shared.engine.SleepPlannerEngineTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

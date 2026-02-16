@@ -108,6 +108,16 @@ fun RecoveryDashboardScreen(
             text = viewModel.generateInsight(todayHRV, baseHRV),
         )
 
+        // Recovery Contributors
+        RecoveryContributorsCard(
+            strainScore = metric?.strainScore,
+            sleepPerformance = metric?.sleepPerformance,
+            todayHRV = todayHRV,
+            baseHRV = baseHRV,
+            todayRHR = todayRHR,
+            baseRHR = baseRHR,
+        )
+
         // Weekly Trends Header
         Text(
             text = "Weekly Trends",
@@ -146,6 +156,15 @@ fun RecoveryDashboardScreen(
             title = "RESPIRATORY RATE",
             metrics = weekMetrics,
             valueExtractor = { it.respiratoryRate ?: 0.0 },
+        )
+
+        // Weekly Sleep Performance Chart
+        WeeklyBarChart(
+            title = "SLEEP PERFORMANCE",
+            metrics = weekMetrics,
+            valueExtractor = { it.sleepPerformance ?: 0.0 },
+            maxValue = 100.0,
+            colorMapper = { Color(0xFF7B8CDE).copy(alpha = 0.7f) },
         )
     }
 }
@@ -368,6 +387,103 @@ private fun InsightCard(text: String) {
                 tint = Teal,
                 modifier = Modifier.size(14.dp),
             )
+        }
+    }
+}
+
+@Composable
+private fun RecoveryContributorsCard(
+    strainScore: Double?,
+    sleepPerformance: Double?,
+    todayHRV: Double,
+    baseHRV: Double,
+    todayRHR: Double,
+    baseRHR: Double,
+) {
+    val tags = buildList {
+        if (strainScore != null) {
+            if (strainScore >= 13) {
+                add(Triple("13+ Strain", false, RecoveryRed))
+            } else if (strainScore >= 8) {
+                add(Triple("Moderate Strain", true, RecoveryYellow))
+            } else {
+                add(Triple("Low Strain", true, RecoveryGreen))
+            }
+        }
+        if (sleepPerformance != null) {
+            if (sleepPerformance >= 85) {
+                add(Triple("Good Sleep", true, RecoveryGreen))
+            } else if (sleepPerformance >= 60) {
+                add(Triple("Fair Sleep", false, RecoveryYellow))
+            } else {
+                add(Triple("Low Sleep", false, RecoveryRed))
+            }
+        }
+        if (baseHRV > 0 && todayHRV > 0) {
+            val pct = ((todayHRV - baseHRV) / baseHRV) * 100
+            if (pct > 10) {
+                add(Triple("Good HRV", true, RecoveryGreen))
+            } else if (pct < -10) {
+                add(Triple("Low HRV", false, RecoveryRed))
+            }
+        }
+        if (baseRHR > 0 && todayRHR > 0) {
+            val pct = ((todayRHR - baseRHR) / baseRHR) * 100
+            if (pct > 5) {
+                add(Triple("Elevated RHR", false, RecoveryYellow))
+            } else if (pct < -5) {
+                add(Triple("Low RHR", true, RecoveryGreen))
+            }
+        }
+    }
+
+    if (tags.isEmpty()) return
+
+    Column(
+        modifier = Modifier
+            .padding(horizontal = Spacing.md)
+            .padding(top = Spacing.lg)
+            .clip(RoundedCornerShape(12.dp))
+            .background(BackgroundCard)
+            .padding(Spacing.md),
+    ) {
+        Text(
+            text = "RECOVERY INSIGHTS",
+            fontSize = 13.sp,
+            fontWeight = FontWeight.Bold,
+            color = TextPrimary,
+            letterSpacing = 0.5.sp,
+        )
+
+        Spacer(Modifier.height(Spacing.md))
+
+        // Wrap flow of tags
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
+        ) {
+            tags.take(4).forEach { (label, isPositive, color) ->
+                Row(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(16.dp))
+                        .background(color.copy(alpha = 0.15f))
+                        .padding(horizontal = 12.dp, vertical = 6.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Text(
+                        text = if (isPositive) "▲" else "▼",
+                        fontSize = 8.sp,
+                        color = color,
+                    )
+                    Spacer(Modifier.width(4.dp))
+                    Text(
+                        text = label,
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        color = color,
+                    )
+                }
+            }
         }
     }
 }

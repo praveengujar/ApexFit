@@ -3,7 +3,7 @@ package com.apexfit.feature.settings;
 import com.apexfit.core.data.repository.NotificationPreferenceRepository;
 import com.apexfit.core.data.repository.UserProfileRepository;
 import com.apexfit.core.healthconnect.HealthConnectManager;
-import com.apexfit.core.model.config.ScoringConfig;
+import com.apexfit.shared.model.config.ScoringConfig;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.QualifierMetadata;

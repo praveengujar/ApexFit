@@ -62,6 +62,9 @@ dependencies {
     implementation(project(":feature:trends"))
     implementation(project(":feature:settings"))
     implementation(project(":feature:onboarding"))
+    implementation(project(":feature:longevity"))
+    implementation(project(":feature:myplan"))
+    implementation(project(":feature:coach"))
 
     // Compose
     implementation(platform(libs.compose.bom))

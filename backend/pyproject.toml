@@ -2,7 +2,7 @@
 name = "apexfit-backend"
 version = "0.1.0"
 description = "ApexFit FastAPI backend for health & fitness tracking"
-requires-python = ">=3.12"
+requires-python = ">=3.11"
 dependencies = [
     "fastapi[standard]>=0.115.0",
     "uvicorn[standard]>=0.32.0",
@@ -34,17 +34,23 @@ dev = [
 requires = ["setuptools>=75.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
+[tool.setuptools.packages.find]
+include = ["app*"]
+
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
 testpaths = ["tests"]
 
 [tool.ruff]
-target-version = "py312"
+target-version = "py311"
 line-length = 100
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "N", "W", "UP"]
 
+[tool.ruff.lint.per-file-ignores]
+"app/engines/config.py" = ["N815"]
+
 [tool.mypy]
-python_version = "3.12"
+python_version = "3.11"
 strict = true

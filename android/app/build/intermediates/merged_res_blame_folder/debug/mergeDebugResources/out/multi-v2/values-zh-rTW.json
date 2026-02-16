@@ -4,41 +4,7 @@
             "outputFile": "com.apexfit.app-mergeDebugResources-67:/values-zh-rTW/values-zh-rTW.xml",
             "map": [
                 {
-                    "source": "/Users/pgujar/.gradle/caches/8.11.1/transforms/c44ea26fa643ea802bf041b208f9618e/transformed/ui-release/res/values-zh-rTW/values-zh-rTW.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,182,258,345,436,514,588,665,743,818,891,966,1034,1107,1179,1250,1324,1392",
-                        "endColumns": "76,75,86,90,77,73,76,77,74,72,74,67,72,71,70,73,67,115",
-                        "endOffsets": "177,253,340,431,509,583,660,738,813,886,961,1029,1102,1174,1245,1319,1387,1503"
-                    },
-                    "to": {
-                        "startLines": "9,10,11,12,13,14,15,76,77,78,79,80,81,82,83,85,86,87",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "766,843,919,1006,1097,1175,1249,7141,7219,7294,7367,7442,7510,7583,7655,7827,7901,7969",
-                        "endColumns": "76,75,86,90,77,73,76,77,74,72,74,67,72,71,70,73,67,115",
-                        "endOffsets": "838,914,1001,1092,1170,1244,1321,7214,7289,7362,7437,7505,7578,7650,7721,7896,7964,8080"
-                    }
-                },
-                {
-                    "source": "/Users/pgujar/.gradle/caches/8.11.1/transforms/d77620174127daaacafd944828d126a2/transformed/core-1.15.0/res/values-zh-rTW/values-zh-rTW.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,147,246,340,434,527,620,716",
-                        "endColumns": "91,98,93,93,92,92,95,100",
-                        "endOffsets": "142,241,335,429,522,615,711,812"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,84",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,197,296,390,484,577,670,7726",
-                        "endColumns": "91,98,93,93,92,92,95,100",
-                        "endOffsets": "192,291,385,479,572,665,761,7822"
-                    }
-                },
-                {
-                    "source": "/Users/pgujar/.gradle/caches/8.11.1/transforms/66b674c702f0df8cd1efeb2b46de05f0/transformed/foundation-release/res/values-zh-rTW/values-zh-rTW.xml",
+                    "source": "/Users/pgujar/.gradle/caches/8.11.1/transforms/e8dda368a877f9dd4a1506a068003848/transformed/foundation-release/res/values-zh-rTW/values-zh-rTW.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -55,7 +21,41 @@
                     }
                 },
                 {
-                    "source": "/Users/pgujar/.gradle/caches/8.11.1/transforms/e8ca512a7880af0a570ad639c3c16012/transformed/material3-release/res/values-zh-rTW/values-zh-rTW.xml",
+                    "source": "/Users/pgujar/.gradle/caches/8.11.1/transforms/531634d724035e918c0c6dcf05e4f947/transformed/ui-release/res/values-zh-rTW/values-zh-rTW.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,182,258,345,436,514,588,665,743,818,891,966,1034,1107,1179,1250,1324,1392",
+                        "endColumns": "76,75,86,90,77,73,76,77,74,72,74,67,72,71,70,73,67,115",
+                        "endOffsets": "177,253,340,431,509,583,660,738,813,886,961,1029,1102,1174,1245,1319,1387,1503"
+                    },
+                    "to": {
+                        "startLines": "9,10,11,12,13,14,15,76,77,78,79,80,81,82,83,85,86,87",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "766,843,919,1006,1097,1175,1249,7141,7219,7294,7367,7442,7510,7583,7655,7827,7901,7969",
+                        "endColumns": "76,75,86,90,77,73,76,77,74,72,74,67,72,71,70,73,67,115",
+                        "endOffsets": "838,914,1001,1092,1170,1244,1321,7214,7289,7362,7437,7505,7578,7650,7721,7896,7964,8080"
+                    }
+                },
+                {
+                    "source": "/Users/pgujar/.gradle/caches/8.11.1/transforms/419c0b79bfcbac1beb8c1419d8e405bd/transformed/core-1.15.0/res/values-zh-rTW/values-zh-rTW.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,147,246,340,434,527,620,716",
+                        "endColumns": "91,98,93,93,92,92,95,100",
+                        "endOffsets": "142,241,335,429,522,615,711,812"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,84",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,197,296,390,484,577,670,7726",
+                        "endColumns": "91,98,93,93,92,92,95,100",
+                        "endOffsets": "192,291,385,479,572,665,761,7822"
+                    }
+                },
+                {
+                    "source": "/Users/pgujar/.gradle/caches/8.11.1/transforms/25305cd25ae66b2ac065b435ab2e05b8/transformed/material3-release/res/values-zh-rTW/values-zh-rTW.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

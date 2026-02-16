@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.apexfit.shared.engine.MuscularLoadEngineTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-02-16T20:34:36" hostname="Gujar-M4-MacBook-Pro.local" time="0.0">
+  <properties/>
+  <testcase name="isStrengthWorkout_strengthType_returnsTrue[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.MuscularLoadEngineTest" time="0.0"/>
+  <testcase name="isStrengthWorkout_highIntensityType_returnsTrue[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.MuscularLoadEngineTest" time="0.0"/>
+  <testcase name="isStrengthWorkout_running_returnsFalse[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.MuscularLoadEngineTest" time="0.0"/>
+  <testcase name="isStrengthWorkout_yoga_returnsFalse[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.MuscularLoadEngineTest" time="0.0"/>
+  <testcase name="computeLoad_strengthWorkout_basicComputation[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.MuscularLoadEngineTest" time="0.0"/>
+  <testcase name="computeLoad_withRPE_adjustsLoad[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.MuscularLoadEngineTest" time="0.0"/>
+  <testcase name="computeLoad_clampedAt100[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.MuscularLoadEngineTest" time="0.0"/>
+  <testcase name="computeLoad_unknownWorkoutType_usesFallbackFactor[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.MuscularLoadEngineTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

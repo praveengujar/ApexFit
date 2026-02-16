@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.apexfit.shared.engine.HRVCalculatorTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-02-16T20:34:36" hostname="Gujar-M4-MacBook-Pro.local" time="0.0">
+  <properties/>
+  <testcase name="computeRMSSD_emptyList_returnsNull[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.HRVCalculatorTest" time="0.0"/>
+  <testcase name="computeRMSSD_singleValue_returnsNull[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.HRVCalculatorTest" time="0.0"/>
+  <testcase name="computeRMSSD_constantIntervals_returnsZero[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.HRVCalculatorTest" time="0.0"/>
+  <testcase name="computeRMSSD_variableIntervals_returnsCorrectValue[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.HRVCalculatorTest" time="0.0"/>
+  <testcase name="bestHRV_prefersRMSSD[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.HRVCalculatorTest" time="0.0"/>
+  <testcase name="bestHRV_fallsBackToSDNN[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.HRVCalculatorTest" time="0.0"/>
+  <testcase name="effectiveHRV_prefersRMSSD[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.HRVCalculatorTest" time="0.0"/>
+  <testcase name="effectiveHRV_fallsBackToSDNN[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.HRVCalculatorTest" time="0.0"/>
+  <testcase name="effectiveHRV_noData_returnsNull[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.HRVCalculatorTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

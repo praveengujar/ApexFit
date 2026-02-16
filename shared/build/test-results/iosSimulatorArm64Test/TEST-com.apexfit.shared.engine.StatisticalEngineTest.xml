@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.apexfit.shared.engine.StatisticalEngineTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-02-16T20:34:14" hostname="Gujar-M4-MacBook-Pro.local" time="0.0">
+  <properties/>
+  <testcase name="tTest_smallSamples_returnsNull[iosSimulatorArm64]" classname="com.apexfit.shared.engine.StatisticalEngineTest" time="0.0"/>
+  <testcase name="tTest_identicalDistributions_returnsNull[iosSimulatorArm64]" classname="com.apexfit.shared.engine.StatisticalEngineTest" time="0.0"/>
+  <testcase name="tTest_clearlyDifferentGroups_significantResult[iosSimulatorArm64]" classname="com.apexfit.shared.engine.StatisticalEngineTest" time="0.0"/>
+  <testcase name="cohensD_smallSamples_returnsNull[iosSimulatorArm64]" classname="com.apexfit.shared.engine.StatisticalEngineTest" time="0.0"/>
+  <testcase name="cohensD_clearlyDifferent_largeEffectSize[iosSimulatorArm64]" classname="com.apexfit.shared.engine.StatisticalEngineTest" time="0.0"/>
+  <testcase name="cohensD_identicalMeans_returnsZero[iosSimulatorArm64]" classname="com.apexfit.shared.engine.StatisticalEngineTest" time="0.0"/>
+  <testcase name="interpretEffectSize_correctLabels[iosSimulatorArm64]" classname="com.apexfit.shared.engine.StatisticalEngineTest" time="0.0"/>
+  <testcase name="analyzeCorrelation_significant_returnsPositiveDirection[iosSimulatorArm64]" classname="com.apexfit.shared.engine.StatisticalEngineTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,133 @@
+{
+  "version": 1,
+  "recovery": {
+    "weights": {
+      "hrv": 0.40,
+      "restingHeartRate": 0.25,
+      "sleep": 0.20,
+      "respiratoryRate": 0.05,
+      "spo2": 0.05,
+      "skinTemperature": 0.05
+    },
+    "sigmoidSteepness": 1.5,
+    "scoreRange": { "min": 1, "max": 99 },
+    "zones": {
+      "green": { "min": 67, "max": 99 },
+      "yellow": { "min": 34, "max": 66 },
+      "red": { "min": 1, "max": 33 }
+    },
+    "strainTargets": {
+      "green": { "min": 14.0, "max": 18.0 },
+      "yellow": { "min": 8.0, "max": 13.9 },
+      "red": { "min": 2.0, "max": 7.9 }
+    },
+    "insightThresholds": {
+      "hrvPercentChange": 10,
+      "rhrDeltaBPM": 3,
+      "sleepPerformanceHigh": 95,
+      "sleepPerformanceLow": 70,
+      "skinTempDeviationCelsius": 0.5
+    }
+  },
+  "sleep": {
+    "compositeWeights": {
+      "sufficiency": 0.50,
+      "efficiency": 0.25,
+      "consistency": 0.15,
+      "disturbances": 0.10
+    },
+    "consistencyWindowNights": 4,
+    "consistencyDecayTau": 60.0,
+    "disturbanceScaling": 20.0,
+    "strainSupplements": [
+      { "strainBelow": 8, "addHours": 0.0 },
+      { "strainBelow": 14, "addHours": 0.25 },
+      { "strainBelow": 18, "addHours": 0.5 },
+      { "strainBelow": 999, "addHours": 0.75 }
+    ],
+    "debtRepaymentRate": 0.20,
+    "defaults": {
+      "baselineHours": 7.5,
+      "onsetLatencyMinutes": 15.0
+    },
+    "sessionDetection": {
+      "gapToleranceMinutes": 30.0,
+      "minimumDurationMinutes": 30.0,
+      "maximumNapDurationHours": 3.0,
+      "napCreditCapHours": 1.5
+    }
+  },
+  "stress": {
+    "weights": {
+      "hrv": 0.7,
+      "heartRate": 0.3
+    },
+    "baselineWindowDays": 14,
+    "minimumBaselineSamples": 3,
+    "motionDampeningFactor": 0.3,
+    "bucketIntervalMinutes": 15,
+    "normalization": {
+      "zOffset": 2.0,
+      "zRange": 6.0,
+      "outputMax": 3.0
+    },
+    "levels": [
+      { "below": 1.0, "label": "LOW" },
+      { "below": 2.0, "label": "MEDIUM" },
+      { "below": 2.5, "label": "HIGH" },
+      { "below": 999, "label": "VERY HIGH" }
+    ],
+    "populationDefaults": {
+      "lnRMSSDMean": 3.5,
+      "lnRMSSDStd": 0.7,
+      "heartRateMean": 65.0,
+      "heartRateStd": 8.0
+    },
+    "baevsky": {
+      "binWidthSeconds": 0.050,
+      "normalizationDivisor": 150.0,
+      "normalizationMultiplier": 1.5
+    }
+  },
+  "strain": {
+    "scalingFactor": 6.0,
+    "logOffsetConstant": 1.0,
+    "maxValue": 21.0,
+    "minValue": 0.0,
+    "zones": {
+      "light": { "min": 0, "max": 8 },
+      "moderate": { "min": 8, "max": 14 },
+      "high": { "min": 14, "max": 18 },
+      "overreaching": { "min": 18, "max": 21 }
+    }
+  },
+  "heartRateZones": {
+    "boundaries": [0.50, 0.60, 0.70, 0.80, 0.90, 1.00],
+    "multipliers": [1.0, 2.0, 3.0, 4.0, 5.0],
+    "sampleMaxDurationSeconds": 600
+  },
+  "baselines": {
+    "windowDays": 28,
+    "minimumSamples": 3,
+    "fallbackDays": 7,
+    "exponentialAlpha": 0.1
+  },
+  "healthMonitor": {
+    "zScoreThreshold": 1.5
+  },
+  "sleepPlanner": {
+    "goalMultipliers": {
+      "peak": 1.0,
+      "perform": 0.85,
+      "getBy": 0.70
+    }
+  },
+  "staleness": {
+    "heartRateHours": 4,
+    "sleepDataHours": 18,
+    "workoutHours": 24,
+    "restingHRHours": 24,
+    "hrvHours": 24,
+    "spo2Hours": 24
+  }
+}

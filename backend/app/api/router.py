@@ -6,6 +6,7 @@ from fastapi import APIRouter
 
 from app.api import (
     coach,
+    config_routes,
     dashboard,
     healthspan,
     journal,
@@ -37,3 +38,4 @@ api_router.include_router(
 )
 api_router.include_router(dashboard.router, prefix="/dashboard", tags=["dashboard"])
 api_router.include_router(stress.router, prefix="/stress", tags=["stress"])
+api_router.include_router(config_routes.router, prefix="/config", tags=["config"])

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.apexfit.shared.engine.BaselineEngineTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-02-16T20:34:36" hostname="Gujar-M4-MacBook-Pro.local" time="0.0">
+  <properties/>
+  <testcase name="computeBaseline_emptyValues_returnsNull[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.BaselineEngineTest" time="0.0"/>
+  <testcase name="computeBaseline_twoValues_returnsNull[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.BaselineEngineTest" time="0.0"/>
+  <testcase name="computeBaseline_threeValues_returnsValidBaseline[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.BaselineEngineTest" time="0.0"/>
+  <testcase name="computeBaseline_identicalValues_floorsStdDev[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.BaselineEngineTest" time="0.0"/>
+  <testcase name="zScore_meanValue_returnsZero[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.BaselineEngineTest" time="0.0"/>
+  <testcase name="zScore_oneStdDevAbove_returnsOne[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.BaselineEngineTest" time="0.0"/>
+  <testcase name="updateBaseline_shiftsTowardNewValue[watchosSimulatorArm64]" classname="com.apexfit.shared.engine.BaselineEngineTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

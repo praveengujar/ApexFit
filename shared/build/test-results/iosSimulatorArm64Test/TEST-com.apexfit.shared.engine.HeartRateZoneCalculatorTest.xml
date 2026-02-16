@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.apexfit.shared.engine.HeartRateZoneCalculatorTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-02-16T20:34:14" hostname="Gujar-M4-MacBook-Pro.local" time="0.001">
+  <properties/>
+  <testcase name="zone_belowThreshold_returnsNull[iosSimulatorArm64]" classname="com.apexfit.shared.engine.HeartRateZoneCalculatorTest" time="0.0"/>
+  <testcase name="zone_atLowerBoundary_returnsZone1[iosSimulatorArm64]" classname="com.apexfit.shared.engine.HeartRateZoneCalculatorTest" time="0.0"/>
+  <testcase name="zone_inZone1_returnsCorrectMultiplier[iosSimulatorArm64]" classname="com.apexfit.shared.engine.HeartRateZoneCalculatorTest" time="0.0"/>
+  <testcase name="zone_inZone2_returnsCorrectMultiplier[iosSimulatorArm64]" classname="com.apexfit.shared.engine.HeartRateZoneCalculatorTest" time="0.0"/>
+  <testcase name="zone_inZone3_returnsCorrectMultiplier[iosSimulatorArm64]" classname="com.apexfit.shared.engine.HeartRateZoneCalculatorTest" time="0.0"/>
+  <testcase name="zone_inZone4_returnsCorrectMultiplier[iosSimulatorArm64]" classname="com.apexfit.shared.engine.HeartRateZoneCalculatorTest" time="0.0"/>
+  <testcase name="zone_inZone5_returnsCorrectMultiplier[iosSimulatorArm64]" classname="com.apexfit.shared.engine.HeartRateZoneCalculatorTest" time="0.0"/>
+  <testcase name="zone_atMaxHR_returnsZone5[iosSimulatorArm64]" classname="com.apexfit.shared.engine.HeartRateZoneCalculatorTest" time="0.0"/>
+  <testcase name="multiplier_belowThreshold_returnsZero[iosSimulatorArm64]" classname="com.apexfit.shared.engine.HeartRateZoneCalculatorTest" time="0.0"/>
+  <testcase name="zoneNumber_belowThreshold_returnsZero[iosSimulatorArm64]" classname="com.apexfit.shared.engine.HeartRateZoneCalculatorTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

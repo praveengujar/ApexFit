@@ -1,0 +1,2 @@
+-keep,allowobfuscation,allowshrinking class com.apexfit.feature.longevity.LongevityViewModel
+-keep,allowobfuscation,allowshrinking class com.apexfit.feature.longevity.LongevityViewModel

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.apexfit.shared.engine.BaselineEngineTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-02-16T20:34:14" hostname="Gujar-M4-MacBook-Pro.local" time="0.004">
+  <properties/>
+  <testcase name="computeBaseline_emptyValues_returnsNull[iosSimulatorArm64]" classname="com.apexfit.shared.engine.BaselineEngineTest" time="0.001"/>
+  <testcase name="computeBaseline_twoValues_returnsNull[iosSimulatorArm64]" classname="com.apexfit.shared.engine.BaselineEngineTest" time="0.0"/>
+  <testcase name="computeBaseline_threeValues_returnsValidBaseline[iosSimulatorArm64]" classname="com.apexfit.shared.engine.BaselineEngineTest" time="0.0"/>
+  <testcase name="computeBaseline_identicalValues_floorsStdDev[iosSimulatorArm64]" classname="com.apexfit.shared.engine.BaselineEngineTest" time="0.0"/>
+  <testcase name="zScore_meanValue_returnsZero[iosSimulatorArm64]" classname="com.apexfit.shared.engine.BaselineEngineTest" time="0.0"/>
+  <testcase name="zScore_oneStdDevAbove_returnsOne[iosSimulatorArm64]" classname="com.apexfit.shared.engine.BaselineEngineTest" time="0.0"/>
+  <testcase name="updateBaseline_shiftsTowardNewValue[iosSimulatorArm64]" classname="com.apexfit.shared.engine.BaselineEngineTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

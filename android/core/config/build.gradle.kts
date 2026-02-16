@@ -22,8 +22,8 @@ android {
 
 dependencies {
     implementation(project(":core:model"))
+    implementation(project(":shared"))
     implementation(libs.core.ktx)
-    implementation(libs.kotlinx.serialization)
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
 }

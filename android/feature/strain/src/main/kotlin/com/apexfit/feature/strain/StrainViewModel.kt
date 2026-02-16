@@ -86,4 +86,9 @@ class StrainViewModel @Inject constructor(
     }
 
     private fun formatStrain(value: Double): String = "%.1f".format(value)
+
+    fun baselineSteps(metrics: List<DailyMetricEntity>): Double {
+        val values = metrics.mapNotNull { it.steps?.toDouble() }
+        return if (values.isEmpty()) 0.0 else values.average()
+    }
 }

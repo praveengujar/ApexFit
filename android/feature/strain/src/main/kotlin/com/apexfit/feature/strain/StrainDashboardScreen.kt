@@ -93,11 +93,14 @@ fun StrainDashboardScreen(
         )
 
         // Sub-metrics card
+        val baseSteps = viewModel.baselineSteps(uiState.weekMetrics)
+
         StrainSubMetricsCard(
             zone13 = todayZone13,
             zone45 = todayZone45,
             strength = todayStrength,
             steps = todaySteps,
+            baselineSteps = baseSteps,
         )
 
         // Insight card
@@ -234,6 +237,7 @@ private fun StrainSubMetricsCard(
     zone45: Double,
     strength: Double,
     steps: Int,
+    baselineSteps: Double,
 ) {
     Column(
         modifier = Modifier
@@ -247,7 +251,12 @@ private fun StrainSubMetricsCard(
         HorizontalDivider(color = BackgroundTertiary)
         StrainMetricRow("STRENGTH ACTIVITY TIME", formatMinutes(strength))
         HorizontalDivider(color = BackgroundTertiary)
-        StrainMetricRow("STEPS", formatWithComma(steps))
+        StrainMetricRowWithBaseline(
+            title = "STEPS",
+            value = formatWithComma(steps),
+            baseline = if (baselineSteps > 0) formatWithComma(baselineSteps.toInt()) else null,
+            isAboveBaseline = steps.toDouble() >= baselineSteps,
+        )
 
         // Footer
         Row(
@@ -293,6 +302,57 @@ private fun StrainMetricRow(title: String, value: String) {
             fontWeight = FontWeight.Bold,
             color = TextPrimary,
         )
+    }
+}
+
+@Composable
+private fun StrainMetricRowWithBaseline(
+    title: String,
+    value: String,
+    baseline: String?,
+    isAboveBaseline: Boolean,
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = Spacing.md, vertical = 14.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Text(
+            text = title,
+            fontSize = 12.sp,
+            fontWeight = FontWeight.Bold,
+            color = TextPrimary,
+            letterSpacing = 0.5.sp,
+            maxLines = 1,
+            modifier = Modifier.weight(1f),
+        )
+
+        Column(horizontalAlignment = Alignment.End) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = value,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = TextPrimary,
+                )
+                if (baseline != null) {
+                    Spacer(Modifier.width(4.dp))
+                    Text(
+                        text = if (isAboveBaseline) "▲" else "▼",
+                        fontSize = 8.sp,
+                        color = if (isAboveBaseline) RecoveryGreen else RecoveryYellow,
+                    )
+                }
+            }
+            if (baseline != null) {
+                Text(
+                    text = baseline,
+                    fontSize = 12.sp,
+                    color = TextTertiary,
+                )
+            }
+        }
     }
 }
 

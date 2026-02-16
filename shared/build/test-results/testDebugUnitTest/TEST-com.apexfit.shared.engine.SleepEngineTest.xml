@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.apexfit.shared.engine.SleepEngineTest" tests="15" skipped="0" failures="0" errors="0" timestamp="2026-02-16T20:34:36" hostname="Gujar-M4-MacBook-Pro.local" time="0.001">
+  <properties/>
+  <testcase name="classifySessions_mainPlusNap_classifiesCorrectly" classname="com.apexfit.shared.engine.SleepEngineTest" time="0.0"/>
+  <testcase name="computeCompositeSleepScore_poorInputs_lowScore" classname="com.apexfit.shared.engine.SleepEngineTest" time="0.0"/>
+  <testcase name="classifySessions_shortSessionFilteredOut" classname="com.apexfit.shared.engine.SleepEngineTest" time="0.0"/>
+  <testcase name="computeSleepDebt_allDeficits_accumulatesDebt" classname="com.apexfit.shared.engine.SleepEngineTest" time="0.0"/>
+  <testcase name="computeDisturbancesPerHour_correctRate" classname="com.apexfit.shared.engine.SleepEngineTest" time="0.0"/>
+  <testcase name="computeSleepPerformance_perfectSleep_returns100" classname="com.apexfit.shared.engine.SleepEngineTest" time="0.0"/>
+  <testcase name="computeSleepDebt_surplusIgnored" classname="com.apexfit.shared.engine.SleepEngineTest" time="0.0"/>
+  <testcase name="classifySessions_empty_returnsNullAndEmpty" classname="com.apexfit.shared.engine.SleepEngineTest" time="0.0"/>
+  <testcase name="computeSleepConsistency_noPriorHistory_returns100" classname="com.apexfit.shared.engine.SleepEngineTest" time="0.0"/>
+  <testcase name="computeRestorativeSleepPct_correctRatio" classname="com.apexfit.shared.engine.SleepEngineTest" time="0.0"/>
+  <testcase name="computeCompositeSleepScore_perfectInputs_returns100" classname="com.apexfit.shared.engine.SleepEngineTest" time="0.0"/>
+  <testcase name="classifySessions_singleSession_mainSleepNoNaps" classname="com.apexfit.shared.engine.SleepEngineTest" time="0.0"/>
+  <testcase name="computeSleepNeed_highStrain_addsSupplement" classname="com.apexfit.shared.engine.SleepEngineTest" time="0.0"/>
+  <testcase name="computeSleepNeed_lowStrain_noSupplement" classname="com.apexfit.shared.engine.SleepEngineTest" time="0.0"/>
+  <testcase name="computeSleepPerformance_halfSleep_returns50" classname="com.apexfit.shared.engine.SleepEngineTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

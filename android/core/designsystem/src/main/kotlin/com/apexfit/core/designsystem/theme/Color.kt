@@ -23,6 +23,10 @@ val Zone3 = Color(0xFFFFDE00)
 val Zone4 = Color(0xFFFF8C00)
 val Zone5 = Color(0xFFFF0026)
 
+// Longevity
+val LongevityGreen = Color(0xFF00C853)
+val LongevityOrange = Color(0xFFFF6D00)
+
 // UI Colors
 val PrimaryBlue = Color(0xFF0A84FF)
 val Teal = Color(0xFF00F19F)

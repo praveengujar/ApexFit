@@ -90,6 +90,7 @@ fun SleepDashboardScreen(
             hoursVsNeeded = metric?.sleepPerformance ?: 0.0,
             consistency = sleepConsistency,
             efficiency = sleepEfficiency,
+            stressScore = metric?.stressScore,
         )
 
         // Insight card
@@ -127,6 +128,22 @@ fun SleepDashboardScreen(
             HypnogramCard(stages = stages.sortedBy { it.startDate })
         }
 
+        // Restorative Sleep (Deep + REM)
+        sleep?.let { s ->
+            val restorativeMinutes = s.deepMinutes + s.remMinutes
+            val restorativePct = if (s.totalSleepMinutes > 0) {
+                (restorativeMinutes / s.totalSleepMinutes * 100)
+            } else {
+                0.0
+            }
+            RestorativeSleepCard(
+                restorativePct = restorativePct,
+                restorativeMinutes = restorativeMinutes,
+                deepMinutes = s.deepMinutes,
+                remMinutes = s.remMinutes,
+            )
+        }
+
         // Weekly Trends
         Text(
             text = "Weekly Trends",
@@ -149,6 +166,34 @@ fun SleepDashboardScreen(
             metrics = uiState.weekMetrics,
             valueExtractor = { it.sleepConsistency ?: 0.0 },
             maxValue = 100.0,
+        )
+
+        WeeklySleepChart(
+            title = "SLEEP EFFICIENCY",
+            metrics = uiState.weekMetrics,
+            valueExtractor = { it.sleepEfficiency ?: 0.0 },
+            maxValue = 100.0,
+        )
+
+        WeeklySleepChart(
+            title = "HOURS OF SLEEP",
+            metrics = uiState.weekMetrics,
+            valueExtractor = { it.totalSleepHours ?: 0.0 },
+            maxValue = 12.0,
+        )
+
+        WeeklySleepChart(
+            title = "RESTORATIVE SLEEP",
+            metrics = uiState.weekMetrics,
+            valueExtractor = { it.restorativeSleepPercentage ?: ((it.deepSleepPercentage ?: 0.0) + (it.remSleepPercentage ?: 0.0)) },
+            maxValue = 100.0,
+        )
+
+        WeeklySleepChart(
+            title = "SLEEP DEBT",
+            metrics = uiState.weekMetrics,
+            valueExtractor = { it.sleepDebtHours ?: 0.0 },
+            maxValue = (uiState.weekMetrics.maxOfOrNull { it.sleepDebtHours ?: 0.0 } ?: 4.0).coerceAtLeast(1.0) * 1.2,
         )
     }
 }
@@ -225,6 +270,7 @@ private fun SleepSubMetricsCard(
     hoursVsNeeded: Double,
     consistency: Double,
     efficiency: Double,
+    stressScore: Double?,
 ) {
     Column(
         modifier = Modifier
@@ -237,6 +283,11 @@ private fun SleepSubMetricsCard(
         SleepMetricRow("SLEEP CONSISTENCY", consistency)
         HorizontalDivider(color = BackgroundTertiary)
         SleepMetricRow("SLEEP EFFICIENCY", efficiency)
+        HorizontalDivider(color = BackgroundTertiary)
+        SleepMetricRow(
+            "SLEEP STRESS",
+            stressScore?.let { (it * 33.3).coerceIn(0.0, 100.0) } ?: 0.0,
+        )
 
         // Legend
         Row(
@@ -603,6 +654,107 @@ private fun HypnogramCard(stages: List<SleepStageEntity>) {
         ) {
             listOf("Deep", "Light", "REM", "Awake").forEach { label ->
                 Text(text = label, fontSize = 10.sp, color = TextTertiary)
+            }
+        }
+    }
+}
+
+@Composable
+private fun RestorativeSleepCard(
+    restorativePct: Double,
+    restorativeMinutes: Double,
+    deepMinutes: Double,
+    remMinutes: Double,
+) {
+    Column(
+        modifier = Modifier
+            .padding(horizontal = Spacing.md)
+            .padding(top = Spacing.lg)
+            .clip(RoundedCornerShape(12.dp))
+            .background(BackgroundCard)
+            .padding(Spacing.md),
+    ) {
+        Text(
+            text = "RESTORATIVE SLEEP",
+            fontSize = 13.sp,
+            fontWeight = FontWeight.Bold,
+            color = TextPrimary,
+            letterSpacing = 0.5.sp,
+        )
+
+        Spacer(Modifier.height(Spacing.sm))
+
+        Row(verticalAlignment = Alignment.Bottom) {
+            Text(
+                text = "${restorativePct.toInt()}%",
+                fontSize = 28.sp,
+                fontWeight = FontWeight.Bold,
+                color = TextPrimary,
+            )
+            Spacer(Modifier.width(Spacing.sm))
+            Text(
+                text = formatDuration(restorativeMinutes / 60.0),
+                fontSize = 16.sp,
+                color = TextSecondary,
+                modifier = Modifier.padding(bottom = 4.dp),
+            )
+        }
+
+        Text(
+            text = "Deep + REM sleep combined",
+            fontSize = 12.sp,
+            color = TextTertiary,
+        )
+
+        Spacer(Modifier.height(Spacing.md))
+
+        // Stacked bar
+        val total = (deepMinutes + remMinutes).coerceAtLeast(1.0)
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(12.dp)
+                .clip(RoundedCornerShape(4.dp)),
+        ) {
+            Box(
+                modifier = Modifier
+                    .weight((deepMinutes / total).toFloat().coerceAtLeast(0.01f))
+                    .height(12.dp)
+                    .background(SleepDeep),
+            )
+            Box(
+                modifier = Modifier
+                    .weight((remMinutes / total).toFloat().coerceAtLeast(0.01f))
+                    .height(12.dp)
+                    .background(SleepREM),
+            )
+        }
+
+        Spacer(Modifier.height(Spacing.xs))
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Box(
+                    modifier = Modifier
+                        .size(8.dp)
+                        .clip(CircleShape)
+                        .background(SleepDeep),
+                )
+                Spacer(Modifier.width(4.dp))
+                Text("Deep ${formatDuration(deepMinutes / 60.0)}", fontSize = 11.sp, color = TextTertiary)
+            }
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Box(
+                    modifier = Modifier
+                        .size(8.dp)
+                        .clip(CircleShape)
+                        .background(SleepREM),
+                )
+                Spacer(Modifier.width(4.dp))
+                Text("REM ${formatDuration(remMinutes / 60.0)}", fontSize = 11.sp, color = TextTertiary)
             }
         }
     }

@@ -2,7 +2,7 @@ package com.apexfit.core.domain.usecase;
 
 import com.apexfit.core.data.repository.BaselineRepository;
 import com.apexfit.core.data.repository.DailyMetricRepository;
-import com.apexfit.core.model.config.ScoringConfig;
+import com.apexfit.shared.model.config.ScoringConfig;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.QualifierMetadata;

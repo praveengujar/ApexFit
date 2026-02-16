@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.apexfit.shared.engine.StrainEngineTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-02-16T20:34:14" hostname="Gujar-M4-MacBook-Pro.local" time="0.0">
+  <properties/>
+  <testcase name="computeStrain_emptySamples_returnsZeroStrain[iosSimulatorArm64]" classname="com.apexfit.shared.engine.StrainEngineTest" time="0.0"/>
+  <testcase name="computeStrain_belowZone1_noContribution[iosSimulatorArm64]" classname="com.apexfit.shared.engine.StrainEngineTest" time="0.0"/>
+  <testcase name="computeStrain_zone1Only_lowStrain[iosSimulatorArm64]" classname="com.apexfit.shared.engine.StrainEngineTest" time="0.0"/>
+  <testcase name="computeStrain_zone5Only_highStrain[iosSimulatorArm64]" classname="com.apexfit.shared.engine.StrainEngineTest" time="0.0"/>
+  <testcase name="computeStrain_mixedZones_correctZoneTracking[iosSimulatorArm64]" classname="com.apexfit.shared.engine.StrainEngineTest" time="0.0"/>
+  <testcase name="computeStrain_clampedAtMax21[iosSimulatorArm64]" classname="com.apexfit.shared.engine.StrainEngineTest" time="0.0"/>
+  <testcase name="estimateDurations_singleSample_defaults5seconds[iosSimulatorArm64]" classname="com.apexfit.shared.engine.StrainEngineTest" time="0.0"/>
+  <testcase name="estimateDurations_multipleSamples_computesDiffs[iosSimulatorArm64]" classname="com.apexfit.shared.engine.StrainEngineTest" time="0.0"/>
+  <testcase name="estimateDurations_capsAtMaxDuration[iosSimulatorArm64]" classname="com.apexfit.shared.engine.StrainEngineTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

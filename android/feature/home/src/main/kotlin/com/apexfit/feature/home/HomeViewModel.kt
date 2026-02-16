@@ -3,18 +3,15 @@ package com.apexfit.feature.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.apexfit.core.data.entity.DailyMetricEntity
+import com.apexfit.core.data.entity.WorkoutRecordEntity
 import com.apexfit.core.data.repository.DailyMetricRepository
 import com.apexfit.core.data.repository.WorkoutRepository
-import com.apexfit.core.data.entity.WorkoutRecordEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.flow.update
-import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
 import javax.inject.Inject
@@ -51,6 +48,12 @@ class HomeViewModel @Inject constructor(
         started = SharingStarted.WhileSubscribed(5000),
         initialValue = HomeUiState(),
     )
+
+    fun navigateDate(offset: Int) {
+        val next = _selectedDate.value.plusDays(offset.toLong())
+        if (next.isAfter(LocalDate.now())) return
+        _selectedDate.value = next
+    }
 
     // Baselines (28-day rolling averages from weekMetrics for now)
     fun hrvBaseline(): Double? {
