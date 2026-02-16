@@ -1,0 +1,88 @@
+package com.apexfit.feature.recovery
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.apexfit.core.data.entity.DailyMetricEntity
+import com.apexfit.core.data.repository.DailyMetricRepository
+import com.apexfit.core.model.RecoveryZone
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
+import java.time.LocalDate
+import java.time.ZoneId
+import javax.inject.Inject
+import kotlin.math.abs
+
+data class RecoveryUiState(
+    val todayMetric: DailyMetricEntity? = null,
+    val weekMetrics: List<DailyMetricEntity> = emptyList(),
+)
+
+@HiltViewModel
+class RecoveryViewModel @Inject constructor(
+    dailyMetricRepo: DailyMetricRepository,
+) : ViewModel() {
+
+    val uiState: StateFlow<RecoveryUiState> = dailyMetricRepo.observeRecent(30)
+        .map { metrics ->
+            val todayMillis = LocalDate.now().atStartOfDay(ZoneId.systemDefault())
+                .toInstant().toEpochMilli()
+            val yesterdayMillis = LocalDate.now().minusDays(1)
+                .atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli()
+
+            val today = metrics.find { it.date == todayMillis }
+                ?: metrics.find { it.date == yesterdayMillis }
+
+            val weekCutoff = LocalDate.now().minusDays(7)
+                .atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli()
+            val week = metrics.filter { it.date >= weekCutoff }.sortedBy { it.date }
+
+            RecoveryUiState(
+                todayMetric = today,
+                weekMetrics = week,
+            )
+        }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), RecoveryUiState())
+
+    fun baselineHRV(metrics: List<DailyMetricEntity>): Double {
+        val values = metrics.mapNotNull { it.hrvRMSSD }
+        return if (values.isEmpty()) 0.0 else values.average()
+    }
+
+    fun baselineRHR(metrics: List<DailyMetricEntity>): Double {
+        val values = metrics.mapNotNull { it.restingHeartRate }
+        return if (values.isEmpty()) 0.0 else values.average()
+    }
+
+    fun baselineRespRate(metrics: List<DailyMetricEntity>): Double {
+        val values = metrics.mapNotNull { it.respiratoryRate }
+        return if (values.isEmpty()) 0.0 else values.average()
+    }
+
+    fun baselineSleepPerf(metrics: List<DailyMetricEntity>): Double {
+        val values = metrics.mapNotNull { it.sleepPerformance }
+        return if (values.isEmpty()) 0.0 else values.average()
+    }
+
+    fun generateInsight(todayHRV: Double, baselineHRV: Double): String {
+        if (baselineHRV <= 0 || todayHRV <= 0) {
+            return "Wear your device to sleep tonight for a full recovery analysis."
+        }
+
+        val hrvPctChange = ((todayHRV - baselineHRV) / baselineHRV) * 100
+        val direction = if (hrvPctChange >= 0) "higher" else "lower"
+        val pctStr = "${abs(hrvPctChange).toInt()}%"
+
+        var text = "Your HRV is $pctStr $direction than usual"
+
+        text += when {
+            hrvPctChange < -10 -> " which can be due to stress, dehydration, or other lifestyle factors. Take it easy to let your body fully recover."
+            hrvPctChange > 10 -> " indicating good recovery. Your body is primed for performance today."
+            else -> ". Your metrics are within normal range. Maintain your current habits for consistent recovery."
+        }
+
+        return text
+    }
+}

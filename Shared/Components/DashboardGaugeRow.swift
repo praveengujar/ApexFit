@@ -79,7 +79,7 @@ struct DashboardGaugeRow: View {
         Group {
             if isCompact {
                 // Compact: horizontal ring + value + label
-                compactItem(value: value, maxValue: maxValue, label: label, unit: unit, color: color)
+                compactItem(value: value, maxValue: maxValue, label: label, unit: unit, color: color, action: action)
             } else {
                 // Expanded: vertical ring + label button
                 expandedItem(value: value, maxValue: maxValue, label: label, unit: unit, color: color, action: action)
@@ -96,34 +96,29 @@ struct DashboardGaugeRow: View {
         color: Color,
         action: @escaping () -> Void
     ) -> some View {
-        VStack(spacing: AppTheme.spacingSM) {
-            CircularGaugeView(
-                value: value,
-                maxValue: maxValue,
-                label: unit,
-                unit: unit,
-                color: color,
-                size: .medium,
-                overrideDimension: gaugeDimension,
-                overrideLineWidth: gaugeStroke,
-                showCenterText: collapseProgress < 0.5
-            )
+        Button(action: action) {
+            VStack(spacing: AppTheme.spacingSM) {
+                CircularGaugeView(
+                    value: value,
+                    maxValue: maxValue,
+                    label: unit,
+                    unit: unit,
+                    color: color,
+                    size: .medium,
+                    overrideDimension: gaugeDimension,
+                    overrideLineWidth: gaugeStroke,
+                    showCenterText: collapseProgress < 0.5
+                )
 
-            Button(action: action) {
-                HStack(spacing: AppTheme.spacingXS) {
-                    Text(label)
-                        .font(AppTypography.labelMedium)
-                        .foregroundStyle(AppColors.textSecondary)
-                    Image(systemName: "chevron.right")
-                        .font(.system(size: 10, weight: .semibold))
-                        .foregroundStyle(AppColors.textSecondary)
-                }
+                Text(label)
+                    .font(AppTypography.labelMedium)
+                    .foregroundStyle(AppColors.textSecondary)
+                    .opacity(labelOpacity)
+                    .frame(height: labelOpacity > 0.01 ? nil : 0)
+                    .clipped()
             }
-            .buttonStyle(.plain)
-            .opacity(labelOpacity)
-            .frame(height: labelOpacity > 0.01 ? nil : 0)
-            .clipped()
         }
+        .buttonStyle(.plain)
     }
 
     private func compactItem(
@@ -131,30 +126,34 @@ struct DashboardGaugeRow: View {
         maxValue: Double,
         label: String,
         unit: String,
-        color: Color
+        color: Color,
+        action: @escaping () -> Void
     ) -> some View {
-        HStack(spacing: AppTheme.spacingSM) {
-            CircularGaugeView(
-                value: value,
-                maxValue: maxValue,
-                label: "",
-                unit: unit,
-                color: color,
-                size: .small,
-                overrideDimension: compactSize,
-                overrideLineWidth: compactStroke,
-                showCenterText: false
-            )
+        Button(action: action) {
+            HStack(spacing: AppTheme.spacingSM) {
+                CircularGaugeView(
+                    value: value,
+                    maxValue: maxValue,
+                    label: "",
+                    unit: unit,
+                    color: color,
+                    size: .small,
+                    overrideDimension: compactSize,
+                    overrideLineWidth: compactStroke,
+                    showCenterText: false
+                )
 
-            VStack(alignment: .leading, spacing: 0) {
-                Text(formattedValue(value, maxValue: maxValue))
-                    .font(.system(size: 14, weight: .bold, design: .rounded))
-                    .foregroundStyle(color)
-                Text(label)
-                    .font(.system(size: 9, weight: .semibold))
-                    .foregroundStyle(AppColors.textSecondary)
+                VStack(alignment: .leading, spacing: 0) {
+                    Text(formattedValue(value, maxValue: maxValue))
+                        .font(.system(size: 14, weight: .bold, design: .rounded))
+                        .foregroundStyle(color)
+                    Text(label)
+                        .font(.system(size: 9, weight: .semibold))
+                        .foregroundStyle(AppColors.textSecondary)
+                }
             }
         }
+        .buttonStyle(.plain)
     }
 
     // MARK: - Helpers

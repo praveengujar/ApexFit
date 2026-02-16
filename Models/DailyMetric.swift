@@ -39,6 +39,8 @@ final class DailyMetric {
     var deepSleepPct: Double?
     /// REM sleep as percentage of total sleep.
     var remSleepPct: Double?
+    /// Lean body mass percentage (100 - body fat %). Used for longevity computation.
+    var leanBodyMassPct: Double?
 
     var isComputed: Bool
     var computedAt: Date?

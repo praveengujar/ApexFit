@@ -60,6 +60,14 @@ actor MetricComputationService {
         dailyMetric.activeCalories = try await calories
         dailyMetric.vo2Max = try await vo2Max
 
+        // Step 5b: Body composition for Longevity
+        if let bodyFatPct = try? await queryService.fetchBodyFatPercentage(for: date) {
+            dailyMetric.leanBodyMassPct = 100.0 - bodyFatPct
+        } else if let lbm = try? await queryService.fetchLeanBodyMass(for: date),
+                  let weight = profile.weightKG, weight > 0 {
+            dailyMetric.leanBodyMassPct = (lbm / weight) * 100.0
+        }
+
         // Step 6: Compute stress timeline and daily average
         try await computeStress(for: date, dailyMetric: dailyMetric)
 

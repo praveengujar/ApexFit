@@ -1,0 +1,2 @@
+-keep,allowobfuscation,allowshrinking class com.apexfit.feature.home.HomeViewModel
+-keep,allowobfuscation,allowshrinking class com.apexfit.feature.home.HomeViewModel

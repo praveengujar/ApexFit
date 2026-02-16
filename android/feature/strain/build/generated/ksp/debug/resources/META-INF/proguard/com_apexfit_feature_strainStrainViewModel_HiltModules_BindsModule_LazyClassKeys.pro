@@ -1,0 +1,1 @@
+-keep,allowobfuscation,allowshrinking class com.apexfit.feature.strain.StrainViewModel

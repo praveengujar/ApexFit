@@ -1,0 +1,247 @@
+[
+  {
+    "id": "alcohol",
+    "name": "Alcohol",
+    "category": "Lifestyle",
+    "responseType": "toggle",
+    "options": []
+  },
+  {
+    "id": "caffeine",
+    "name": "Caffeine",
+    "category": "Lifestyle",
+    "responseType": "numeric",
+    "options": []
+  },
+  {
+    "id": "cannabis",
+    "name": "Cannabis",
+    "category": "Lifestyle",
+    "responseType": "toggle",
+    "options": []
+  },
+  {
+    "id": "screen_time_late",
+    "name": "Late Screen Time",
+    "category": "Lifestyle",
+    "responseType": "toggle",
+    "options": []
+  },
+  {
+    "id": "sexual_activity",
+    "name": "Sexual Activity",
+    "category": "Lifestyle",
+    "responseType": "toggle",
+    "options": []
+  },
+  {
+    "id": "stress_level",
+    "name": "Stress Level",
+    "category": "Lifestyle",
+    "responseType": "scale",
+    "options": ["Low", "Moderate", "High", "Very High"]
+  },
+  {
+    "id": "mood",
+    "name": "Mood",
+    "category": "Lifestyle",
+    "responseType": "scale",
+    "options": ["Great", "Good", "Okay", "Poor", "Bad"]
+  },
+  {
+    "id": "energy_level",
+    "name": "Energy Level",
+    "category": "Lifestyle",
+    "responseType": "scale",
+    "options": ["High", "Moderate", "Low", "Very Low"]
+  },
+  {
+    "id": "travel",
+    "name": "Travel Day",
+    "category": "Lifestyle",
+    "responseType": "toggle",
+    "options": []
+  },
+  {
+    "id": "hydration",
+    "name": "Hydration (glasses)",
+    "category": "Nutrition",
+    "responseType": "numeric",
+    "options": []
+  },
+  {
+    "id": "late_meal",
+    "name": "Late Meal (within 2hrs of bed)",
+    "category": "Nutrition",
+    "responseType": "toggle",
+    "options": []
+  },
+  {
+    "id": "fasting",
+    "name": "Intermittent Fasting",
+    "category": "Nutrition",
+    "responseType": "toggle",
+    "options": []
+  },
+  {
+    "id": "supplements",
+    "name": "Supplements Taken",
+    "category": "Nutrition",
+    "responseType": "toggle",
+    "options": []
+  },
+  {
+    "id": "protein_goal",
+    "name": "Hit Protein Goal",
+    "category": "Nutrition",
+    "responseType": "toggle",
+    "options": []
+  },
+  {
+    "id": "creatine",
+    "name": "Creatine",
+    "category": "Nutrition",
+    "responseType": "toggle",
+    "options": []
+  },
+  {
+    "id": "sugar_intake",
+    "name": "High Sugar Intake",
+    "category": "Nutrition",
+    "responseType": "toggle",
+    "options": []
+  },
+  {
+    "id": "diet_quality",
+    "name": "Diet Quality",
+    "category": "Nutrition",
+    "responseType": "scale",
+    "options": ["Excellent", "Good", "Average", "Poor"]
+  },
+  {
+    "id": "sleep_mask",
+    "name": "Sleep Mask",
+    "category": "Sleep Hygiene",
+    "responseType": "toggle",
+    "options": []
+  },
+  {
+    "id": "blue_light_glasses",
+    "name": "Blue-Light Glasses",
+    "category": "Sleep Hygiene",
+    "responseType": "toggle",
+    "options": []
+  },
+  {
+    "id": "mouth_tape",
+    "name": "Mouth Tape",
+    "category": "Sleep Hygiene",
+    "responseType": "toggle",
+    "options": []
+  },
+  {
+    "id": "room_temp",
+    "name": "Cool Room Temperature",
+    "category": "Sleep Hygiene",
+    "responseType": "toggle",
+    "options": []
+  },
+  {
+    "id": "phone_in_bedroom",
+    "name": "Phone Out of Bedroom",
+    "category": "Sleep Hygiene",
+    "responseType": "toggle",
+    "options": []
+  },
+  {
+    "id": "magnesium",
+    "name": "Magnesium Before Bed",
+    "category": "Sleep Hygiene",
+    "responseType": "toggle",
+    "options": []
+  },
+  {
+    "id": "consistent_bedtime",
+    "name": "Consistent Bedtime",
+    "category": "Sleep Hygiene",
+    "responseType": "toggle",
+    "options": []
+  },
+  {
+    "id": "blackout_curtains",
+    "name": "Blackout Curtains",
+    "category": "Sleep Hygiene",
+    "responseType": "toggle",
+    "options": []
+  },
+  {
+    "id": "ice_bath",
+    "name": "Ice Bath / Cold Plunge",
+    "category": "Recovery Practices",
+    "responseType": "toggle",
+    "options": []
+  },
+  {
+    "id": "sauna",
+    "name": "Sauna",
+    "category": "Recovery Practices",
+    "responseType": "toggle",
+    "options": []
+  },
+  {
+    "id": "stretching",
+    "name": "Stretching / Mobility",
+    "category": "Recovery Practices",
+    "responseType": "toggle",
+    "options": []
+  },
+  {
+    "id": "massage",
+    "name": "Massage / Bodywork",
+    "category": "Recovery Practices",
+    "responseType": "toggle",
+    "options": []
+  },
+  {
+    "id": "foam_rolling",
+    "name": "Foam Rolling",
+    "category": "Recovery Practices",
+    "responseType": "toggle",
+    "options": []
+  },
+  {
+    "id": "compression_boots",
+    "name": "Compression Boots",
+    "category": "Recovery Practices",
+    "responseType": "toggle",
+    "options": []
+  },
+  {
+    "id": "meditation",
+    "name": "Meditation",
+    "category": "Recovery Practices",
+    "responseType": "toggle",
+    "options": []
+  },
+  {
+    "id": "breathwork",
+    "name": "Breathwork",
+    "category": "Recovery Practices",
+    "responseType": "toggle",
+    "options": []
+  },
+  {
+    "id": "yoga",
+    "name": "Yoga",
+    "category": "Recovery Practices",
+    "responseType": "toggle",
+    "options": []
+  },
+  {
+    "id": "epsom_salt_bath",
+    "name": "Epsom Salt Bath",
+    "category": "Recovery Practices",
+    "responseType": "toggle",
+    "options": []
+  }
+]

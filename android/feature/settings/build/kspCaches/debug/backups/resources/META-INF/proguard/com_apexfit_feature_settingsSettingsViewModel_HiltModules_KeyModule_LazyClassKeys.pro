@@ -1,0 +1,2 @@
+-keep,allowobfuscation,allowshrinking class com.apexfit.feature.settings.SettingsViewModel
+-keep,allowobfuscation,allowshrinking class com.apexfit.feature.settings.SettingsViewModel

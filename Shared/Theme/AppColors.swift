@@ -19,6 +19,11 @@ enum AppColors {
     static let zone4 = Color(hex: "#FF8C00")
     static let zone5 = Color(hex: "#FF0026")
 
+    // MARK: - Longevity
+    static let longevityGreen = Color(hex: "#00E676")
+    static let longevityOrange = Color(hex: "#FF6D00")
+    static let longevityBlobGlow = Color(hex: "#00C853")
+
     // MARK: - UI Colors
     static let primaryBlue = Color(hex: "#0A84FF")
     static let teal = Color(hex: "#00F19F")

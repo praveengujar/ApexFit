@@ -1,0 +1,2 @@
+-keep,allowobfuscation,allowshrinking class com.apexfit.feature.sleep.SleepViewModel
+-keep,allowobfuscation,allowshrinking class com.apexfit.feature.sleep.SleepViewModel

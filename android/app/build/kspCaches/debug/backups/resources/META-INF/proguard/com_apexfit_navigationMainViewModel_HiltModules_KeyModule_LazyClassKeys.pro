@@ -1,0 +1,2 @@
+-keep,allowobfuscation,allowshrinking class com.apexfit.navigation.MainViewModel
+-keep,allowobfuscation,allowshrinking class com.apexfit.navigation.MainViewModel

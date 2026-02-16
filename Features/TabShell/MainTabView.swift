@@ -11,11 +11,17 @@ struct MainTabView: View {
                 }
                 .tag(AppTab.home)
 
-            CoachTabPlaceholder()
+            LongevityDashboardView()
                 .tabItem {
-                    Label("Coach", systemImage: "brain.head.profile")
+                    Label("Longevity", systemImage: "heart.fill")
                 }
-                .tag(AppTab.coach)
+                .tag(AppTab.longevity)
+
+            CommunityTabPlaceholder()
+                .tabItem {
+                    Label("Community", systemImage: "person.2.fill")
+                }
+                .tag(AppTab.community)
 
             MyPlanTabPlaceholder()
                 .tabItem {
@@ -23,22 +29,16 @@ struct MainTabView: View {
                 }
                 .tag(AppTab.myPlan)
 
-            CommunityTabPlaceholder()
+            CoachTabPlaceholder()
                 .tabItem {
-                    Label("Community", systemImage: "person.3.fill")
+                    Label("Coach", systemImage: "brain.head.profile")
                 }
-                .tag(AppTab.community)
-
-            HealthTabView()
-                .tabItem {
-                    Label("Health", systemImage: "heart.text.square.fill")
-                }
-                .tag(AppTab.health)
+                .tag(AppTab.coach)
         }
         .tint(AppColors.primaryBlue)
     }
 }
 
 enum AppTab: String {
-    case home, coach, myPlan, community, health
+    case home, longevity, community, myPlan, coach
 }

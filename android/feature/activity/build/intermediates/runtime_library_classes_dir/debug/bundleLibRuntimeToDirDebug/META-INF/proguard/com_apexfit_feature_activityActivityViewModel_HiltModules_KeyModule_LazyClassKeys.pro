@@ -1,0 +1,2 @@
+-keep,allowobfuscation,allowshrinking class com.apexfit.feature.activity.ActivityViewModel
+-keep,allowobfuscation,allowshrinking class com.apexfit.feature.activity.ActivityViewModel

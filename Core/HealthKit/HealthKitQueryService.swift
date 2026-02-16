@@ -184,6 +184,56 @@ actor HealthKitQueryService {
         }
     }
 
+    // MARK: - Body Composition
+
+    func fetchBodyFatPercentage(for date: Date) async throws -> Double? {
+        let type = HKQuantityType(.bodyFatPercentage)
+        let start = date.daysAgo(30).startOfDay
+        let end = date.endOfDay
+        let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: .strictStartDate)
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
+
+        return try await withCheckedThrowingContinuation { continuation in
+            let query = HKSampleQuery(sampleType: type, predicate: predicate, limit: 1, sortDescriptors: [sortDescriptor]) { _, samples, error in
+                if let error {
+                    continuation.resume(throwing: HealthKitError.queryFailed(error.localizedDescription))
+                    return
+                }
+                guard let sample = samples?.first as? HKQuantitySample else {
+                    continuation.resume(returning: nil)
+                    return
+                }
+                let value = sample.quantity.doubleValue(for: .percent()) * 100.0
+                continuation.resume(returning: value)
+            }
+            healthStore.execute(query)
+        }
+    }
+
+    func fetchLeanBodyMass(for date: Date) async throws -> Double? {
+        let type = HKQuantityType(.leanBodyMass)
+        let start = date.daysAgo(30).startOfDay
+        let end = date.endOfDay
+        let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: .strictStartDate)
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
+
+        return try await withCheckedThrowingContinuation { continuation in
+            let query = HKSampleQuery(sampleType: type, predicate: predicate, limit: 1, sortDescriptors: [sortDescriptor]) { _, samples, error in
+                if let error {
+                    continuation.resume(throwing: HealthKitError.queryFailed(error.localizedDescription))
+                    return
+                }
+                guard let sample = samples?.first as? HKQuantitySample else {
+                    continuation.resume(returning: nil)
+                    return
+                }
+                let value = sample.quantity.doubleValue(for: .gramUnit(with: .kilo))
+                continuation.resume(returning: value)
+            }
+            healthStore.execute(query)
+        }
+    }
+
     // MARK: - Anchored Queries
 
     func fetchNewSamples(for type: HKSampleType, anchor: HKQueryAnchor?) async throws -> (samples: [HKSample], newAnchor: HKQueryAnchor?) {

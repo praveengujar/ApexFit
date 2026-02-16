@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.apexfit.core.engine.HRVCalculatorTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-02-16T04:58:59" hostname="Gujar-M4-MacBook-Pro.local" time="0.001">
+  <properties/>
+  <testcase name="bestHRV_prefersRMSSD" classname="com.apexfit.core.engine.HRVCalculatorTest" time="0.0"/>
+  <testcase name="computeRMSSD_singleValue_returnsNull" classname="com.apexfit.core.engine.HRVCalculatorTest" time="0.001"/>
+  <testcase name="bestHRV_fallsBackToSDNN" classname="com.apexfit.core.engine.HRVCalculatorTest" time="0.0"/>
+  <testcase name="effectiveHRV_prefersRMSSD" classname="com.apexfit.core.engine.HRVCalculatorTest" time="0.0"/>
+  <testcase name="computeRMSSD_variableIntervals_returnsCorrectValue" classname="com.apexfit.core.engine.HRVCalculatorTest" time="0.0"/>
+  <testcase name="effectiveHRV_fallsBackToSDNN" classname="com.apexfit.core.engine.HRVCalculatorTest" time="0.0"/>
+  <testcase name="computeRMSSD_constantIntervals_returnsZero" classname="com.apexfit.core.engine.HRVCalculatorTest" time="0.0"/>
+  <testcase name="computeRMSSD_emptyList_returnsNull" classname="com.apexfit.core.engine.HRVCalculatorTest" time="0.0"/>
+  <testcase name="effectiveHRV_noData_returnsNull" classname="com.apexfit.core.engine.HRVCalculatorTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
