@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.apexfit.app-mergeDebugResources-66:/values-v23/values-v23.xml",
+            "outputFile": "com.apexfit.app-mergeDebugResources-67:/values-v23/values-v23.xml",
             "map": [
                 {
-                    "source": "/Users/pgujar/.gradle/caches/8.11.1/transforms/26e57a72b3c8b17dbad6c99058fe2699/transformed/work-runtime-2.10.0/res/values-v23/values-v23.xml",
+                    "source": "/Users/pgujar/.gradle/caches/8.11.1/transforms/0374d055193fc7005531f3ffc7472ac1/transformed/work-runtime-2.10.0/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

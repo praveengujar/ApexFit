@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.apexfit.core.engine.CollectionExtensionsTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-02-16T04:58:59" hostname="Gujar-M4-MacBook-Pro.local" time="0.002">
+  <properties/>
+  <testcase name="standardDeviation_singleElement_returnsZero" classname="com.apexfit.core.engine.CollectionExtensionsTest" time="0.0"/>
+  <testcase name="median_evenCount_returnsAverageOfMiddleTwo" classname="com.apexfit.core.engine.CollectionExtensionsTest" time="0.0"/>
+  <testcase name="clamped_belowRange_returnsMin" classname="com.apexfit.core.engine.CollectionExtensionsTest" time="0.001"/>
+  <testcase name="mean_emptyList_returnsZero" classname="com.apexfit.core.engine.CollectionExtensionsTest" time="0.0"/>
+  <testcase name="mean_validList_returnsAverage" classname="com.apexfit.core.engine.CollectionExtensionsTest" time="0.0"/>
+  <testcase name="median_emptyList_returnsZero" classname="com.apexfit.core.engine.CollectionExtensionsTest" time="0.0"/>
+  <testcase name="median_oddCount_returnsMiddle" classname="com.apexfit.core.engine.CollectionExtensionsTest" time="0.0"/>
+  <testcase name="clamped_aboveRange_returnsMax" classname="com.apexfit.core.engine.CollectionExtensionsTest" time="0.0"/>
+  <testcase name="standardDeviation_uniformValues_returnsZero" classname="com.apexfit.core.engine.CollectionExtensionsTest" time="0.001"/>
+  <testcase name="clamped_withinRange_returnsSameValue" classname="com.apexfit.core.engine.CollectionExtensionsTest" time="0.0"/>
+  <testcase name="standardDeviation_validList_returnsPopulationStdDev" classname="com.apexfit.core.engine.CollectionExtensionsTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

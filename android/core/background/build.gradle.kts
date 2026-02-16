@@ -23,6 +23,7 @@ dependencies {
     implementation(project(":core:domain"))
     implementation(libs.core.ktx)
     implementation(libs.workmanager)
+    implementation(libs.hilt.work)
     implementation(libs.kotlinx.coroutines)
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)

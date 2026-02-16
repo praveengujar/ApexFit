@@ -26,6 +26,9 @@ dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:domain"))
     implementation(project(":core:designsystem"))
+    implementation(project(":core:data"))
+    implementation(project(":core:engine"))
+    implementation(project(":core:healthconnect"))
 
     implementation(platform(libs.compose.bom))
     implementation(libs.compose.ui)

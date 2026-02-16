@@ -1,16 +1,16 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/pgujar/Documents/Projects/ApexFit/android/core/network/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13840131137435988760.xml:2:13-83
-INJECTED from /Users/pgujar/Documents/Projects/ApexFit/android/core/network/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13840131137435988760.xml:2:13-83
+ADDED from /Users/pgujar/Documents/Projects/ApexFit/android/core/network/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest10813911319571561746.xml:2:13-83
+INJECTED from /Users/pgujar/Documents/Projects/ApexFit/android/core/network/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest10813911319571561746.xml:2:13-83
 	package
-		INJECTED from /Users/pgujar/Documents/Projects/ApexFit/android/core/network/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13840131137435988760.xml
+		INJECTED from /Users/pgujar/Documents/Projects/ApexFit/android/core/network/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest10813911319571561746.xml
 	xmlns:android
-		ADDED from /Users/pgujar/Documents/Projects/ApexFit/android/core/network/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13840131137435988760.xml:2:23-81
+		ADDED from /Users/pgujar/Documents/Projects/ApexFit/android/core/network/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest10813911319571561746.xml:2:23-81
 uses-sdk
-INJECTED from /Users/pgujar/Documents/Projects/ApexFit/android/core/network/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13840131137435988760.xml reason: use-sdk injection requested
-INJECTED from /Users/pgujar/Documents/Projects/ApexFit/android/core/network/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13840131137435988760.xml
-INJECTED from /Users/pgujar/Documents/Projects/ApexFit/android/core/network/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13840131137435988760.xml
+INJECTED from /Users/pgujar/Documents/Projects/ApexFit/android/core/network/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest10813911319571561746.xml reason: use-sdk injection requested
+INJECTED from /Users/pgujar/Documents/Projects/ApexFit/android/core/network/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest10813911319571561746.xml
+INJECTED from /Users/pgujar/Documents/Projects/ApexFit/android/core/network/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest10813911319571561746.xml
 	android:targetSdkVersion
-		INJECTED from /Users/pgujar/Documents/Projects/ApexFit/android/core/network/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13840131137435988760.xml
+		INJECTED from /Users/pgujar/Documents/Projects/ApexFit/android/core/network/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest10813911319571561746.xml
 	android:minSdkVersion
-		INJECTED from /Users/pgujar/Documents/Projects/ApexFit/android/core/network/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13840131137435988760.xml
+		INJECTED from /Users/pgujar/Documents/Projects/ApexFit/android/core/network/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest10813911319571561746.xml

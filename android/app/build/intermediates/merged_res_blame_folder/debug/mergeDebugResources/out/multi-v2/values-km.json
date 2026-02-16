@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.apexfit.app-mergeDebugResources-66:/values-km/values-km.xml",
+            "outputFile": "com.apexfit.app-mergeDebugResources-67:/values-km/values-km.xml",
             "map": [
                 {
-                    "source": "/Users/pgujar/.gradle/caches/8.11.1/transforms/b1e9fe1769a6eb4d1fa5c9bd45a6f1c0/transformed/material3-release/res/values-km/values-km.xml",
+                    "source": "/Users/pgujar/.gradle/caches/8.11.1/transforms/e8ca512a7880af0a570ad639c3c16012/transformed/material3-release/res/values-km/values-km.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -21,7 +21,24 @@
                     }
                 },
                 {
-                    "source": "/Users/pgujar/.gradle/caches/8.11.1/transforms/36d973e48605a7ca610877caf7957b53/transformed/core-1.15.0/res/values-km/values-km.xml",
+                    "source": "/Users/pgujar/.gradle/caches/8.11.1/transforms/c44ea26fa643ea802bf041b208f9618e/transformed/ui-release/res/values-km/values-km.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,190,270,374,472,560,644,727,812,899,979,1064,1140,1214,1286,1357,1441,1507",
+                        "endColumns": "84,79,103,97,87,83,82,84,86,79,84,75,73,71,70,83,65,117",
+                        "endOffsets": "185,265,369,467,555,639,722,807,894,974,1059,1135,1209,1281,1352,1436,1502,1620"
+                    },
+                    "to": {
+                        "startLines": "9,10,11,12,13,14,15,76,77,78,79,80,81,82,83,85,86,87",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "826,911,991,1095,1193,1281,1365,8024,8109,8196,8276,8361,8437,8511,8583,8755,8839,8905",
+                        "endColumns": "84,79,103,97,87,83,82,84,86,79,84,75,73,71,70,83,65,117",
+                        "endOffsets": "906,986,1090,1188,1276,1360,1443,8104,8191,8271,8356,8432,8506,8578,8649,8834,8900,9018"
+                    }
+                },
+                {
+                    "source": "/Users/pgujar/.gradle/caches/8.11.1/transforms/d77620174127daaacafd944828d126a2/transformed/core-1.15.0/res/values-km/values-km.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -38,7 +55,7 @@
                     }
                 },
                 {
-                    "source": "/Users/pgujar/.gradle/caches/8.11.1/transforms/18d3a901a0875af4b4a4173dd3da2481/transformed/foundation-release/res/values-km/values-km.xml",
+                    "source": "/Users/pgujar/.gradle/caches/8.11.1/transforms/66b674c702f0df8cd1efeb2b46de05f0/transformed/foundation-release/res/values-km/values-km.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -52,23 +69,6 @@
                         "startOffsets": "9023,9114",
                         "endColumns": "90,91",
                         "endOffsets": "9109,9201"
-                    }
-                },
-                {
-                    "source": "/Users/pgujar/.gradle/caches/8.11.1/transforms/0d8b98af91d3a96ec7e936ea048de1cc/transformed/ui-release/res/values-km/values-km.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,190,270,374,472,560,644,727,812,899,979,1064,1140,1214,1286,1357,1441,1507",
-                        "endColumns": "84,79,103,97,87,83,82,84,86,79,84,75,73,71,70,83,65,117",
-                        "endOffsets": "185,265,369,467,555,639,722,807,894,974,1059,1135,1209,1281,1352,1436,1502,1620"
-                    },
-                    "to": {
-                        "startLines": "9,10,11,12,13,14,15,76,77,78,79,80,81,82,83,85,86,87",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "826,911,991,1095,1193,1281,1365,8024,8109,8196,8276,8361,8437,8511,8583,8755,8839,8905",
-                        "endColumns": "84,79,103,97,87,83,82,84,86,79,84,75,73,71,70,83,65,117",
-                        "endOffsets": "906,986,1090,1188,1276,1360,1443,8104,8191,8271,8356,8432,8506,8578,8649,8834,8900,9018"
                     }
                 }
             ]

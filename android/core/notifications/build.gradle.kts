@@ -21,6 +21,7 @@ android {
 
 dependencies {
     implementation(project(":core:model"))
+    implementation(project(":core:data"))
     implementation(libs.core.ktx)
     implementation(libs.kotlinx.coroutines)
     implementation(libs.hilt.android)

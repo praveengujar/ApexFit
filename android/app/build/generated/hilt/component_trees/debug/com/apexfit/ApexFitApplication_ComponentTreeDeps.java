@@ -17,13 +17,30 @@ import dagger.hilt.processor.internal.definecomponent.codegen._dagger_hilt_andro
 import dagger.hilt.processor.internal.definecomponent.codegen._dagger_hilt_android_internal_builders_ViewModelComponentBuilder;
 import dagger.hilt.processor.internal.definecomponent.codegen._dagger_hilt_android_internal_builders_ViewWithFragmentComponentBuilder;
 import dagger.hilt.processor.internal.definecomponent.codegen._dagger_hilt_components_SingletonComponent;
+import hilt_aggregated_deps._androidx_hilt_work_HiltWrapper_WorkerFactoryModule;
 import hilt_aggregated_deps._com_apexfit_ApexFitApplication_GeneratedInjector;
 import hilt_aggregated_deps._com_apexfit_MainActivity_GeneratedInjector;
 import hilt_aggregated_deps._com_apexfit_core_config_di_ConfigModule;
 import hilt_aggregated_deps._com_apexfit_core_data_di_DatabaseModule;
 import hilt_aggregated_deps._com_apexfit_core_healthconnect_di_HealthConnectModule;
+import hilt_aggregated_deps._com_apexfit_feature_activity_ActivityViewModel_HiltModules_BindsModule;
+import hilt_aggregated_deps._com_apexfit_feature_activity_ActivityViewModel_HiltModules_KeyModule;
+import hilt_aggregated_deps._com_apexfit_feature_home_HomeViewModel_HiltModules_BindsModule;
+import hilt_aggregated_deps._com_apexfit_feature_home_HomeViewModel_HiltModules_KeyModule;
+import hilt_aggregated_deps._com_apexfit_feature_journal_JournalViewModel_HiltModules_BindsModule;
+import hilt_aggregated_deps._com_apexfit_feature_journal_JournalViewModel_HiltModules_KeyModule;
 import hilt_aggregated_deps._com_apexfit_feature_onboarding_OnboardingViewModel_HiltModules_BindsModule;
 import hilt_aggregated_deps._com_apexfit_feature_onboarding_OnboardingViewModel_HiltModules_KeyModule;
+import hilt_aggregated_deps._com_apexfit_feature_recovery_RecoveryViewModel_HiltModules_BindsModule;
+import hilt_aggregated_deps._com_apexfit_feature_recovery_RecoveryViewModel_HiltModules_KeyModule;
+import hilt_aggregated_deps._com_apexfit_feature_settings_SettingsViewModel_HiltModules_BindsModule;
+import hilt_aggregated_deps._com_apexfit_feature_settings_SettingsViewModel_HiltModules_KeyModule;
+import hilt_aggregated_deps._com_apexfit_feature_sleep_SleepViewModel_HiltModules_BindsModule;
+import hilt_aggregated_deps._com_apexfit_feature_sleep_SleepViewModel_HiltModules_KeyModule;
+import hilt_aggregated_deps._com_apexfit_feature_strain_StrainViewModel_HiltModules_BindsModule;
+import hilt_aggregated_deps._com_apexfit_feature_strain_StrainViewModel_HiltModules_KeyModule;
+import hilt_aggregated_deps._com_apexfit_feature_trends_TrendsViewModel_HiltModules_BindsModule;
+import hilt_aggregated_deps._com_apexfit_feature_trends_TrendsViewModel_HiltModules_KeyModule;
 import hilt_aggregated_deps._com_apexfit_navigation_MainViewModel_HiltModules_BindsModule;
 import hilt_aggregated_deps._com_apexfit_navigation_MainViewModel_HiltModules_KeyModule;
 import hilt_aggregated_deps._dagger_hilt_android_flags_FragmentGetContextFix_FragmentGetContextFixEntryPoint;
@@ -66,13 +83,30 @@ import hilt_aggregated_deps._dagger_hilt_android_internal_modules_HiltWrapper_Ac
         _dagger_hilt_components_SingletonComponent.class
     },
     aggregatedDeps = {
+        _androidx_hilt_work_HiltWrapper_WorkerFactoryModule.class,
         _com_apexfit_ApexFitApplication_GeneratedInjector.class,
         _com_apexfit_MainActivity_GeneratedInjector.class,
         _com_apexfit_core_config_di_ConfigModule.class,
         _com_apexfit_core_data_di_DatabaseModule.class,
         _com_apexfit_core_healthconnect_di_HealthConnectModule.class,
+        _com_apexfit_feature_activity_ActivityViewModel_HiltModules_BindsModule.class,
+        _com_apexfit_feature_activity_ActivityViewModel_HiltModules_KeyModule.class,
+        _com_apexfit_feature_home_HomeViewModel_HiltModules_BindsModule.class,
+        _com_apexfit_feature_home_HomeViewModel_HiltModules_KeyModule.class,
+        _com_apexfit_feature_journal_JournalViewModel_HiltModules_BindsModule.class,
+        _com_apexfit_feature_journal_JournalViewModel_HiltModules_KeyModule.class,
         _com_apexfit_feature_onboarding_OnboardingViewModel_HiltModules_BindsModule.class,
         _com_apexfit_feature_onboarding_OnboardingViewModel_HiltModules_KeyModule.class,
+        _com_apexfit_feature_recovery_RecoveryViewModel_HiltModules_BindsModule.class,
+        _com_apexfit_feature_recovery_RecoveryViewModel_HiltModules_KeyModule.class,
+        _com_apexfit_feature_settings_SettingsViewModel_HiltModules_BindsModule.class,
+        _com_apexfit_feature_settings_SettingsViewModel_HiltModules_KeyModule.class,
+        _com_apexfit_feature_sleep_SleepViewModel_HiltModules_BindsModule.class,
+        _com_apexfit_feature_sleep_SleepViewModel_HiltModules_KeyModule.class,
+        _com_apexfit_feature_strain_StrainViewModel_HiltModules_BindsModule.class,
+        _com_apexfit_feature_strain_StrainViewModel_HiltModules_KeyModule.class,
+        _com_apexfit_feature_trends_TrendsViewModel_HiltModules_BindsModule.class,
+        _com_apexfit_feature_trends_TrendsViewModel_HiltModules_KeyModule.class,
         _com_apexfit_navigation_MainViewModel_HiltModules_BindsModule.class,
         _com_apexfit_navigation_MainViewModel_HiltModules_KeyModule.class,
         _dagger_hilt_android_flags_FragmentGetContextFix_FragmentGetContextFixEntryPoint.class,
