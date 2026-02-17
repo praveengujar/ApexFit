@@ -1,0 +1,17 @@
+
+.DS_Store
+xcuserdata/
+*.xcuserstate
+
+# Android build outputs
+android/**/build/
+android/app/build/outputs/
+*.apk
+*.aab
+
+# Java / Android Studio heap dumps
+*.hprof
+
+# General build artifacts
+*.log
+*.hprof

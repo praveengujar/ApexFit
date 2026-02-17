@@ -18,6 +18,9 @@ interface WorkoutRecordDao {
     @Query("SELECT * FROM workout_records WHERE startDate BETWEEN :startDate AND :endDate ORDER BY startDate ASC")
     fun observeRange(startDate: Long, endDate: Long): Flow<List<WorkoutRecordEntity>>
 
+    @Query("SELECT * FROM workout_records WHERE startDate BETWEEN :startDate AND :endDate ORDER BY startDate ASC")
+    suspend fun getRange(startDate: Long, endDate: Long): List<WorkoutRecordEntity>
+
     @Query("SELECT * FROM workout_records WHERE id = :id")
     suspend fun getById(id: String): WorkoutRecordEntity?
 

@@ -1,16 +1,16 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/pgujar/Documents/Projects/ApexFit/android/feature/sleep/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest6429187223026721846.xml:2:13-83
-INJECTED from /Users/pgujar/Documents/Projects/ApexFit/android/feature/sleep/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest6429187223026721846.xml:2:13-83
+ADDED from /Users/pgujar/Documents/Projects/ApexFit/android/feature/sleep/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest6205869205669110490.xml:2:13-83
+INJECTED from /Users/pgujar/Documents/Projects/ApexFit/android/feature/sleep/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest6205869205669110490.xml:2:13-83
 	package
-		INJECTED from /Users/pgujar/Documents/Projects/ApexFit/android/feature/sleep/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest6429187223026721846.xml
+		INJECTED from /Users/pgujar/Documents/Projects/ApexFit/android/feature/sleep/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest6205869205669110490.xml
 	xmlns:android
-		ADDED from /Users/pgujar/Documents/Projects/ApexFit/android/feature/sleep/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest6429187223026721846.xml:2:23-81
+		ADDED from /Users/pgujar/Documents/Projects/ApexFit/android/feature/sleep/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest6205869205669110490.xml:2:23-81
 uses-sdk
-INJECTED from /Users/pgujar/Documents/Projects/ApexFit/android/feature/sleep/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest6429187223026721846.xml reason: use-sdk injection requested
-INJECTED from /Users/pgujar/Documents/Projects/ApexFit/android/feature/sleep/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest6429187223026721846.xml
-INJECTED from /Users/pgujar/Documents/Projects/ApexFit/android/feature/sleep/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest6429187223026721846.xml
+INJECTED from /Users/pgujar/Documents/Projects/ApexFit/android/feature/sleep/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest6205869205669110490.xml reason: use-sdk injection requested
+INJECTED from /Users/pgujar/Documents/Projects/ApexFit/android/feature/sleep/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest6205869205669110490.xml
+INJECTED from /Users/pgujar/Documents/Projects/ApexFit/android/feature/sleep/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest6205869205669110490.xml
 	android:targetSdkVersion
-		INJECTED from /Users/pgujar/Documents/Projects/ApexFit/android/feature/sleep/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest6429187223026721846.xml
+		INJECTED from /Users/pgujar/Documents/Projects/ApexFit/android/feature/sleep/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest6205869205669110490.xml
 	android:minSdkVersion
-		INJECTED from /Users/pgujar/Documents/Projects/ApexFit/android/feature/sleep/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest6429187223026721846.xml
+		INJECTED from /Users/pgujar/Documents/Projects/ApexFit/android/feature/sleep/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest6205869205669110490.xml

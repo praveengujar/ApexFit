@@ -7,7 +7,9 @@ import com.apexfit.core.healthconnect.di.HealthConnectModule;
 import com.apexfit.feature.activity.ActivityViewModel_HiltModules;
 import com.apexfit.feature.home.HomeViewModel_HiltModules;
 import com.apexfit.feature.journal.JournalViewModel_HiltModules;
+import com.apexfit.feature.longevity.LongevityViewModel_HiltModules;
 import com.apexfit.feature.onboarding.OnboardingViewModel_HiltModules;
+import com.apexfit.feature.profile.ProfileViewModel_HiltModules;
 import com.apexfit.feature.recovery.RecoveryViewModel_HiltModules;
 import com.apexfit.feature.settings.SettingsViewModel_HiltModules;
 import com.apexfit.feature.sleep.SleepViewModel_HiltModules;
@@ -175,8 +177,10 @@ public final class ApexFitApplication_HiltComponents {
           HiltWrapper_SavedStateHandleModule.class,
           HomeViewModel_HiltModules.KeyModule.class,
           JournalViewModel_HiltModules.KeyModule.class,
+          LongevityViewModel_HiltModules.KeyModule.class,
           MainViewModel_HiltModules.KeyModule.class,
           OnboardingViewModel_HiltModules.KeyModule.class,
+          ProfileViewModel_HiltModules.KeyModule.class,
           RecoveryViewModel_HiltModules.KeyModule.class,
           SettingsViewModel_HiltModules.KeyModule.class,
           SleepViewModel_HiltModules.KeyModule.class,
@@ -221,8 +225,10 @@ public final class ApexFitApplication_HiltComponents {
           HiltWrapper_HiltViewModelFactory_ViewModelModule.class,
           HomeViewModel_HiltModules.BindsModule.class,
           JournalViewModel_HiltModules.BindsModule.class,
+          LongevityViewModel_HiltModules.BindsModule.class,
           MainViewModel_HiltModules.BindsModule.class,
           OnboardingViewModel_HiltModules.BindsModule.class,
+          ProfileViewModel_HiltModules.BindsModule.class,
           RecoveryViewModel_HiltModules.BindsModule.class,
           SettingsViewModel_HiltModules.BindsModule.class,
           SleepViewModel_HiltModules.BindsModule.class,

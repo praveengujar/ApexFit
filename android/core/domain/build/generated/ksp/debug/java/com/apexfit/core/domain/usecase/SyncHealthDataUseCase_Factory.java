@@ -6,7 +6,7 @@ import com.apexfit.core.data.repository.SleepRepository;
 import com.apexfit.core.data.repository.UserProfileRepository;
 import com.apexfit.core.data.repository.WorkoutRepository;
 import com.apexfit.core.healthconnect.HealthConnectQueryService;
-import com.apexfit.core.model.config.ScoringConfig;
+import com.apexfit.shared.model.config.ScoringConfig;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.QualifierMetadata;

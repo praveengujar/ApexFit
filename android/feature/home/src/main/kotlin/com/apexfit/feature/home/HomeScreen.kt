@@ -44,7 +44,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.apexfit.core.designsystem.component.CircularGauge
 import com.apexfit.core.designsystem.theme.BackgroundCard
 import com.apexfit.core.designsystem.theme.BackgroundPrimary
-import com.apexfit.core.designsystem.theme.BackgroundSecondary
 import com.apexfit.core.designsystem.theme.BackgroundTertiary
 import com.apexfit.core.designsystem.theme.CornerRadius
 import com.apexfit.core.designsystem.theme.PrimaryBlue
@@ -53,21 +52,28 @@ import com.apexfit.core.designsystem.theme.RecoveryRed
 import com.apexfit.core.designsystem.theme.RecoveryYellow
 import com.apexfit.core.designsystem.theme.SleepDeep
 import com.apexfit.core.designsystem.theme.Spacing
-import com.apexfit.core.designsystem.theme.Teal
 import com.apexfit.core.designsystem.theme.TextPrimary
 import com.apexfit.core.designsystem.theme.TextSecondary
 import com.apexfit.core.designsystem.theme.TextTertiary
 import com.apexfit.core.designsystem.theme.recoveryColor
+import com.apexfit.feature.home.components.DateNavigationHeader
+import com.apexfit.feature.home.components.JournalWeekCard
+import com.apexfit.feature.home.components.MyPlanCard
+import com.apexfit.feature.home.components.TonightsSleepCard
+import com.apexfit.feature.home.components.WeeklyStrainRecoveryChart
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.time.format.TextStyle
-import java.util.Locale
 
 @Composable
 fun HomeScreen(
     onSleepTap: () -> Unit = {},
     onRecoveryTap: () -> Unit = {},
     onStrainTap: () -> Unit = {},
+    onJournalTap: () -> Unit = {},
+    onTrendsTap: () -> Unit = {},
+    onAddActivityTap: () -> Unit = {},
+    onStartActivityTap: () -> Unit = {},
+    onSettingsTap: () -> Unit = {},
+    onProfileTap: () -> Unit = {},
     viewModel: HomeViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -79,10 +85,17 @@ fun HomeScreen(
             .verticalScroll(rememberScrollState())
             .padding(horizontal = Spacing.md),
     ) {
-        Spacer(Modifier.height(Spacing.md))
+        Spacer(Modifier.height(Spacing.sm))
 
-        // Date Header
-        DateHeader(date = uiState.selectedDate)
+        // Date Navigation Header (profile avatar + streak + date nav + watch)
+        DateNavigationHeader(
+            date = uiState.selectedDate,
+            isToday = uiState.selectedDate == LocalDate.now(),
+            streak = uiState.streak,
+            onPreviousDay = { viewModel.navigateDate(-1) },
+            onNextDay = { viewModel.navigateDate(1) },
+            onProfileTap = onProfileTap,
+        )
 
         Spacer(Modifier.height(Spacing.md))
 
@@ -123,7 +136,37 @@ fun HomeScreen(
         Spacer(Modifier.height(Spacing.md))
 
         // My Day section
-        MyDaySection(uiState = uiState)
+        MyDaySection(
+            uiState = uiState,
+            onAddActivityTap = onAddActivityTap,
+            onStartActivityTap = onStartActivityTap,
+        )
+
+        Spacer(Modifier.height(Spacing.md))
+
+        // Tonight's Sleep
+        TonightsSleepCard(
+            sleepNeedHours = uiState.todayMetric?.sleepNeedHours,
+        )
+
+        Spacer(Modifier.height(Spacing.md))
+
+        // Journal Week
+        JournalWeekCard(
+            selectedDate = uiState.selectedDate,
+            loggedDates = uiState.weekMetrics.mapNotNull { metric ->
+                java.time.Instant.ofEpochMilli(metric.date)
+                    .atZone(java.time.ZoneId.systemDefault())
+                    .toLocalDate()
+                    .takeIf { metric.recoveryScore != null || metric.strainScore != null }
+            }.toSet(),
+            onJournalTap = onJournalTap,
+        )
+
+        Spacer(Modifier.height(Spacing.md))
+
+        // My Plan
+        MyPlanCard()
 
         Spacer(Modifier.height(Spacing.md))
 
@@ -136,36 +179,15 @@ fun HomeScreen(
 
         Spacer(Modifier.height(Spacing.md))
 
+        // Weekly Strain & Recovery Chart
+        WeeklyStrainRecoveryChart(weekMetrics = uiState.weekMetrics)
+
+        Spacer(Modifier.height(Spacing.md))
+
         // Bottom metric rows
         BottomMetricsSection(uiState = uiState)
 
         Spacer(Modifier.height(Spacing.xl))
-    }
-}
-
-// -- Date Header --
-
-@Composable
-private fun DateHeader(date: LocalDate) {
-    val dayOfWeek = date.dayOfWeek.getDisplayName(TextStyle.FULL, Locale.getDefault())
-    val formatted = date.format(DateTimeFormatter.ofPattern("MMM d"))
-
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Column {
-            Text(
-                text = dayOfWeek.uppercase(),
-                style = MaterialTheme.typography.labelMedium,
-                color = TextSecondary,
-            )
-            Text(
-                text = formatted,
-                style = MaterialTheme.typography.headlineMedium,
-                color = TextPrimary,
-            )
-        }
     }
 }
 
@@ -283,7 +305,11 @@ private fun MonitorCard(
 // -- My Day Section --
 
 @Composable
-private fun MyDaySection(uiState: HomeUiState) {
+private fun MyDaySection(
+    uiState: HomeUiState,
+    onAddActivityTap: () -> Unit,
+    onStartActivityTap: () -> Unit,
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -367,11 +393,13 @@ private fun MyDaySection(uiState: HomeUiState) {
             ActionButton(
                 icon = Icons.Filled.Add,
                 text = "ADD ACTIVITY",
+                onClick = onAddActivityTap,
                 modifier = Modifier.weight(1f),
             )
             ActionButton(
                 icon = Icons.Filled.Timer,
                 text = "START ACTIVITY",
+                onClick = onStartActivityTap,
                 modifier = Modifier.weight(1f),
             )
         }
@@ -411,12 +439,14 @@ private fun ActivityRow(
 private fun ActionButton(
     icon: ImageVector,
     text: String,
+    onClick: () -> Unit = {},
     modifier: Modifier = Modifier,
 ) {
     Row(
         modifier = modifier
             .clip(RoundedCornerShape(CornerRadius.small))
             .background(BackgroundTertiary)
+            .clickable(onClick = onClick)
             .padding(vertical = Spacing.sm, horizontal = Spacing.md),
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,

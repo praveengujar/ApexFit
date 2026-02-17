@@ -1,0 +1,149 @@
+name: ApexFit
+options:
+  bundleIdPrefix: com.apexfit
+  deploymentTarget:
+    iOS: "17.0"
+    watchOS: "10.0"
+  createIntermediateGroups: true
+  groupSortPosition: top
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    GENERATE_INFOPLIST_FILE: false
+
+targets:
+  ApexFit:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+
+    sources:
+      - path: ApexFitApp.swift
+      - path: Core
+      - path: Engines
+      - path: Features
+      - path: Models
+      - path: Services
+      - path: Shared
+      - path: Resources
+        buildPhase: resources
+
+    dependencies:
+      - framework: ../shared/build/XCFrameworks/release/ApexFitShared.xcframework
+        embed: false
+
+    preBuildScripts:
+      - name: "Build KMP Shared Framework"
+        script: |
+          if [ "$ENABLE_PREVIEWS" = "YES" ]; then
+            echo "Skipping KMP build for SwiftUI previews"
+            exit 0
+          fi
+          export JAVA_HOME="/opt/homebrew/Cellar/openjdk@17/17.0.18/libexec/openjdk.jdk/Contents/Home"
+          cd "${SRCROOT}/.."
+          ./gradlew :shared:assembleApexFitSharedReleaseXCFramework -x test --no-daemon
+
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.apexfit.app
+        INFOPLIST_FILE: Info.plist
+        CODE_SIGN_ENTITLEMENTS: ApexFit.entitlements
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ENABLE_PREVIEWS: "YES"
+        SWIFT_EMIT_LOC_STRINGS: "YES"
+        DEVELOPMENT_TEAM: ""
+
+    entitlements:
+      path: ApexFit.entitlements
+
+    attributes:
+      SystemCapabilities:
+        com.apple.HealthKit:
+          enabled: 1
+        com.apple.BackgroundModes:
+          enabled: 1
+        com.apple.Push:
+          enabled: 1
+
+  ApexFitWatch:
+    type: application
+    platform: watchOS
+    deploymentTarget: "10.0"
+
+    sources:
+      - path: ApexFitWatch
+      - path: Models
+      - path: Core/HealthKit
+      - path: Core/Extensions
+      - path: Core/KMP
+      - path: Shared/Theme
+      - path: Shared/Components
+        excludes:
+          - "LongevityMetricCard.swift"
+      - path: Resources/ScoringConfig.json
+        buildPhase: resources
+
+    resources:
+      - path: ApexFitWatch/Assets.xcassets
+
+    preBuildScripts:
+      - name: "Build KMP Shared Framework"
+        script: |
+          if [ "$ENABLE_PREVIEWS" = "YES" ]; then
+            echo "Skipping KMP build for SwiftUI previews"
+            exit 0
+          fi
+          export JAVA_HOME="/opt/homebrew/Cellar/openjdk@17/17.0.18/libexec/openjdk.jdk/Contents/Home"
+          cd "${SRCROOT}/.."
+          ./gradlew :shared:assembleApexFitSharedReleaseXCFramework -x test --no-daemon
+
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.apexfit.app.watchkitapp
+        INFOPLIST_FILE: ApexFitWatch/Info.plist
+        CODE_SIGN_ENTITLEMENTS: ApexFitWatch/ApexFitWatch.entitlements
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        GENERATE_INFOPLIST_FILE: false
+        DEVELOPMENT_TEAM: ""
+
+    entitlements:
+      path: ApexFitWatch/ApexFitWatch.entitlements
+
+    dependencies:
+      - framework: ../shared/build/XCFrameworks/release/ApexFitShared.xcframework
+        embed: false
+      - target: ApexFitWatchComplications
+        embed: true
+
+    attributes:
+      SystemCapabilities:
+        com.apple.HealthKit:
+          enabled: 1
+
+  ApexFitWatchComplications:
+    type: app-extension
+    platform: watchOS
+    deploymentTarget: "10.0"
+
+    sources:
+      - path: ApexFitWatchComplications
+      - path: Models
+      - path: Shared/Theme/AppColors.swift
+      - path: Core/Extensions/Double+Extensions.swift
+      - path: Core/Extensions/Color+Theme.swift
+
+    resources:
+      - path: ApexFitWatchComplications/Assets.xcassets
+
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.apexfit.app.watchkitapp.complications
+        ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME: WidgetBackground
+        GENERATE_INFOPLIST_FILE: true
+        DEVELOPMENT_TEAM: ""
+
+    entitlements:
+      path: ApexFitWatchComplications/ApexFitWatchComplications.entitlements

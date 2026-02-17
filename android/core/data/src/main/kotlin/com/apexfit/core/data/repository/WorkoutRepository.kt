@@ -19,6 +19,9 @@ class WorkoutRepository @Inject constructor(
     fun observeRange(startDate: Long, endDate: Long): Flow<List<WorkoutRecordEntity>> =
         dao.observeRange(startDate, endDate)
 
+    suspend fun getRange(startDate: Long, endDate: Long): List<WorkoutRecordEntity> =
+        dao.getRange(startDate, endDate)
+
     suspend fun getById(id: String): WorkoutRecordEntity? = dao.getById(id)
 
     suspend fun insert(workout: WorkoutRecordEntity) = dao.insert(workout)

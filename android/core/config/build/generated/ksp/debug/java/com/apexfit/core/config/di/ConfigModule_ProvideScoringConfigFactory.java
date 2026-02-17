@@ -1,7 +1,7 @@
 package com.apexfit.core.config.di;
 
 import com.apexfit.core.config.ConfigurationManager;
-import com.apexfit.core.model.config.ScoringConfig;
+import com.apexfit.shared.model.config.ScoringConfig;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.Preconditions;
