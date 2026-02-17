@@ -300,16 +300,17 @@ class ProfileViewModel @Inject constructor(
 
         fun List<Double>.avgOrNull(): Double? = if (isEmpty()) null else average()
 
-        inputs.add(LongevityMetricInput(
-            id = LongevityMetricID.SLEEP_CONSISTENCY,
-            sixMonthAvg = metrics180.mapNotNull { it.sleepConsistency }.avgOrNull(),
-            thirtyDayAvg = metrics30.mapNotNull { it.sleepConsistency }.avgOrNull(),
-        ))
-        inputs.add(LongevityMetricInput(
-            id = LongevityMetricID.HOURS_OF_SLEEP,
-            sixMonthAvg = metrics180.mapNotNull { it.totalSleepHours }.avgOrNull(),
-            thirtyDayAvg = metrics30.mapNotNull { it.totalSleepHours }.avgOrNull(),
-        ))
+        fun addMetric(id: LongevityMetricID, extractor: (DailyMetricEntity) -> Double?) {
+            inputs.add(LongevityMetricInput(
+                id = id,
+                sixMonthAvg = metrics180.mapNotNull(extractor).avgOrNull(),
+                thirtyDayAvg = metrics30.mapNotNull(extractor).avgOrNull(),
+            ))
+        }
+
+        addMetric(LongevityMetricID.SLEEP_CONSISTENCY) { it.sleepConsistency }
+        addMetric(LongevityMetricID.HOURS_OF_SLEEP) { it.totalSleepHours }
+
         // Zone approximations
         val z13_180 = weeklyZoneAvg(metrics180, zone13 = true)
         val z13_30 = weeklyZoneAvg(metrics30, zone13 = true)
@@ -325,31 +326,14 @@ class ProfileViewModel @Inject constructor(
             sixMonthAvg = z45_180.takeIf { it > 0 },
             thirtyDayAvg = z45_30.takeIf { it > 0 },
         ))
-        inputs.add(LongevityMetricInput(
-            id = LongevityMetricID.STRENGTH_ACTIVITY_WEEKLY,
-            sixMonthAvg = null,
-            thirtyDayAvg = null,
-        ))
-        inputs.add(LongevityMetricInput(
-            id = LongevityMetricID.DAILY_STEPS,
-            sixMonthAvg = metrics180.mapNotNull { it.steps?.toDouble() }.avgOrNull(),
-            thirtyDayAvg = metrics30.mapNotNull { it.steps?.toDouble() }.avgOrNull(),
-        ))
-        inputs.add(LongevityMetricInput(
-            id = LongevityMetricID.VO2_MAX,
-            sixMonthAvg = metrics180.mapNotNull { it.vo2Max }.avgOrNull(),
-            thirtyDayAvg = metrics30.mapNotNull { it.vo2Max }.avgOrNull(),
-        ))
-        inputs.add(LongevityMetricInput(
-            id = LongevityMetricID.RESTING_HEART_RATE,
-            sixMonthAvg = metrics180.mapNotNull { it.restingHeartRate }.avgOrNull(),
-            thirtyDayAvg = metrics30.mapNotNull { it.restingHeartRate }.avgOrNull(),
-        ))
-        inputs.add(LongevityMetricInput(
-            id = LongevityMetricID.LEAN_BODY_MASS,
-            sixMonthAvg = null,
-            thirtyDayAvg = null,
-        ))
+
+        inputs.add(LongevityMetricInput(id = LongevityMetricID.STRENGTH_ACTIVITY_WEEKLY, sixMonthAvg = null, thirtyDayAvg = null))
+
+        addMetric(LongevityMetricID.DAILY_STEPS) { it.steps?.toDouble() }
+        addMetric(LongevityMetricID.VO2_MAX) { it.vo2Max }
+        addMetric(LongevityMetricID.RESTING_HEART_RATE) { it.restingHeartRate }
+
+        inputs.add(LongevityMetricInput(id = LongevityMetricID.LEAN_BODY_MASS, sixMonthAvg = null, thirtyDayAvg = null))
 
         return inputs
     }

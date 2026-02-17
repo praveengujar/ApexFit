@@ -27,15 +27,10 @@ class HealthConnectManager @Inject constructor(
     }
 
     val availability: HealthConnectAvailability
-        get() {
-            val status = HealthConnectClient.getSdkStatus(context)
-            return when (status) {
-                HealthConnectClient.SDK_AVAILABLE -> HealthConnectAvailability.AVAILABLE
-                HealthConnectClient.SDK_UNAVAILABLE_PROVIDER_UPDATE_REQUIRED ->
-                    HealthConnectAvailability.NOT_INSTALLED
-
-                else -> HealthConnectAvailability.NOT_SUPPORTED
-            }
+        get() = when (HealthConnectClient.getSdkStatus(context)) {
+            HealthConnectClient.SDK_AVAILABLE -> HealthConnectAvailability.AVAILABLE
+            HealthConnectClient.SDK_UNAVAILABLE_PROVIDER_UPDATE_REQUIRED -> HealthConnectAvailability.NOT_INSTALLED
+            else -> HealthConnectAvailability.NOT_SUPPORTED
         }
 
     suspend fun hasAllPermissions(): Boolean {
@@ -62,7 +57,6 @@ class HealthConnectManager @Inject constructor(
             HealthPermission.getReadPermission(StepsRecord::class),
             HealthPermission.getReadPermission(ActiveCaloriesBurnedRecord::class),
             HealthPermission.getReadPermission(Vo2MaxRecord::class),
-            HealthPermission.getReadPermission(HeartRateRecord::class),
         )
     }
 }

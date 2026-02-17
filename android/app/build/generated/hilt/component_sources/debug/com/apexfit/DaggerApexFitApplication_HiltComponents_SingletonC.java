@@ -741,8 +741,8 @@ public final class DaggerApexFitApplication_HiltComponents_SingletonC {
     }
 
     @Override
-    public void injectApexFitApplication(ApexFitApplication arg0) {
-      injectApexFitApplication2(arg0);
+    public void injectApexFitApplication(ApexFitApplication apexFitApplication) {
+      injectApexFitApplication2(apexFitApplication);
     }
 
     @Override

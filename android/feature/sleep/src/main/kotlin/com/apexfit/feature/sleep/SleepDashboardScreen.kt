@@ -40,6 +40,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.apexfit.core.data.entity.DailyMetricEntity
+import com.apexfit.core.data.entity.SleepSessionEntity
 import com.apexfit.core.data.entity.SleepStageEntity
 import com.apexfit.core.designsystem.theme.BackgroundCard
 import com.apexfit.core.designsystem.theme.BackgroundPrimary
@@ -473,7 +474,7 @@ private fun HoursOfSleepCard(sleepHours: Double, sleepNeed: Double) {
 }
 
 @Composable
-private fun SleepStagesCard(sleep: com.apexfit.core.data.entity.SleepSessionEntity?) {
+private fun SleepStagesCard(sleep: SleepSessionEntity?) {
     Column(
         modifier = Modifier
             .padding(horizontal = Spacing.md)

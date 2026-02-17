@@ -42,69 +42,22 @@ class RecoveryEngine(private val config: RecoveryConfig) {
     }
 
     fun computeRecovery(input: RecoveryInput, baselines: RecoveryBaselines): RecoveryResult {
-        var totalWeight = 0.0
-        var weightedSum = 0.0
-        var contributorCount = 0
+        data class Contributor(val value: Double?, val baseline: BaselineResult?, val invert: Boolean, val weight: Double)
 
-        val hrvScore = computeContributor(
-            value = input.hrv,
-            baseline = baselines.hrv,
-            invert = false,
-            weight = config.weights.hrv,
-            totalWeight = { totalWeight += it },
-            weightedSum = { weightedSum += it },
-            contributorCount = { contributorCount++ },
+        val contributors = listOf(
+            Contributor(input.hrv, baselines.hrv, false, config.weights.hrv),
+            Contributor(input.restingHeartRate, baselines.restingHeartRate, true, config.weights.restingHeartRate),
+            Contributor(input.sleepPerformance, baselines.sleepPerformance, false, config.weights.sleep),
+            Contributor(input.respiratoryRate, baselines.respiratoryRate, true, config.weights.respiratoryRate),
+            Contributor(input.spo2, baselines.spo2, false, config.weights.spo2),
+            Contributor(input.skinTemperatureDeviation, baselines.skinTemperature, true, config.weights.skinTemperature),
         )
 
-        val rhrScore = computeContributor(
-            value = input.restingHeartRate,
-            baseline = baselines.restingHeartRate,
-            invert = true,
-            weight = config.weights.restingHeartRate,
-            totalWeight = { totalWeight += it },
-            weightedSum = { weightedSum += it },
-            contributorCount = { contributorCount++ },
-        )
+        val scores = contributors.map { c -> computeScore(c.value, c.baseline, c.invert) }
+        val validPairs = contributors.zip(scores).filter { it.second != null }
 
-        val sleepScore = computeContributor(
-            value = input.sleepPerformance,
-            baseline = baselines.sleepPerformance,
-            invert = false,
-            weight = config.weights.sleep,
-            totalWeight = { totalWeight += it },
-            weightedSum = { weightedSum += it },
-            contributorCount = { contributorCount++ },
-        )
-
-        val respRateScore = computeContributor(
-            value = input.respiratoryRate,
-            baseline = baselines.respiratoryRate,
-            invert = true,
-            weight = config.weights.respiratoryRate,
-            totalWeight = { totalWeight += it },
-            weightedSum = { weightedSum += it },
-            contributorCount = { contributorCount++ },
-        )
-
-        val spo2Score = computeContributor(
-            value = input.spo2,
-            baseline = baselines.spo2,
-            invert = false,
-            weight = config.weights.spo2,
-            totalWeight = { totalWeight += it },
-            weightedSum = { weightedSum += it },
-            contributorCount = { contributorCount++ },
-        )
-
-        val skinTempScore = computeContributor(
-            value = input.skinTemperatureDeviation,
-            baseline = baselines.skinTemperature,
-            invert = true,
-            weight = config.weights.skinTemperature,
-            totalWeight = { totalWeight += it },
-            weightedSum = { weightedSum += it },
-            contributorCount = { contributorCount++ },
-        )
+        val totalWeight = validPairs.sumOf { it.first.weight }
+        val weightedSum = validPairs.sumOf { it.second!! * it.first.weight }
 
         val rawScore = if (totalWeight > 0) weightedSum / totalWeight else 50.0
         val finalScore = rawScore.clamped(
@@ -115,36 +68,21 @@ class RecoveryEngine(private val config: RecoveryConfig) {
         return RecoveryResult(
             score = finalScore,
             zone = zone,
-            hrvScore = hrvScore,
-            rhrScore = rhrScore,
-            sleepScore = sleepScore,
-            respRateScore = respRateScore,
-            spo2Score = spo2Score,
-            skinTempScore = skinTempScore,
-            contributorCount = contributorCount,
+            hrvScore = scores[0],
+            rhrScore = scores[1],
+            sleepScore = scores[2],
+            respRateScore = scores[3],
+            spo2Score = scores[4],
+            skinTempScore = scores[5],
+            contributorCount = validPairs.size,
         )
     }
 
-    private fun computeContributor(
-        value: Double?,
-        baseline: BaselineResult?,
-        invert: Boolean,
-        weight: Double,
-        totalWeight: (Double) -> Unit,
-        weightedSum: (Double) -> Unit,
-        contributorCount: () -> Unit,
-    ): Double? {
+    private fun computeScore(value: Double?, baseline: BaselineResult?, invert: Boolean): Double? {
         if (value == null || baseline == null || !baseline.isValid) return null
-
         var z = BaselineEngine.zScore(value, baseline)
         if (invert) z = -z
-
-        val score = sigmoid(z)
-        totalWeight(weight)
-        weightedSum(score * weight)
-        contributorCount()
-
-        return score
+        return sigmoid(z)
     }
 
     fun strainTarget(zone: RecoveryZone): ClosedFloatingPointRange<Double> {

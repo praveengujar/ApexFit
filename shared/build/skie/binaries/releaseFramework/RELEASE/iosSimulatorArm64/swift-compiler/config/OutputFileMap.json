@@ -1,0 +1,7 @@
+{
+    "": {
+        "emit-module-dependencies": "/Users/pgujar/Documents/Projects/ApexFit/shared/build/skie/binaries/releaseFramework/RELEASE/iosSimulatorArm64/swift-compiler/module/ApexFitShared.d",
+        "swift-dependencies": "/Users/pgujar/Documents/Projects/ApexFit/shared/build/skie/binaries/releaseFramework/RELEASE/iosSimulatorArm64/swift-compiler/module/ApexFitShared.swiftdeps",
+        "object": "/Users/pgujar/Documents/Projects/ApexFit/shared/build/skie/binaries/releaseFramework/RELEASE/iosSimulatorArm64/swift-compiler/object-files/ApexFitShared.o"
+    }
+}

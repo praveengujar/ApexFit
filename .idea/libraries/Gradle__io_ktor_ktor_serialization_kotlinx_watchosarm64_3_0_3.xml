@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: io.ktor:ktor-serialization-kotlinx-watchosarm64:3.0.3" type="kotlin.native" external-system-id="GRADLE">
+    <properties groupId="io.ktor" artifactId="ktor-serialization-kotlinx-watchosarm64" version="3.0.3" baseVersion="3.0.3" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-serialization-kotlinx-watchosarm64/3.0.3/a1ae423f8e5df8ac646413cbdc704a9bdc8ab4e0/ktor-serialization-kotlinx.klib!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-serialization-kotlinx-watchosarm64/3.0.3/9bb21ee14738e70aa52e66a3541468bead8febd9/ktor-serialization-kotlinx-watchosarm64-3.0.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

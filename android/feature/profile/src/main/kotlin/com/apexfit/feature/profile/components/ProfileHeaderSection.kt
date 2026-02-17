@@ -1,6 +1,7 @@
 package com.apexfit.feature.profile.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Icon
@@ -21,6 +23,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.apexfit.core.designsystem.theme.BackgroundCard
 import com.apexfit.core.designsystem.theme.BackgroundTertiary
 import com.apexfit.core.designsystem.theme.PrimaryBlue
 import com.apexfit.core.designsystem.theme.TextPrimary
@@ -39,7 +42,7 @@ fun ProfileHeaderSection(
             .padding(horizontal = 16.dp, vertical = 8.dp),
     ) {
         // Avatar
-        androidx.compose.foundation.layout.Box(
+        Box(
             modifier = Modifier
                 .size(80.dp)
                 .clip(CircleShape)
@@ -103,8 +106,8 @@ fun ProfileHeaderSection(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clip(androidx.compose.foundation.shape.RoundedCornerShape(8.dp))
-                    .background(com.apexfit.core.designsystem.theme.BackgroundCard)
+                    .clip(RoundedCornerShape(8.dp))
+                    .background(BackgroundCard)
                     .padding(12.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {

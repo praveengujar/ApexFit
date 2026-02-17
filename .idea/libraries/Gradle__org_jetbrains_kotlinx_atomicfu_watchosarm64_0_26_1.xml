@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: org.jetbrains.kotlinx:atomicfu-watchosarm64:0.26.1" type="kotlin.native" external-system-id="GRADLE">
+    <properties groupId="org.jetbrains.kotlinx" artifactId="atomicfu-watchosarm64" version="0.26.1" baseVersion="0.26.1" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/atomicfu-watchosarm64/0.26.1/9fed9ebfc4ec087ddcbcb2b43a235cda94466daa/atomicfu.klib!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/atomicfu-watchosarm64/0.26.1/b881dad04ecef72821272d6e319d7e7fba228a2f/atomicfu-cinterop-interop.klib!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/atomicfu-watchosarm64/0.26.1/8781f11fd8f4d7b2e37a6816798648d478c5403/atomicfu-watchosarm64-0.26.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

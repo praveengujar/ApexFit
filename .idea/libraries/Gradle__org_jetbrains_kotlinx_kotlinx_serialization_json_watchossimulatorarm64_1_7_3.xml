@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: org.jetbrains.kotlinx:kotlinx-serialization-json-watchossimulatorarm64:1.7.3" type="kotlin.native" external-system-id="GRADLE">
+    <properties groupId="org.jetbrains.kotlinx" artifactId="kotlinx-serialization-json-watchossimulatorarm64" version="1.7.3" baseVersion="1.7.3" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-serialization-json-watchossimulatorarm64/1.7.3/97b8c5cb03c9268070847c7da006f50cbf5ad653/kotlinx-serialization-json.klib!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-serialization-json-watchossimulatorarm64/1.7.3/3416cf675640db40f952a4e9605161b8317916e9/kotlinx-serialization-json-watchossimulatorarm64-1.7.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

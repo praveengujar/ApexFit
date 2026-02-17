@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: io.ktor:ktor-client-content-negotiation-iossimulatorarm64:3.0.3" type="kotlin.native" external-system-id="GRADLE">
+    <properties groupId="io.ktor" artifactId="ktor-client-content-negotiation-iossimulatorarm64" version="3.0.3" baseVersion="3.0.3" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-client-content-negotiation-iossimulatorarm64/3.0.3/86a062552837460f8fd3d69c00082eec39c83f0b/ktor-client-content-negotiation.klib!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-client-content-negotiation-iossimulatorarm64/3.0.3/33ef67cfbae87b61e3f7f0611697183e287bc1cc/ktor-client-content-negotiation-iossimulatorarm64-3.0.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

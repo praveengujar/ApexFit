@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: io.ktor:ktor-http-watchosx64:3.0.3" type="kotlin.native" external-system-id="GRADLE">
+    <properties groupId="io.ktor" artifactId="ktor-http-watchosx64" version="3.0.3" baseVersion="3.0.3" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-http-watchosx64/3.0.3/1281db6f21215071e42cd5a3f2047ed80ccc6ff5/ktor-http.klib!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-http-watchosx64/3.0.3/c6af3298dafdd6000e87a2e6e2b7ea331b84572/ktor-http-watchosx64-3.0.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

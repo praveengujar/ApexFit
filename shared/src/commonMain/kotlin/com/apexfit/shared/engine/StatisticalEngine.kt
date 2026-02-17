@@ -1,6 +1,7 @@
 package com.apexfit.shared.engine
 
 import kotlin.math.abs
+import kotlin.math.exp
 import kotlin.math.pow
 import kotlin.math.sqrt
 
@@ -116,7 +117,7 @@ object StatisticalEngine {
     private fun erfc(x: Double): Double {
         val t = 1.0 / (1.0 + 0.3275911 * abs(x))
         val poly = t * (0.254829592 + t * (-0.284496736 + t * (1.421413741 + t * (-1.453152027 + t * 1.061405429))))
-        val result = poly * kotlin.math.exp(-x * x)
+        val result = poly * exp(-x * x)
         return if (x >= 0) result else 2.0 - result
     }
 }

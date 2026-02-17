@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: io.ktor:ktor-io-watchosarm64:3.0.3" type="kotlin.native" external-system-id="GRADLE">
+    <properties groupId="io.ktor" artifactId="ktor-io-watchosarm64" version="3.0.3" baseVersion="3.0.3" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-io-watchosarm64/3.0.3/3c6f1df0b27243d6d8f9cb2cab3e3af58664c54a/ktor-io.klib!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-io-watchosarm64/3.0.3/70d1ec6983033dd8588e4c8810ef9e8554a52248/ktor-io-cinterop-mutex.klib!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-io-watchosarm64/3.0.3/48c5a74ed188a2db16d239e61ebf8ba9cd0fa0f/ktor-io-watchosarm64-3.0.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

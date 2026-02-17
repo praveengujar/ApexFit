@@ -16,9 +16,11 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.time.DayOfWeek
+import java.time.Instant
 import java.time.LocalDate
 import java.time.Period
 import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 data class LongevityUiState(
@@ -66,7 +68,7 @@ class LongevityViewModel @Inject constructor(
             val profile = userProfileRepo.getProfile()
             val dobMillis = profile?.dateOfBirth
             val age = if (dobMillis != null) {
-                val dob = java.time.Instant.ofEpochMilli(dobMillis)
+                val dob = Instant.ofEpochMilli(dobMillis)
                     .atZone(ZoneId.systemDefault()).toLocalDate()
                 Period.between(dob, LocalDate.now()).years.toDouble()
             } else {
@@ -74,7 +76,6 @@ class LongevityViewModel @Inject constructor(
             }
 
             val weekEnd = _uiState.value.selectedWeekEnd
-            val weekEndMillis = weekEnd.toEpochMillis()
 
             // Current week result
             val result = computeForWeekEnd(weekEnd, age)
@@ -132,102 +133,40 @@ class LongevityViewModel @Inject constructor(
     ): List<LongevityMetricInput> {
         val inputs = mutableListOf<LongevityMetricInput>()
 
-        // Sleep Consistency
-        val sc180 = metrics180.mapNotNull { it.sleepConsistency }
-        val sc30 = metrics30.mapNotNull { it.sleepConsistency }
-        inputs.add(
-            LongevityMetricInput(
-                id = LongevityMetricID.SLEEP_CONSISTENCY,
-                sixMonthAvg = sc180.averageOrNull(),
-                thirtyDayAvg = sc30.averageOrNull(),
-            ),
-        )
+        fun addMetric(id: LongevityMetricID, extractor: (DailyMetricEntity) -> Double?) {
+            inputs.add(LongevityMetricInput(
+                id = id,
+                sixMonthAvg = metrics180.mapNotNull(extractor).averageOrNull(),
+                thirtyDayAvg = metrics30.mapNotNull(extractor).averageOrNull(),
+            ))
+        }
 
-        // Hours of Sleep
-        val sh180 = metrics180.mapNotNull { it.totalSleepHours }
-        val sh30 = metrics30.mapNotNull { it.totalSleepHours }
-        inputs.add(
-            LongevityMetricInput(
-                id = LongevityMetricID.HOURS_OF_SLEEP,
-                sixMonthAvg = sh180.averageOrNull(),
-                thirtyDayAvg = sh30.averageOrNull(),
-            ),
-        )
+        addMetric(LongevityMetricID.SLEEP_CONSISTENCY) { it.sleepConsistency }
+        addMetric(LongevityMetricID.HOURS_OF_SLEEP) { it.totalSleepHours }
 
-        // HR Zones 1-3 Weekly (from daily metrics workout zone data)
-        // Approximate: sum zone1+2+3 minutes per day, average, scale to weekly hours
+        // HR Zones — approximated from workout data
         val z13_180 = weeklyZoneAvg(metrics180, zone13 = true)
         val z13_30 = weeklyZoneAvg(metrics30, zone13 = true)
-        inputs.add(
-            LongevityMetricInput(
-                id = LongevityMetricID.HR_ZONES_1_TO_3_WEEKLY,
-                sixMonthAvg = z13_180.takeIf { it > 0 },
-                thirtyDayAvg = z13_30.takeIf { it > 0 },
-            ),
-        )
-
-        // HR Zones 4-5 Weekly
+        inputs.add(LongevityMetricInput(
+            id = LongevityMetricID.HR_ZONES_1_TO_3_WEEKLY,
+            sixMonthAvg = z13_180.takeIf { it > 0 },
+            thirtyDayAvg = z13_30.takeIf { it > 0 },
+        ))
         val z45_180 = weeklyZoneAvg(metrics180, zone13 = false)
         val z45_30 = weeklyZoneAvg(metrics30, zone13 = false)
-        inputs.add(
-            LongevityMetricInput(
-                id = LongevityMetricID.HR_ZONES_4_TO_5_WEEKLY,
-                sixMonthAvg = z45_180.takeIf { it > 0 },
-                thirtyDayAvg = z45_30.takeIf { it > 0 },
-            ),
-        )
+        inputs.add(LongevityMetricInput(
+            id = LongevityMetricID.HR_ZONES_4_TO_5_WEEKLY,
+            sixMonthAvg = z45_180.takeIf { it > 0 },
+            thirtyDayAvg = z45_30.takeIf { it > 0 },
+        ))
 
-        // Strength Activity Weekly — approximation from workout count
-        // We don't have per-day strength breakdown readily, so use a placeholder
-        inputs.add(
-            LongevityMetricInput(
-                id = LongevityMetricID.STRENGTH_ACTIVITY_WEEKLY,
-                sixMonthAvg = null,
-                thirtyDayAvg = null,
-            ),
-        )
+        inputs.add(LongevityMetricInput(id = LongevityMetricID.STRENGTH_ACTIVITY_WEEKLY, sixMonthAvg = null, thirtyDayAvg = null))
 
-        // Steps
-        val steps180 = metrics180.mapNotNull { it.steps?.toDouble() }
-        val steps30 = metrics30.mapNotNull { it.steps?.toDouble() }
-        inputs.add(
-            LongevityMetricInput(
-                id = LongevityMetricID.DAILY_STEPS,
-                sixMonthAvg = steps180.averageOrNull(),
-                thirtyDayAvg = steps30.averageOrNull(),
-            ),
-        )
+        addMetric(LongevityMetricID.DAILY_STEPS) { it.steps?.toDouble() }
+        addMetric(LongevityMetricID.VO2_MAX) { it.vo2Max }
+        addMetric(LongevityMetricID.RESTING_HEART_RATE) { it.restingHeartRate }
 
-        // VO2 Max
-        val vo2_180 = metrics180.mapNotNull { it.vo2Max }
-        val vo2_30 = metrics30.mapNotNull { it.vo2Max }
-        inputs.add(
-            LongevityMetricInput(
-                id = LongevityMetricID.VO2_MAX,
-                sixMonthAvg = vo2_180.averageOrNull(),
-                thirtyDayAvg = vo2_30.averageOrNull(),
-            ),
-        )
-
-        // RHR
-        val rhr180 = metrics180.mapNotNull { it.restingHeartRate }
-        val rhr30 = metrics30.mapNotNull { it.restingHeartRate }
-        inputs.add(
-            LongevityMetricInput(
-                id = LongevityMetricID.RESTING_HEART_RATE,
-                sixMonthAvg = rhr180.averageOrNull(),
-                thirtyDayAvg = rhr30.averageOrNull(),
-            ),
-        )
-
-        // Lean Body Mass — not in DB, skip
-        inputs.add(
-            LongevityMetricInput(
-                id = LongevityMetricID.LEAN_BODY_MASS,
-                sixMonthAvg = null,
-                thirtyDayAvg = null,
-            ),
-        )
+        inputs.add(LongevityMetricInput(id = LongevityMetricID.LEAN_BODY_MASS, sixMonthAvg = null, thirtyDayAvg = null))
 
         return inputs
     }
@@ -277,7 +216,7 @@ class LongevityViewModel @Inject constructor(
         get() {
             val end = _uiState.value.selectedWeekEnd
             val start = end.minusDays(6)
-            val formatter = java.time.format.DateTimeFormatter.ofPattern("MMM d")
+            val formatter = DateTimeFormatter.ofPattern("MMM d")
             return "${start.format(formatter)} - ${end.format(formatter)}"
         }
 }

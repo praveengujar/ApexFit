@@ -27,6 +27,11 @@ class HealthConnectQueryService @Inject constructor(
 ) {
     private val client: HealthConnectClient get() = manager.healthConnectClient
 
+    private fun dayTimeRange(date: LocalDate): Pair<Instant, Instant> {
+        val zone = ZoneId.systemDefault()
+        return date.atStartOfDay(zone).toInstant() to date.plusDays(1).atStartOfDay(zone).toInstant()
+    }
+
     // MARK: - Heart Rate Samples
 
     suspend fun fetchHeartRateSamples(
@@ -64,9 +69,7 @@ class HealthConnectQueryService @Inject constructor(
     // MARK: - Resting Heart Rate
 
     suspend fun fetchRestingHeartRate(date: LocalDate): Double? {
-        val zone = ZoneId.systemDefault()
-        val startTime = date.atStartOfDay(zone).toInstant()
-        val endTime = date.plusDays(1).atStartOfDay(zone).toInstant()
+        val (startTime, endTime) = dayTimeRange(date)
 
         val request = ReadRecordsRequest(
             recordType = RestingHeartRateRecord::class,
@@ -79,9 +82,7 @@ class HealthConnectQueryService @Inject constructor(
     // MARK: - Respiratory Rate
 
     suspend fun fetchRespiratoryRate(date: LocalDate): Double? {
-        val zone = ZoneId.systemDefault()
-        val startTime = date.atStartOfDay(zone).toInstant()
-        val endTime = date.plusDays(1).atStartOfDay(zone).toInstant()
+        val (startTime, endTime) = dayTimeRange(date)
 
         val request = ReadRecordsRequest(
             recordType = RespiratoryRateRecord::class,
@@ -94,9 +95,7 @@ class HealthConnectQueryService @Inject constructor(
     // MARK: - SpO2
 
     suspend fun fetchSpO2(date: LocalDate): Double? {
-        val zone = ZoneId.systemDefault()
-        val startTime = date.atStartOfDay(zone).toInstant()
-        val endTime = date.plusDays(1).atStartOfDay(zone).toInstant()
+        val (startTime, endTime) = dayTimeRange(date)
 
         val request = ReadRecordsRequest(
             recordType = OxygenSaturationRecord::class,
@@ -221,9 +220,7 @@ class HealthConnectQueryService @Inject constructor(
     // MARK: - Steps (Daily Aggregate)
 
     suspend fun fetchSteps(date: LocalDate): Long {
-        val zone = ZoneId.systemDefault()
-        val startTime = date.atStartOfDay(zone).toInstant()
-        val endTime = date.plusDays(1).atStartOfDay(zone).toInstant()
+        val (startTime, endTime) = dayTimeRange(date)
 
         val request = AggregateRequest(
             metrics = setOf(StepsRecord.COUNT_TOTAL),
@@ -236,9 +233,7 @@ class HealthConnectQueryService @Inject constructor(
     // MARK: - Active Calories (Daily Aggregate)
 
     suspend fun fetchActiveCalories(date: LocalDate): Double {
-        val zone = ZoneId.systemDefault()
-        val startTime = date.atStartOfDay(zone).toInstant()
-        val endTime = date.plusDays(1).atStartOfDay(zone).toInstant()
+        val (startTime, endTime) = dayTimeRange(date)
 
         val request = AggregateRequest(
             metrics = setOf(ActiveCaloriesBurnedRecord.ACTIVE_CALORIES_TOTAL),

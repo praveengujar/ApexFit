@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: io.ktor:ktor-client-darwin-watchossimulatorarm64:3.0.3" type="kotlin.native" external-system-id="GRADLE">
+    <properties groupId="io.ktor" artifactId="ktor-client-darwin-watchossimulatorarm64" version="3.0.3" baseVersion="3.0.3" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-client-darwin-watchossimulatorarm64/3.0.3/9aff4c49a619968c71f1eae5d437267127f56e1d/ktor-client-darwin.klib!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-client-darwin-watchossimulatorarm64/3.0.3/e4dae8eff6b147edc5f657aa089faaaf1ae22b95/ktor-client-darwin-watchossimulatorarm64-3.0.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

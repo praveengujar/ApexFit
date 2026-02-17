@@ -28,9 +28,14 @@ import com.apexfit.core.designsystem.theme.RecoveryGreen
 import com.apexfit.core.designsystem.theme.RecoveryRed
 import com.apexfit.core.designsystem.theme.RecoveryYellow
 import com.apexfit.core.designsystem.theme.Spacing
+import com.apexfit.core.designsystem.theme.CornerRadius as ThemeCornerRadius
 import com.apexfit.core.designsystem.theme.TextPrimary
 import com.apexfit.core.designsystem.theme.TextSecondary
 import com.apexfit.core.designsystem.theme.TextTertiary
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.TextStyle
+import java.util.Locale
 
 @Composable
 fun WeeklyStrainRecoveryChart(
@@ -42,7 +47,7 @@ fun WeeklyStrainRecoveryChart(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(com.apexfit.core.designsystem.theme.CornerRadius.medium))
+            .clip(RoundedCornerShape(ThemeCornerRadius.medium))
             .background(BackgroundCard)
             .padding(Spacing.md),
     ) {
@@ -123,12 +128,12 @@ fun WeeklyStrainRecoveryChart(
 
         // Day labels
         val dayLabels = weekMetrics.take(7).map { metric ->
-            val date = java.time.Instant.ofEpochMilli(metric.date)
-                .atZone(java.time.ZoneId.systemDefault())
+            val date = Instant.ofEpochMilli(metric.date)
+                .atZone(ZoneId.systemDefault())
                 .toLocalDate()
             date.dayOfWeek.getDisplayName(
-                java.time.format.TextStyle.SHORT,
-                java.util.Locale.getDefault(),
+                TextStyle.SHORT,
+                Locale.getDefault(),
             ).first().uppercase()
         }
 

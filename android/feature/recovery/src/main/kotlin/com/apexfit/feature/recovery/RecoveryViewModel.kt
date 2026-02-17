@@ -46,25 +46,18 @@ class RecoveryViewModel @Inject constructor(
         }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), RecoveryUiState())
 
-    fun baselineHRV(metrics: List<DailyMetricEntity>): Double {
-        val values = metrics.mapNotNull { it.hrvRMSSD }
+    private fun baseline(metrics: List<DailyMetricEntity>, extractor: (DailyMetricEntity) -> Double?): Double {
+        val values = metrics.mapNotNull(extractor)
         return if (values.isEmpty()) 0.0 else values.average()
     }
 
-    fun baselineRHR(metrics: List<DailyMetricEntity>): Double {
-        val values = metrics.mapNotNull { it.restingHeartRate }
-        return if (values.isEmpty()) 0.0 else values.average()
-    }
+    fun baselineHRV(metrics: List<DailyMetricEntity>): Double = baseline(metrics) { it.hrvRMSSD }
 
-    fun baselineRespRate(metrics: List<DailyMetricEntity>): Double {
-        val values = metrics.mapNotNull { it.respiratoryRate }
-        return if (values.isEmpty()) 0.0 else values.average()
-    }
+    fun baselineRHR(metrics: List<DailyMetricEntity>): Double = baseline(metrics) { it.restingHeartRate }
 
-    fun baselineSleepPerf(metrics: List<DailyMetricEntity>): Double {
-        val values = metrics.mapNotNull { it.sleepPerformance }
-        return if (values.isEmpty()) 0.0 else values.average()
-    }
+    fun baselineRespRate(metrics: List<DailyMetricEntity>): Double = baseline(metrics) { it.respiratoryRate }
+
+    fun baselineSleepPerf(metrics: List<DailyMetricEntity>): Double = baseline(metrics) { it.sleepPerformance }
 
     fun generateInsight(todayHRV: Double, baselineHRV: Double): String {
         if (baselineHRV <= 0 || todayHRV <= 0) {

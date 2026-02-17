@@ -42,7 +42,6 @@ import com.apexfit.core.designsystem.theme.TextPrimary
 import com.apexfit.core.designsystem.theme.TextSecondary
 import com.apexfit.core.designsystem.theme.TextTertiary
 import com.apexfit.core.engine.LongevityCategory
-import com.apexfit.core.engine.LongevityEngine
 import com.apexfit.core.engine.LongevityMetricID
 import com.apexfit.core.engine.LongevityMetricResult
 import com.apexfit.core.engine.LongevityResult

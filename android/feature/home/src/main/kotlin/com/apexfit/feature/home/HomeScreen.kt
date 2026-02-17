@@ -61,7 +61,9 @@ import com.apexfit.feature.home.components.JournalWeekCard
 import com.apexfit.feature.home.components.MyPlanCard
 import com.apexfit.feature.home.components.TonightsSleepCard
 import com.apexfit.feature.home.components.WeeklyStrainRecoveryChart
+import java.time.Instant
 import java.time.LocalDate
+import java.time.ZoneId
 
 @Composable
 fun HomeScreen(
@@ -155,8 +157,8 @@ fun HomeScreen(
         JournalWeekCard(
             selectedDate = uiState.selectedDate,
             loggedDates = uiState.weekMetrics.mapNotNull { metric ->
-                java.time.Instant.ofEpochMilli(metric.date)
-                    .atZone(java.time.ZoneId.systemDefault())
+                Instant.ofEpochMilli(metric.date)
+                    .atZone(ZoneId.systemDefault())
                     .toLocalDate()
                     .takeIf { metric.recoveryScore != null || metric.strainScore != null }
             }.toSet(),

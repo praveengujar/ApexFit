@@ -7,7 +7,6 @@ import com.apexfit.core.data.entity.WorkoutRecordEntity
 import com.apexfit.core.data.repository.DailyMetricRepository
 import com.apexfit.core.data.repository.WorkoutRepository
 import com.apexfit.core.model.RecoveryZone
-import com.apexfit.core.model.StrainZone
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted

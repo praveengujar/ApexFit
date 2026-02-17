@@ -1,0 +1,2 @@
+
+<ApexFitRoot:shared>:com.apexfit.shared.config:$com.apexfit.shared.domain.repository:!com.apexfit.shared.domain.usecase:com.apexfit.shared.engine:com.apexfit.shared.model:com.apexfit.shared.model.config:com.apexfit.shared.network:com.apexfit.shared.network.dto:com.apexfit.shared.platform

@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: io.ktor:ktor-http:posixMain:3.0.3" type="kotlin.native" external-system-id="GRADLE">
+    <properties groupId="io.ktor" artifactId="ktor-http" version="3.0.3" baseVersion="3.0.3" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/.kotlin/metadata/kotlinTransformedMetadataLibraries/io.ktor-ktor-http-3.0.3-posixMain-GYREtg.klib!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-http/3.0.3/62787b7bd0744bbfde9c28ec3e93199f14772314/ktor-http-3.0.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

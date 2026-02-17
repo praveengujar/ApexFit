@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: io.ktor:ktor-io:posixMain:3.0.3" type="kotlin.native" external-system-id="GRADLE">
+    <properties groupId="io.ktor" artifactId="ktor-io" version="3.0.3" baseVersion="3.0.3" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/.kotlin/metadata/kotlinTransformedMetadataLibraries/io.ktor-ktor-io-3.0.3-posixMain-JwCZCA.klib!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-io/3.0.3/beeea73781a5d7db52f21767a05ad8dbf505318a/ktor-io-3.0.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

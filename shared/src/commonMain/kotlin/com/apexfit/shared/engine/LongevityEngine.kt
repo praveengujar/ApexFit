@@ -48,8 +48,7 @@ object LongevityEngine {
         val unit: String
             get() = when (this) {
                 SLEEP_CONSISTENCY -> "%"
-                HOURS_OF_SLEEP -> "h"
-                HR_ZONES_1_TO_3_WEEKLY, HR_ZONES_4_TO_5_WEEKLY, STRENGTH_ACTIVITY_WEEKLY -> "h"
+                HOURS_OF_SLEEP, HR_ZONES_1_TO_3_WEEKLY, HR_ZONES_4_TO_5_WEEKLY, STRENGTH_ACTIVITY_WEEKLY -> "h"
                 DAILY_STEPS -> "Steps"
                 VO2_MAX -> "ml/kg/min"
                 RESTING_HEART_RATE -> "bpm"

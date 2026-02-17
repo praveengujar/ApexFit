@@ -6,6 +6,7 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -85,12 +86,12 @@ fun CircularGauge(
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Text(
                     text = formatGaugeValue(value, maxValue),
-                    style = androidx.compose.material3.MaterialTheme.typography.headlineMedium,
+                    style = MaterialTheme.typography.headlineMedium,
                     color = color,
                 )
                 Text(
                     text = label,
-                    style = androidx.compose.material3.MaterialTheme.typography.labelSmall,
+                    style = MaterialTheme.typography.labelSmall,
                     color = TextSecondary,
                 )
             }

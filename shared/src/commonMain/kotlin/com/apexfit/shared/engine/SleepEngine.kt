@@ -108,8 +108,8 @@ class SleepEngine(private val config: SleepConfig) {
         val allBedtimes = recentBedtimeMinutes + currentBedtimeMinutes
         val allWakeTimes = recentWakeTimeMinutes + currentWakeTimeMinutes
 
-        val bedtimeStd = standardDeviationOf(allBedtimes)
-        val wakeTimeStd = standardDeviationOf(allWakeTimes)
+        val bedtimeStd = allBedtimes.standardDeviation
+        val wakeTimeStd = allWakeTimes.standardDeviation
         val avgStd = (bedtimeStd + wakeTimeStd) / 2.0
 
         val score = 100.0 * exp(-avgStd / config.consistencyDecayTau)
@@ -167,12 +167,8 @@ class SleepEngine(private val config: SleepConfig) {
         val efficiency = main?.sleepEfficiency ?: 0.0
         val restorativePct = main?.let { computeRestorativeSleepPct(it) } ?: 0.0
         val disturbances = main?.let { computeDisturbancesPerHour(it) } ?: 0.0
-        val deepPct = main?.let { s ->
-            if (s.totalSleepMinutes > 0) (s.deepMinutes / s.totalSleepMinutes) * 100 else 0.0
-        } ?: 0.0
-        val remPct = main?.let { s ->
-            if (s.totalSleepMinutes > 0) (s.remMinutes / s.totalSleepMinutes) * 100 else 0.0
-        } ?: 0.0
+        val deepPct = main?.let { sleepStagePercentage(it.deepMinutes, it.totalSleepMinutes) } ?: 0.0
+        val remPct = main?.let { sleepStagePercentage(it.remMinutes, it.totalSleepMinutes) } ?: 0.0
 
         val consistency = if (main != null) {
             val bedtimeMin = minutesSinceMidnight(main.startDateMillis)
@@ -208,12 +204,8 @@ class SleepEngine(private val config: SleepConfig) {
     companion object {
         fun minutesSinceMidnight(epochMillis: Long): Double =
             com.apexfit.shared.platform.minutesSinceMidnight(epochMillis)
-
-        private fun standardDeviationOf(values: List<Double>): Double {
-            if (values.size <= 1) return 0.0
-            val mean = values.sum() / values.size
-            val variance = values.map { (it - mean).pow(2) }.sum() / values.size
-            return sqrt(variance)
-        }
     }
+
+    private fun sleepStagePercentage(stageMinutes: Double, totalMinutes: Double): Double =
+        if (totalMinutes > 0) (stageMinutes / totalMinutes) * 100.0 else 0.0
 }

@@ -19,26 +19,16 @@ object HRVCalculator {
     fun computeRMSSD(rrIntervalsSeconds: List<Double>): Double? {
         if (rrIntervalsSeconds.size <= 1) return null
 
-        val intervals = mutableListOf<Double>()
-        for (i in 1 until rrIntervalsSeconds.size) {
-            val interval = (rrIntervalsSeconds[i] - rrIntervalsSeconds[i - 1]) * 1000
-            if (interval in 200.0..2000.0) {
-                intervals.add(interval)
-            }
-        }
+        val intervals = rrIntervalsSeconds.zipWithNext { a, b -> (b - a) * 1000 }
+            .filter { it in 200.0..2000.0 }
 
         if (intervals.size <= 1) return null
 
-        val squaredDiffs = mutableListOf<Double>()
-        for (i in 1 until intervals.size) {
-            val diff = intervals[i] - intervals[i - 1]
-            squaredDiffs.add(diff * diff)
-        }
+        val squaredDiffs = intervals.zipWithNext { a, b -> (b - a).let { it * it } }
 
         if (squaredDiffs.isEmpty()) return null
 
-        val meanSquaredDiff = squaredDiffs.sum() / squaredDiffs.size
-        return sqrt(meanSquaredDiff)
+        return sqrt(squaredDiffs.average())
     }
 
     fun bestHRV(rmssdValue: Double? = null, sdnnValue: Double? = null): HRVResult {

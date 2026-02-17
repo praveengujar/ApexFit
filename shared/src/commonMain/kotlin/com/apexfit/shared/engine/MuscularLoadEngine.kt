@@ -26,13 +26,10 @@ object MuscularLoadEngine {
         "rowing" to 0.75,
     )
 
-    private val strengthTypes = setOf(
+    private val strengthRelatedTypes = setOf(
         "traditionalStrengthTraining",
         "functionalStrengthTraining",
         "coreTraining",
-    )
-
-    private val highIntensityTypes = setOf(
         "crossTraining",
         "highIntensityIntervalTraining",
         "wrestling",
@@ -77,5 +74,5 @@ object MuscularLoadEngine {
     }
 
     fun isStrengthWorkout(type: String): Boolean =
-        type in strengthTypes || type in highIntensityTypes
+        type in strengthRelatedTypes
 }
