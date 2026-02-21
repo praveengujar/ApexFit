@@ -1,5 +1,5 @@
 import Foundation
-import ApexFitShared
+import ZyvaShared
 
 // MARK: - Recovery Engine Adapter
 //
@@ -8,21 +8,21 @@ import ApexFitShared
 
 enum KMPRecoveryEngineAdapter {
     static func computeRecovery(
-        input: ApexFitShared.RecoveryInput,
-        baselines: ApexFitShared.RecoveryBaselines
-    ) -> ApexFitShared.RecoveryResult {
+        input: ZyvaShared.RecoveryInput,
+        baselines: ZyvaShared.RecoveryBaselines
+    ) -> ZyvaShared.RecoveryResult {
         let config = KMPConfigProvider.scoringConfig.recovery
-        let engine = ApexFitShared.RecoveryEngine(config: config)
+        let engine = ZyvaShared.RecoveryEngine(config: config)
         return engine.computeRecovery(input: input, baselines: baselines)
     }
 
     static func generateInsight(
-        result: ApexFitShared.RecoveryResult,
-        input: ApexFitShared.RecoveryInput,
-        baselines: ApexFitShared.RecoveryBaselines
+        result: ZyvaShared.RecoveryResult,
+        input: ZyvaShared.RecoveryInput,
+        baselines: ZyvaShared.RecoveryBaselines
     ) -> String {
         let config = KMPConfigProvider.scoringConfig.recovery
-        let engine = ApexFitShared.RecoveryEngine(config: config)
+        let engine = ZyvaShared.RecoveryEngine(config: config)
         return engine.generateInsight(result: result, input: input, baselines: baselines)
     }
 }
@@ -36,17 +36,17 @@ enum KMPBaselineEngineAdapter {
         values: [Double],
         windowDays: Int32 = 28,
         minimumSamples: Int32 = 3
-    ) -> ApexFitShared.BaselineResult? {
+    ) -> ZyvaShared.BaselineResult? {
         let kotlinValues = values.map { KotlinDouble(value: $0) }
-        return ApexFitShared.BaselineEngine.shared.computeBaseline(
+        return ZyvaShared.BaselineEngine.shared.computeBaseline(
             values: kotlinValues,
             windowDays: windowDays,
             minimumSamples: minimumSamples
         )
     }
 
-    static func zScore(value: Double, baseline: ApexFitShared.BaselineResult) -> Double {
-        return ApexFitShared.BaselineEngine.shared.zScore(value: value, baseline: baseline)
+    static func zScore(value: Double, baseline: ZyvaShared.BaselineResult) -> Double {
+        return ZyvaShared.BaselineEngine.shared.zScore(value: value, baseline: baseline)
     }
 }
 
@@ -56,8 +56,8 @@ enum KMPHRVCalculatorAdapter {
     static func bestHRV(
         rmssdValue: Double? = nil,
         sdnnValue: Double? = nil
-    ) -> ApexFitShared.HRVResult {
-        return ApexFitShared.HRVCalculator.shared.bestHRV(
+    ) -> ZyvaShared.HRVResult {
+        return ZyvaShared.HRVCalculator.shared.bestHRV(
             rmssdValue: rmssdValue.map { KotlinDouble(value: $0) },
             sdnnValue: sdnnValue.map { KotlinDouble(value: $0) }
         )
@@ -65,11 +65,11 @@ enum KMPHRVCalculatorAdapter {
 
     static func computeRMSSD(rrIntervalsSeconds: [Double]) -> Double? {
         let kotlinValues = rrIntervalsSeconds.map { KotlinDouble(value: $0) }
-        return ApexFitShared.HRVCalculator.shared.computeRMSSD(rrIntervalsSeconds: kotlinValues)?.doubleValue
+        return ZyvaShared.HRVCalculator.shared.computeRMSSD(rrIntervalsSeconds: kotlinValues)?.doubleValue
     }
 
-    static func effectiveHRV(from result: ApexFitShared.HRVResult) -> Double? {
-        return ApexFitShared.HRVCalculator.shared.effectiveHRV(result: result)?.doubleValue
+    static func effectiveHRV(from result: ZyvaShared.HRVResult) -> Double? {
+        return ZyvaShared.HRVCalculator.shared.effectiveHRV(result: result)?.doubleValue
     }
 }
 
@@ -77,15 +77,15 @@ enum KMPHRVCalculatorAdapter {
 
 enum KMPSleepEngineAdapter {
     static func analyze(
-        sessions: [ApexFitShared.SleepSessionData],
+        sessions: [ZyvaShared.SleepSessionData],
         baselineSleepHours: Double,
         todayStrain: Double,
         pastWeekSleepHours: [Double],
         pastWeekSleepNeeds: [Double],
-        consistencyInput: ApexFitShared.SleepConsistencyInput
-    ) -> ApexFitShared.SleepAnalysisResult {
+        consistencyInput: ZyvaShared.SleepConsistencyInput
+    ) -> ZyvaShared.SleepAnalysisResult {
         let config = KMPConfigProvider.scoringConfig.sleep
-        let engine = ApexFitShared.SleepEngine(config: config)
+        let engine = ZyvaShared.SleepEngine(config: config)
         return engine.analyze(
             sessions: sessions,
             baselineSleepHours: baselineSleepHours,
@@ -97,7 +97,7 @@ enum KMPSleepEngineAdapter {
     }
 
     static func minutesSinceMidnight(epochMillis: Int64) -> Double {
-        return ApexFitShared.SleepEngine.companion.minutesSinceMidnight(epochMillis: epochMillis)
+        return ZyvaShared.SleepEngine.companion.minutesSinceMidnight(epochMillis: epochMillis)
     }
 }
 
@@ -107,9 +107,9 @@ enum KMPStrainEngineAdapter {
     static func computeWorkoutStrain(
         maxHeartRate: Int32,
         heartRateSamples: [(Int64, Double)]
-    ) -> ApexFitShared.StrainResult {
+    ) -> ZyvaShared.StrainResult {
         let config = KMPConfigProvider.scoringConfig
-        let engine = ApexFitShared.StrainEngine(
+        let engine = ZyvaShared.StrainEngine(
             maxHeartRate: maxHeartRate,
             strainConfig: config.strain,
             hrZoneConfig: config.heartRateZones

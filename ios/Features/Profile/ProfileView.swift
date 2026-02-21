@@ -40,7 +40,7 @@ struct ProfileComputedState {
     // Achievements
     var level: Int = 0
     var greenRecoveryCount: Int = 0
-    var apexFitAge: Double = 0
+    var zyvaAge: Double = 0
     var yearsYoungerOlder: Double = 0
 
     // Streak
@@ -134,7 +134,7 @@ struct ProfileView: View {
                         AchievementCardsView(
                             level: state.level,
                             greenRecoveryCount: state.greenRecoveryCount,
-                            apexFitAge: state.apexFitAge,
+                            zyvaAge: state.zyvaAge,
                             yearsYoungerOlder: state.yearsYoungerOlder
                         )
 
@@ -214,8 +214,8 @@ struct ProfileView: View {
         state.greenRecoveryCount = greenCount
         state.level = max(1, greenCount / 6)
 
-        // ApexFit Age
-        computeApexFitAge(profile: profile)
+        // Zyva Age
+        computeZyvaAge(profile: profile)
 
         // Day Streak
         state.dayStreak = computeDayStreak()
@@ -237,7 +237,7 @@ struct ProfileView: View {
         isLoading = false
     }
 
-    private func computeApexFitAge(profile: UserProfile) {
+    private func computeZyvaAge(profile: UserProfile) {
         let age = Double(profile.age ?? 30)
         let now = Date()
         let metrics180 = allMetrics.filter { $0.date >= now.daysAgo(180) && $0.date <= now }
@@ -258,7 +258,7 @@ struct ProfileView: View {
             weekEnd: now
         )
 
-        state.apexFitAge = result.apexFitAge
+        state.zyvaAge = result.zyvaAge
         state.yearsYoungerOlder = result.yearsYoungerOlder
     }
 

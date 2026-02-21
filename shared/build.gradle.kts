@@ -7,7 +7,7 @@ plugins {
     id("co.touchlab.skie")
 }
 
-val xcframeworkName = "ApexFitShared"
+val xcframeworkName = "ZyvaShared"
 
 kotlin {
     androidTarget {
@@ -23,7 +23,7 @@ kotlin {
     listOf(iosX64(), iosArm64(), iosSimulatorArm64()).forEach { target ->
         target.binaries.framework {
             baseName = xcframeworkName
-            binaryOption("bundleId", "com.apexfit.shared")
+            binaryOption("bundleId", "com.zyva.shared")
             xcf.add(this)
             isStatic = true
         }
@@ -32,7 +32,7 @@ kotlin {
     listOf(watchosX64(), watchosArm64(), watchosSimulatorArm64()).forEach { target ->
         target.binaries.framework {
             baseName = xcframeworkName
-            binaryOption("bundleId", "com.apexfit.shared")
+            binaryOption("bundleId", "com.zyva.shared")
             xcf.add(this)
             isStatic = true
         }
@@ -64,7 +64,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.apexfit.shared"
+    namespace = "com.zyva.shared"
     compileSdk = 35
     defaultConfig {
         minSdk = 28

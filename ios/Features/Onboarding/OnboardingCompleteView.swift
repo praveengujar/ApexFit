@@ -44,7 +44,7 @@ struct OnboardingCompleteView: View {
                         .font(AppTypography.heading1)
                         .foregroundStyle(AppColors.textPrimary)
 
-                    Text("ApexFit is ready to help you optimize your performance.")
+                    Text("Zyva is ready to help you optimize your performance.")
                         .font(AppTypography.bodyLarge)
                         .foregroundStyle(AppColors.textSecondary)
                         .multilineTextAlignment(.center)
@@ -101,7 +101,7 @@ struct OnboardingCompleteView: View {
                 // Start button
                 Button(action: completeOnboarding) {
                     HStack(spacing: AppTheme.spacingSM) {
-                        Text("Start Using ApexFit")
+                        Text("Start Using Zyva")
                         Image(systemName: "arrow.right")
                     }
                     .font(AppTypography.heading3)

@@ -3,15 +3,24 @@
 xcuserdata/
 *.xcuserstate
 
-# Android build outputs
-android/**/build/
-android/app/build/outputs/
+# Build outputs
+**/build/
+**/build 2/
 *.apk
 *.aab
 
 # Java / Android Studio heap dumps
 *.hprof
 
+# Python
+backend/.venv/
+**/__pycache__/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
 # General build artifacts
 *.log
-*.hprof
+
+# IDE
+.idea/

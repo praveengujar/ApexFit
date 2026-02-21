@@ -1,9 +1,9 @@
 import Foundation
-import ApexFitShared
+import ZyvaShared
 
 // MARK: - RecoveryZone Mapping
 
-extension ApexFitShared.RecoveryZone {
+extension ZyvaShared.RecoveryZone {
     /// Convert KMP RecoveryZone to iOS RecoveryZone.
     var toiOS: RecoveryZone {
         switch self {
@@ -17,7 +17,7 @@ extension ApexFitShared.RecoveryZone {
 
 extension RecoveryZone {
     /// Convert iOS RecoveryZone to KMP RecoveryZone.
-    var toKMP: ApexFitShared.RecoveryZone {
+    var toKMP: ZyvaShared.RecoveryZone {
         switch self {
         case .green: return .green
         case .yellow: return .yellow
@@ -28,7 +28,7 @@ extension RecoveryZone {
 
 // MARK: - StrainZone Mapping
 
-extension ApexFitShared.StrainZone {
+extension ZyvaShared.StrainZone {
     var toiOS: StrainZone {
         switch self {
         case .light: return .light
@@ -42,7 +42,7 @@ extension ApexFitShared.StrainZone {
 
 // MARK: - BiologicalSex Mapping
 
-extension ApexFitShared.BiologicalSex {
+extension ZyvaShared.BiologicalSex {
     var toiOS: BiologicalSex {
         switch self {
         case .male: return .male
@@ -55,7 +55,7 @@ extension ApexFitShared.BiologicalSex {
 }
 
 extension BiologicalSex {
-    var toKMP: ApexFitShared.BiologicalSex {
+    var toKMP: ZyvaShared.BiologicalSex {
         switch self {
         case .male: return .male
         case .female: return .female
@@ -67,7 +67,7 @@ extension BiologicalSex {
 
 // MARK: - BaselineMetricType Mapping
 
-extension ApexFitShared.BaselineMetricType {
+extension ZyvaShared.BaselineMetricType {
     var toiOS: BaselineMetricType {
         switch self {
         case .hrv: return .hrv
@@ -87,7 +87,7 @@ extension ApexFitShared.BaselineMetricType {
 }
 
 extension BaselineMetricType {
-    var toKMP: ApexFitShared.BaselineMetricType {
+    var toKMP: ZyvaShared.BaselineMetricType {
         switch self {
         case .hrv: return .hrv
         case .restingHeartRate: return .restingHeartRate
@@ -107,7 +107,7 @@ extension BaselineMetricType {
 // MARK: - SleepStageType Mapping
 
 extension SleepStageType {
-    var toKMP: ApexFitShared.SleepStageType {
+    var toKMP: ZyvaShared.SleepStageType {
         switch self {
         case .awake: return .awake
         case .light: return .light
@@ -121,7 +121,7 @@ extension SleepStageType {
 // MARK: - MaxHRSource Mapping
 
 extension MaxHRSource {
-    var toKMP: ApexFitShared.MaxHRSource {
+    var toKMP: ZyvaShared.MaxHRSource {
         switch self {
         case .userInput: return .userInput
         case .observed: return .observed
@@ -133,7 +133,7 @@ extension MaxHRSource {
 // MARK: - UnitSystem Mapping
 
 extension UnitSystem {
-    var toKMP: ApexFitShared.UnitSystem {
+    var toKMP: ZyvaShared.UnitSystem {
         switch self {
         case .metric: return .metric
         case .imperial: return .imperial

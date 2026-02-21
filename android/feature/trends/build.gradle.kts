@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.apexfit.feature.trends"
+    namespace = "com.zyva.feature.trends"
     compileSdk = 35
 
     defaultConfig { minSdk = 28 }

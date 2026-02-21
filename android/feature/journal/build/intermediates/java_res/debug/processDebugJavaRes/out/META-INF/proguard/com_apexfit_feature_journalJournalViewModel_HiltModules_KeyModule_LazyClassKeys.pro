@@ -1,2 +1,0 @@
--keep,allowobfuscation,allowshrinking class com.apexfit.feature.journal.JournalViewModel
--keep,allowobfuscation,allowshrinking class com.apexfit.feature.journal.JournalViewModel

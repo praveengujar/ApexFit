@@ -1,4 +1,4 @@
-import ApexFitShared
+import ZyvaShared
 import Foundation
 import HealthKit
 
@@ -309,7 +309,7 @@ actor HealthKitQueryService {
         }
 
         let config = KMPConfigProvider.scoringConfig
-        let zoneCalculator = ApexFitShared.HeartRateZoneCalculator(maxHeartRate: Int32(maxHeartRate), hrConfig: config.heartRateZones)
+        let zoneCalculator = ZyvaShared.HeartRateZoneCalculator(maxHeartRate: Int32(maxHeartRate), hrConfig: config.heartRateZones)
         var zone1to3Minutes: Double = 0
         var zone4to5Minutes: Double = 0
 

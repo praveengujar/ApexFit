@@ -1,8 +1,8 @@
-import ApexFitShared
+import ZyvaShared
 import Foundation
 
 enum HealthKitConstants {
-    private static var c: ApexFitShared.ScoringConfig { KMPConfigProvider.scoringConfig }
+    private static var c: ZyvaShared.ScoringConfig { KMPConfigProvider.scoringConfig }
 
     // MARK: - Data Staleness Thresholds
     static var heartRateStalenessHours: Int { Int(c.staleness.heartRateHours) }
@@ -13,8 +13,8 @@ enum HealthKitConstants {
     static var spo2StalenessHours: Int { Int(c.staleness.spo2Hours) }
 
     // MARK: - Background Task Identifiers
-    static let backgroundRefreshTaskID = "com.apexfit.background.refresh"
-    static let backgroundProcessingTaskID = "com.apexfit.background.processing"
+    static let backgroundRefreshTaskID = "com.zyva.background.refresh"
+    static let backgroundProcessingTaskID = "com.zyva.background.processing"
 
     // MARK: - Baseline Computation
     static var baselineWindowDays: Int { Int(c.baselines.windowDays) }

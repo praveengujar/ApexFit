@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.apexfit.feature.sleep"
+    namespace = "com.zyva.feature.sleep"
     compileSdk = 35
 
     defaultConfig { minSdk = 28 }

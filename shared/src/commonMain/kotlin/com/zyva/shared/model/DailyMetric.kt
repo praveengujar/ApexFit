@@ -1,0 +1,43 @@
+package com.zyva.shared.model
+
+import com.zyva.shared.platform.currentTimeMillis
+import com.zyva.shared.platform.randomUUID
+
+data class DailyMetric(
+    val id: String = randomUUID(),
+    val date: Long, // epoch millis, start of day
+    val recoveryScore: Double? = null,
+    val recoveryZone: RecoveryZone? = null,
+    val strainScore: Double = 0.0,
+    val sleepPerformance: Double? = null,
+    val hrvRMSSD: Double? = null,
+    val hrvSDNN: Double? = null,
+    val restingHeartRate: Double? = null,
+    val respiratoryRate: Double? = null,
+    val spo2: Double? = null,
+    val skinTemperature: Double? = null,
+    val steps: Int = 0,
+    val activeCalories: Double = 0.0,
+    val vo2Max: Double? = null,
+    val peakStrain: Double = 0.0,
+    val workoutCount: Int = 0,
+    val sleepDurationHours: Double? = null,
+    val sleepNeedHours: Double? = null,
+    val sleepDebtHours: Double? = null,
+    val stressAverage: Double? = null,
+    val sleepScore: Double? = null,
+    val sleepConsistency: Double? = null,
+    val sleepEfficiencyPct: Double? = null,
+    val restorativeSleepPct: Double? = null,
+    val deepSleepPct: Double? = null,
+    val remSleepPct: Double? = null,
+    val isComputed: Boolean = false,
+    val computedAt: Long? = null,
+    val syncedToCloud: Boolean = false,
+    val createdAt: Long = currentTimeMillis(),
+    val userProfileId: String? = null,
+    val workouts: List<WorkoutRecord> = emptyList(),
+    val sleepSessions: List<SleepSession> = emptyList(),
+) {
+    val strainZone: StrainZone get() = StrainZone.from(strainScore)
+}

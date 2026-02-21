@@ -33,7 +33,7 @@ struct HealthKitPermissionView: View {
                         .font(AppTypography.heading1)
                         .foregroundStyle(AppColors.textPrimary)
 
-                    Text("ApexFit uses Apple Health to provide recovery scores, strain tracking, and sleep analysis.")
+                    Text("Zyva uses Apple Health to provide recovery scores, strain tracking, and sleep analysis.")
                         .font(AppTypography.bodyLarge)
                         .foregroundStyle(AppColors.textSecondary)
                         .multilineTextAlignment(.center)

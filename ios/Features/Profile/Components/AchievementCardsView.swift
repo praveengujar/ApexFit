@@ -3,7 +3,7 @@ import SwiftUI
 struct AchievementCardsView: View {
     let level: Int
     let greenRecoveryCount: Int
-    let apexFitAge: Double
+    let zyvaAge: Double
     let yearsYoungerOlder: Double
 
     var body: some View {
@@ -32,18 +32,18 @@ struct AchievementCardsView: View {
             .frame(maxWidth: .infinity)
             .cardStyle()
 
-            // ApexFit Age Card
+            // Zyva Age Card
             VStack(spacing: AppTheme.spacingSM) {
                 ZStack {
                     Circle()
                         .fill(AppColors.longevityGreen.opacity(0.2))
                         .frame(width: 44, height: 44)
-                    Text(apexFitAge.formattedNoDecimal)
+                    Text(zyvaAge.formattedNoDecimal)
                         .font(.system(size: 20, weight: .bold))
                         .foregroundStyle(AppColors.longevityGreen)
                 }
 
-                Text("APEXFIT AGE")
+                Text("ZYVA AGE")
                     .font(.system(size: 11, weight: .bold))
                     .foregroundStyle(AppColors.textSecondary)
                     .tracking(1)

@@ -46,7 +46,7 @@ async def send_message(
 
     # Generate AI response (placeholder — wired to CoachService in production)
     ai_content = (
-        "I'm your ApexFit AI coach. Based on your recent metrics, "
+        "I'm your Zyva AI coach. Based on your recent metrics, "
         "I recommend focusing on recovery today. How can I help you further?"
     )
     ai_msg = await coach_repo.add_message(session, conv.id, "assistant", ai_content)

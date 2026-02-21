@@ -8,11 +8,11 @@ plugins {
 }
 
 android {
-    namespace = "com.apexfit"
+    namespace = "com.zyva"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.apexfit"
+        applicationId = "com.zyva"
         minSdk = 28
         targetSdk = 35
         versionCode = 1

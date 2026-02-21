@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.apexfit.core.model"
+    namespace = "com.zyva.core.model"
     compileSdk = 35
     defaultConfig { minSdk = 28 }
     compileOptions {

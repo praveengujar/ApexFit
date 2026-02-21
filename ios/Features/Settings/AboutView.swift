@@ -40,7 +40,7 @@ struct AboutView: View {
                     )
                 )
 
-            Text("ApexFit")
+            Text("Zyva")
                 .font(AppTypography.heading1)
                 .foregroundStyle(AppColors.textPrimary)
 
@@ -85,14 +85,14 @@ struct AboutView: View {
                 title: "Privacy Policy",
                 icon: "hand.raised.fill",
                 color: AppColors.primaryBlue,
-                urlString: "https://apexfit.app/privacy"
+                urlString: "https://zyva.app/privacy"
             )
 
             linkRow(
                 title: "Terms of Service",
                 icon: "doc.text.fill",
                 color: AppColors.lavender,
-                urlString: "https://apexfit.app/terms"
+                urlString: "https://zyva.app/terms"
             )
         }
     }

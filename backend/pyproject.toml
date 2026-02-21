@@ -1,7 +1,7 @@
 [project]
-name = "apexfit-backend"
+name = "zyva-backend"
 version = "0.1.0"
-description = "ApexFit FastAPI backend for health & fitness tracking"
+description = "Zyva FastAPI backend for health & fitness tracking"
 requires-python = ">=3.11"
 dependencies = [
     "fastapi[standard]>=0.115.0",

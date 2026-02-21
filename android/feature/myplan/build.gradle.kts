@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.apexfit.feature.myplan"
+    namespace = "com.zyva.feature.myplan"
     compileSdk = 35
 
     defaultConfig { minSdk = 28 }

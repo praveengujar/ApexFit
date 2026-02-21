@@ -1,4 +1,4 @@
-"""ApexFit FastAPI application entry-point."""
+"""Zyva FastAPI application entry-point."""
 
 from __future__ import annotations
 
@@ -16,14 +16,14 @@ from app.core.middleware import RequestLoggingMiddleware
 from app.core.redis_client import close_redis, init_redis
 from app.db.session import dispose_engine, init_engine
 
-logger = logging.getLogger("apexfit")
+logger = logging.getLogger("zyva")
 
 
 @asynccontextmanager
 async def lifespan(_app: FastAPI) -> AsyncGenerator[None, None]:
     """Startup / shutdown lifecycle hook."""
     settings = get_settings()
-    logger.info("Starting ApexFit API (env=%s)", settings.environment)
+    logger.info("Starting Zyva API (env=%s)", settings.environment)
 
     # Initialise shared resources
     init_engine(settings.database_url)
@@ -34,7 +34,7 @@ async def lifespan(_app: FastAPI) -> AsyncGenerator[None, None]:
     # Teardown
     await close_redis()
     await dispose_engine()
-    logger.info("ApexFit API shut down cleanly")
+    logger.info("Zyva API shut down cleanly")
 
 
 def create_app() -> FastAPI:
@@ -42,7 +42,7 @@ def create_app() -> FastAPI:
     settings = get_settings()
 
     application = FastAPI(
-        title="ApexFit API",
+        title="Zyva API",
         version="0.1.0",
         docs_url="/docs" if not settings.is_production else None,
         redoc_url="/redoc" if not settings.is_production else None,

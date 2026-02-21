@@ -1,2 +1,0 @@
--keep,allowobfuscation,allowshrinking class com.apexfit.feature.recovery.RecoveryViewModel
--keep,allowobfuscation,allowshrinking class com.apexfit.feature.recovery.RecoveryViewModel

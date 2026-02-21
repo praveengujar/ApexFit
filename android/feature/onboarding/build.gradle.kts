@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.apexfit.feature.onboarding"
+    namespace = "com.zyva.feature.onboarding"
     compileSdk = 35
 
     defaultConfig { minSdk = 28 }

@@ -1,7 +1,7 @@
-# ApexFit ProGuard Rules
+# Zyva ProGuard Rules
 
 # --- Room ---
--keep class com.apexfit.core.data.entity.** { *; }
+-keep class com.zyva.core.data.entity.** { *; }
 -keep class * extends androidx.room.RoomDatabase
 -dontwarn androidx.room.paging.**
 
@@ -12,11 +12,11 @@
 -keepclasseswithmembers class kotlinx.serialization.json.** {
     kotlinx.serialization.KSerializer serializer(...);
 }
--keep,includedescriptorclasses class com.apexfit.**$$serializer { *; }
--keepclassmembers class com.apexfit.** {
+-keep,includedescriptorclasses class com.zyva.**$$serializer { *; }
+-keepclassmembers class com.zyva.** {
     *** Companion;
 }
--keepclasseswithmembers class com.apexfit.** {
+-keepclasseswithmembers class com.zyva.** {
     kotlinx.serialization.KSerializer serializer(...);
 }
 
@@ -25,7 +25,7 @@
 -dontwarn androidx.health.connect.client.**
 
 # --- ScoringConfig model classes ---
--keep class com.apexfit.core.model.config.** { *; }
+-keep class com.zyva.core.model.config.** { *; }
 
 # --- Hilt ---
 -dontwarn dagger.hilt.**

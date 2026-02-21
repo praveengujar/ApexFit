@@ -1,15 +1,15 @@
 import Foundation
 import SwiftData
-import ApexFitShared
+import ZyvaShared
 
 // Typealiases to avoid naming collisions between SwiftData models and KMP models.
-// In Swift, the KMP types are accessed as ApexFitShared.DailyMetric, etc.
+// In Swift, the KMP types are accessed as ZyvaShared.DailyMetric, etc.
 // Use these aliases for clarity in mapper code.
-typealias SharedDailyMetric = ApexFitShared.DailyMetric
-typealias SharedWorkoutRecord = ApexFitShared.WorkoutRecord
-typealias SharedSleepSession = ApexFitShared.SleepSession
-typealias SharedUserProfile = ApexFitShared.UserProfile
-typealias SharedBaselineMetric = ApexFitShared.BaselineMetric
+typealias SharedDailyMetric = ZyvaShared.DailyMetric
+typealias SharedWorkoutRecord = ZyvaShared.WorkoutRecord
+typealias SharedSleepSession = ZyvaShared.SleepSession
+typealias SharedUserProfile = ZyvaShared.UserProfile
+typealias SharedBaselineMetric = ZyvaShared.BaselineMetric
 
 // MARK: - DailyMetric Mappers (SwiftData <-> KMP)
 
@@ -154,8 +154,8 @@ extension SleepSession {
 // MARK: - SleepStage Mappers
 
 extension SleepStage {
-    func toShared() -> ApexFitShared.SleepStage {
-        return ApexFitShared.SleepStage(
+    func toShared() -> ZyvaShared.SleepStage {
+        return ZyvaShared.SleepStage(
             id: id.uuidString,
             stageType: stageType.toKMP,
             startDate: startDate.epochMillis,

@@ -1,2 +1,0 @@
--keep,allowobfuscation,allowshrinking class com.apexfit.feature.trends.TrendsViewModel
--keep,allowobfuscation,allowshrinking class com.apexfit.feature.trends.TrendsViewModel
