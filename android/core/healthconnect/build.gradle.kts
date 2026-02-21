@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.apexfit.core.healthconnect"
+    namespace = "com.zyva.core.healthconnect"
     compileSdk = 35
 
     defaultConfig { minSdk = 28 }

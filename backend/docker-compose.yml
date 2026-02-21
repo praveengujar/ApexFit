@@ -4,13 +4,13 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_USER: apexfit
-      POSTGRES_PASSWORD: apexfit_dev
-      POSTGRES_DB: apexfit
+      POSTGRES_USER: zyva
+      POSTGRES_PASSWORD: zyva_dev
+      POSTGRES_DB: zyva
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U apexfit"]
+      test: ["CMD-SHELL", "pg_isready -U zyva"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -39,12 +39,12 @@ services:
       redis:
         condition: service_healthy
     environment:
-      DATABASE_URL: postgresql+asyncpg://apexfit:apexfit_dev@postgres:5432/apexfit
+      DATABASE_URL: postgresql+asyncpg://zyva:zyva_dev@postgres:5432/zyva
       REDIS_URL: redis://redis:6379/0
       ENVIRONMENT: dev
       SECRET_KEY: dev-secret-key-change-in-production
       CORS_ORIGINS: '["http://localhost:3000"]'
-      FIREBASE_PROJECT_ID: apexfit-dev
+      FIREBASE_PROJECT_ID: zyva-dev
     volumes:
       - ./app:/app/app
 

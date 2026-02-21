@@ -1,6 +1,6 @@
 import Foundation
 
-/// Computes biological age ("ApexFit Age") and Pace of Aging using the Gompertz
+/// Computes biological age ("Zyva Age") and Pace of Aging using the Gompertz
 /// mortality law and 9 health metrics mapped through epidemiological hazard ratios.
 ///
 /// The Gompertz law models mortality risk as h(t) = a·exp(b·t), where mortality
@@ -132,7 +132,7 @@ struct LongevityEngine {
 
     struct Result {
         let chronologicalAge: Double
-        let apexFitAge: Double
+        let zyvaAge: Double
         let yearsYoungerOlder: Double   // negative = younger
         let paceOfAging: Double         // -1.0 to 3.0
         let metricResults: [MetricResult]
@@ -191,14 +191,14 @@ struct LongevityEngine {
         totalDelta6Mo *= overlapCorrection
         totalDelta30Day *= overlapCorrection
 
-        let apexFitAge = chronologicalAge + totalDelta6Mo
+        let zyvaAge = chronologicalAge + totalDelta6Mo
         let yearsYoungerOlder = totalDelta6Mo // negative = younger
         let projectedAge30 = chronologicalAge + totalDelta30Day
 
         // Pace of Aging: map difference between 30-day projection and 6-month age
         // If 30-day is better (lower age) than 6-month → pace < 1.0
         // If same → pace = 1.0, if worse → pace > 1.0
-        let ageDiff = projectedAge30 - apexFitAge
+        let ageDiff = projectedAge30 - zyvaAge
         // Map: -5 years diff → -1.0x, 0 diff → 1.0x, +5 years diff → 3.0x
         let rawPace = 1.0 + (ageDiff / 2.5)
         let paceOfAging = max(-1.0, min(3.0, rawPace))
@@ -211,7 +211,7 @@ struct LongevityEngine {
 
         return Result(
             chronologicalAge: chronologicalAge,
-            apexFitAge: apexFitAge,
+            zyvaAge: zyvaAge,
             yearsYoungerOlder: yearsYoungerOlder,
             paceOfAging: paceOfAging,
             metricResults: metricResults,
@@ -427,7 +427,7 @@ struct LongevityEngine {
 
         if isYounger && paceImproving {
             let bestName = bestMetric?.id.displayName.lowercased() ?? "your habits"
-            return ("Crushing It", "Your ApexFit Age is improving and your Pace of Aging is below 1.0x. Your \(bestName) is a major contributor to your longevity gains.")
+            return ("Crushing It", "Your Zyva Age is improving and your Pace of Aging is below 1.0x. Your \(bestName) is a major contributor to your longevity gains.")
         } else if isYounger {
             return ("Solid Foundation", "You're biologically younger than your chronological age. Keep your current habits consistent to maintain these gains.")
         } else if paceImproving {

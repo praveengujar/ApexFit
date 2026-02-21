@@ -24,7 +24,7 @@ actor APIClient {
         self.encoder.keyEncodingStrategy = .convertToSnakeCase
 
         // Default to localhost for development
-        self.baseURL = URL(string: "https://apexfit-api.run.app")!
+        self.baseURL = URL(string: "https://zyva-api.run.app")!
     }
 
     // MARK: - Configuration

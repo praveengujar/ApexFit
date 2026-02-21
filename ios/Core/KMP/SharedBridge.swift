@@ -1,5 +1,5 @@
 import Foundation
-import ApexFitShared
+import ZyvaShared
 
 // MARK: - Date <-> Epoch Millis Conversions
 
@@ -16,9 +16,9 @@ extension Date {
 // MARK: - KMP Config Provider
 
 enum KMPConfigProvider {
-    private static var _config: ApexFitShared.ScoringConfig?
+    private static var _config: ZyvaShared.ScoringConfig?
 
-    static var scoringConfig: ApexFitShared.ScoringConfig {
+    static var scoringConfig: ZyvaShared.ScoringConfig {
         if let config = _config { return config }
         guard let url = Bundle.main.url(forResource: "ScoringConfig", withExtension: "json"),
               let json = try? String(contentsOf: url, encoding: .utf8)

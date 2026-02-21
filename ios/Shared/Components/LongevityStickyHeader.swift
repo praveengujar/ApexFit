@@ -1,11 +1,11 @@
 import SwiftUI
 
 /// Compact sticky header for the Longevity dashboard, shown when the hero blob
-/// scrolls off screen. Displays years younger/older, ApexFit Age with mini blob,
+/// scrolls off screen. Displays years younger/older, Zyva Age with mini blob,
 /// and Pace of Aging.
 struct LongevityStickyHeader: View {
     let yearsYoungerOlder: Double
-    let apexFitAge: Double
+    let zyvaAge: Double
     let paceOfAging: Double
 
     var body: some View {
@@ -38,10 +38,10 @@ struct LongevityStickyHeader: View {
                 }
 
                 VStack(spacing: 0) {
-                    Text(String(format: "%.1f", apexFitAge))
+                    Text(String(format: "%.1f", zyvaAge))
                         .font(.system(size: 20, weight: .bold, design: .rounded))
                         .foregroundStyle(AppColors.textPrimary)
-                    Text("APEXFIT AGE")
+                    Text("ZYVA AGE")
                         .font(.system(size: 7, weight: .semibold))
                         .foregroundStyle(AppColors.textSecondary)
                         .tracking(0.5)

@@ -94,7 +94,7 @@ struct LongevityDashboardView: View {
                 if isPinned, let result = longevityResult {
                     LongevityStickyHeader(
                         yearsYoungerOlder: result.yearsYoungerOlder,
-                        apexFitAge: result.apexFitAge,
+                        zyvaAge: result.zyvaAge,
                         paceOfAging: result.paceOfAging
                     )
                     .transition(.opacity)
@@ -149,7 +149,7 @@ struct LongevityDashboardView: View {
     private var heroSection: some View {
         TimelineView(.animation(minimumInterval: 1.0 / 30.0)) { timeline in
             OrganicBlobView(
-                apexFitAge: longevityResult?.apexFitAge ?? chronologicalAge,
+                zyvaAge: longevityResult?.zyvaAge ?? chronologicalAge,
                 yearsYoungerOlder: longevityResult?.yearsYoungerOlder ?? 0,
                 animationPhase: timeline.date.timeIntervalSinceReferenceDate * 0.3,
                 size: 260
@@ -251,9 +251,9 @@ struct LongevityDashboardView: View {
                 .foregroundStyle(AppColors.textPrimary)
                 .padding(.top, AppTheme.spacingLG)
 
-            // ApexFit Age Trend
-            trendCard(title: "APEXFIT AGE TREND") {
-                apexFitAgeTrendChart
+            // Zyva Age Trend
+            trendCard(title: "ZYVA AGE TREND") {
+                zyvaAgeTrendChart
             }
 
             // Pace of Aging Trend
@@ -277,14 +277,14 @@ struct LongevityDashboardView: View {
         .cardStyle()
     }
 
-    private var apexFitAgeTrendChart: some View {
+    private var zyvaAgeTrendChart: some View {
         Chart {
             ForEach(weeklyTrend.indices, id: \.self) { i in
                 let result = weeklyTrend[i]
-                // ApexFit Age line
+                // Zyva Age line
                 LineMark(
                     x: .value("Week", result.weekEnd),
-                    y: .value("Age", result.apexFitAge)
+                    y: .value("Age", result.zyvaAge)
                 )
                 .foregroundStyle(AppColors.longevityGreen)
                 .lineStyle(StrokeStyle(lineWidth: 2))
@@ -319,7 +319,7 @@ struct LongevityDashboardView: View {
             HStack(spacing: AppTheme.spacingMD) {
                 HStack(spacing: 4) {
                     Circle().fill(AppColors.longevityGreen).frame(width: 8)
-                    Text("YOUR APEXFIT AGE")
+                    Text("YOUR ZYVA AGE")
                         .font(.system(size: 10, weight: .semibold))
                         .foregroundStyle(AppColors.textSecondary)
                 }

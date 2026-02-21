@@ -9,7 +9,7 @@ from starlette.middleware.base import BaseHTTPMiddleware, RequestResponseEndpoin
 from starlette.requests import Request
 from starlette.responses import Response
 
-logger = logging.getLogger("apexfit.requests")
+logger = logging.getLogger("zyva.requests")
 
 
 class RequestLoggingMiddleware(BaseHTTPMiddleware):

@@ -1,6 +1,6 @@
-name: ApexFit
+name: Zyva
 options:
-  bundleIdPrefix: com.apexfit
+  bundleIdPrefix: com.zyva
   deploymentTarget:
     iOS: "17.0"
     watchOS: "10.0"
@@ -15,13 +15,13 @@ settings:
     GENERATE_INFOPLIST_FILE: false
 
 targets:
-  ApexFit:
+  Zyva:
     type: application
     platform: iOS
     deploymentTarget: "17.0"
 
     sources:
-      - path: ApexFitApp.swift
+      - path: ZyvaApp.swift
       - path: Core
       - path: Engines
       - path: Features
@@ -32,7 +32,7 @@ targets:
         buildPhase: resources
 
     dependencies:
-      - framework: ../shared/build/XCFrameworks/release/ApexFitShared.xcframework
+      - framework: ../shared/build/XCFrameworks/release/ZyvaShared.xcframework
         embed: false
 
     preBuildScripts:
@@ -44,20 +44,20 @@ targets:
           fi
           export JAVA_HOME="/opt/homebrew/Cellar/openjdk@17/17.0.18/libexec/openjdk.jdk/Contents/Home"
           cd "${SRCROOT}/.."
-          ./gradlew :shared:assembleApexFitSharedReleaseXCFramework -x test --no-daemon
+          ./gradlew :shared:assembleZyvaSharedReleaseXCFramework -x test --no-daemon
 
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.apexfit.app
+        PRODUCT_BUNDLE_IDENTIFIER: com.zyva.app
         INFOPLIST_FILE: Info.plist
-        CODE_SIGN_ENTITLEMENTS: ApexFit.entitlements
+        CODE_SIGN_ENTITLEMENTS: Zyva.entitlements
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ENABLE_PREVIEWS: "YES"
         SWIFT_EMIT_LOC_STRINGS: "YES"
         DEVELOPMENT_TEAM: ""
 
     entitlements:
-      path: ApexFit.entitlements
+      path: Zyva.entitlements
 
     attributes:
       SystemCapabilities:
@@ -68,13 +68,13 @@ targets:
         com.apple.Push:
           enabled: 1
 
-  ApexFitWatch:
+  ZyvaWatch:
     type: application
     platform: watchOS
     deploymentTarget: "10.0"
 
     sources:
-      - path: ApexFitWatch
+      - path: ZyvaWatch
       - path: Models
       - path: Core/HealthKit
       - path: Core/Extensions
@@ -87,7 +87,7 @@ targets:
         buildPhase: resources
 
     resources:
-      - path: ApexFitWatch/Assets.xcassets
+      - path: ZyvaWatch/Assets.xcassets
 
     preBuildScripts:
       - name: "Build KMP Shared Framework"
@@ -98,24 +98,24 @@ targets:
           fi
           export JAVA_HOME="/opt/homebrew/Cellar/openjdk@17/17.0.18/libexec/openjdk.jdk/Contents/Home"
           cd "${SRCROOT}/.."
-          ./gradlew :shared:assembleApexFitSharedReleaseXCFramework -x test --no-daemon
+          ./gradlew :shared:assembleZyvaSharedReleaseXCFramework -x test --no-daemon
 
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.apexfit.app.watchkitapp
-        INFOPLIST_FILE: ApexFitWatch/Info.plist
-        CODE_SIGN_ENTITLEMENTS: ApexFitWatch/ApexFitWatch.entitlements
+        PRODUCT_BUNDLE_IDENTIFIER: com.zyva.app.watchkitapp
+        INFOPLIST_FILE: ZyvaWatch/Info.plist
+        CODE_SIGN_ENTITLEMENTS: ZyvaWatch/ZyvaWatch.entitlements
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         GENERATE_INFOPLIST_FILE: false
         DEVELOPMENT_TEAM: ""
 
     entitlements:
-      path: ApexFitWatch/ApexFitWatch.entitlements
+      path: ZyvaWatch/ZyvaWatch.entitlements
 
     dependencies:
-      - framework: ../shared/build/XCFrameworks/release/ApexFitShared.xcframework
+      - framework: ../shared/build/XCFrameworks/release/ZyvaShared.xcframework
         embed: false
-      - target: ApexFitWatchComplications
+      - target: ZyvaWatchComplications
         embed: true
 
     attributes:
@@ -123,27 +123,27 @@ targets:
         com.apple.HealthKit:
           enabled: 1
 
-  ApexFitWatchComplications:
+  ZyvaWatchComplications:
     type: app-extension
     platform: watchOS
     deploymentTarget: "10.0"
 
     sources:
-      - path: ApexFitWatchComplications
+      - path: ZyvaWatchComplications
       - path: Models
       - path: Shared/Theme/AppColors.swift
       - path: Core/Extensions/Double+Extensions.swift
       - path: Core/Extensions/Color+Theme.swift
 
     resources:
-      - path: ApexFitWatchComplications/Assets.xcassets
+      - path: ZyvaWatchComplications/Assets.xcassets
 
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.apexfit.app.watchkitapp.complications
+        PRODUCT_BUNDLE_IDENTIFIER: com.zyva.app.watchkitapp.complications
         ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME: WidgetBackground
         GENERATE_INFOPLIST_FILE: true
         DEVELOPMENT_TEAM: ""
 
     entitlements:
-      path: ApexFitWatchComplications/ApexFitWatchComplications.entitlements
+      path: ZyvaWatchComplications/ZyvaWatchComplications.entitlements

@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.apexfit.feature.recovery"
+    namespace = "com.zyva.feature.recovery"
     compileSdk = 35
 
     defaultConfig { minSdk = 28 }

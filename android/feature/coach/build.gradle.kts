@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.apexfit.feature.coach"
+    namespace = "com.zyva.feature.coach"
     compileSdk = 35
 
     defaultConfig { minSdk = 28 }

@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.apexfit.feature.longevity"
+    namespace = "com.zyva.feature.longevity"
     compileSdk = 35
 
     defaultConfig { minSdk = 28 }

@@ -16,7 +16,7 @@ enum SwiftDataContainer {
 
     static func create() throws -> ModelContainer {
         let configuration = ModelConfiguration(
-            "ApexFit",
+            "Zyva",
             schema: schema,
             isStoredInMemoryOnly: false,
             allowsSave: true
@@ -29,7 +29,7 @@ enum SwiftDataContainer {
 
     static func createPreview() throws -> ModelContainer {
         let configuration = ModelConfiguration(
-            "ApexFitPreview",
+            "ZyvaPreview",
             schema: schema,
             isStoredInMemoryOnly: true
         )

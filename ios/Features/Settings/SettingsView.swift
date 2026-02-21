@@ -114,7 +114,7 @@ struct SettingsView: View {
 
             NavigationLink(destination: AboutView()) {
                 settingsRow(
-                    title: "About ApexFit",
+                    title: "About Zyva",
                     detail: nil,
                     icon: "questionmark.circle",
                     iconColor: AppColors.lavender

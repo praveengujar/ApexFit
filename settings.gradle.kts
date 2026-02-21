@@ -14,6 +14,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ApexFitRoot"
+rootProject.name = "ZyvaRoot"
 
 include(":shared")

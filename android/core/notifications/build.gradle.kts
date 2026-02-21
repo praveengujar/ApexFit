@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.apexfit.core.notifications"
+    namespace = "com.zyva.core.notifications"
     compileSdk = 35
 
     defaultConfig { minSdk = 28 }

@@ -34,7 +34,7 @@ struct WelcomeView: View {
                     .scaleEffect(logoAppeared ? 1 : 0.5)
                     .opacity(logoAppeared ? 1 : 0)
 
-                    Text("ApexFit")
+                    Text("Zyva")
                         .font(AppTypography.metricLarge)
                         .foregroundStyle(AppColors.textPrimary)
 

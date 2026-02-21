@@ -19,7 +19,7 @@ class Settings(BaseSettings):
     )
 
     # Database
-    database_url: str = "postgresql+asyncpg://apexfit:apexfit_dev@localhost:5432/apexfit"
+    database_url: str = "postgresql+asyncpg://zyva:zyva_dev@localhost:5432/zyva"
 
     # Redis
     redis_url: str = "redis://localhost:6379/0"

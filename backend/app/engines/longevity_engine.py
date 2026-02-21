@@ -453,7 +453,7 @@ def _generate_overall_insight(
         )
         return (
             "Crushing It",
-            f"Your ApexFit Age is improving and your Pace of Aging"
+            f"Your Zyva Age is improving and your Pace of Aging"
             f" is below 1.0x. Your {best_name} is a major contributor"
             " to your longevity gains.",
         )

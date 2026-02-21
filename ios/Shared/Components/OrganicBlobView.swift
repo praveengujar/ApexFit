@@ -4,7 +4,7 @@ import SwiftUI
 /// Uses Fourier harmonics to create a natural-looking, morphing shape with
 /// a radial green gradient and particle effects.
 struct OrganicBlobView: View {
-    let apexFitAge: Double
+    let zyvaAge: Double
     let yearsYoungerOlder: Double
     var animationPhase: Double = 0
     var size: CGFloat = 260
@@ -55,12 +55,12 @@ struct OrganicBlobView: View {
 
             // Center text
             VStack(spacing: 2) {
-                Text(String(format: "%.1f", apexFitAge))
+                Text(String(format: "%.1f", zyvaAge))
                     .font(.system(size: 48, weight: .bold, design: .rounded))
                     .foregroundStyle(AppColors.textPrimary)
                     .contentTransition(.numericText())
 
-                Text("APEXFIT AGE")
+                Text("ZYVA AGE")
                     .font(.system(size: 12, weight: .semibold))
                     .foregroundStyle(AppColors.textSecondary)
                     .tracking(1.5)

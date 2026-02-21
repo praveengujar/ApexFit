@@ -14,7 +14,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ApexFit"
+rootProject.name = "Zyva"
 
 // Shared KMP module
 include(":shared")
