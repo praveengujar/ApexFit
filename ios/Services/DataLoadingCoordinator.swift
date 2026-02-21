@@ -74,6 +74,27 @@ final class DataLoadingCoordinator {
         }
     }
 
+    /// Force a full refresh of today's metrics (for pull-to-refresh).
+    func forceRefresh(modelContext: ModelContext) async {
+        print("[Zyva] forceRefresh triggered")
+        state = .loading(progress: "Syncing health data...")
+
+        do {
+            let service = MetricComputationService(modelContext: modelContext)
+            let today = Date()
+
+            state = .loading(progress: "Processing today...")
+            try await service.computeAllMetrics(for: today)
+
+            try modelContext.save()
+            print("[Zyva] ✓ Force refresh complete")
+            state = .complete
+        } catch {
+            print("[Zyva] ✘ Force refresh error: \(error)")
+            state = .error(error.localizedDescription)
+        }
+    }
+
     private func isAlreadyComputed(date: Date, context: ModelContext) throws -> Bool {
         let startOfDay = date.startOfDay
         let descriptor = FetchDescriptor<DailyMetric>(

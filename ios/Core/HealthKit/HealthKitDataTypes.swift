@@ -8,6 +8,7 @@ enum HealthKitDataType: String, CaseIterable {
     case respiratoryRate
     case oxygenSaturation
     case bodyTemperature
+    case appleSleepingWristTemperature
     case vo2Max
     case walkingHeartRateAverage
 
@@ -40,6 +41,7 @@ enum HealthKitDataType: String, CaseIterable {
         case .respiratoryRate: return .respiratoryRate
         case .oxygenSaturation: return .oxygenSaturation
         case .bodyTemperature: return .bodyTemperature
+        case .appleSleepingWristTemperature: return .appleSleepingWristTemperature
         case .vo2Max: return .vo2Max
         case .walkingHeartRateAverage: return .walkingHeartRateAverage
         case .stepCount: return .stepCount
@@ -85,6 +87,7 @@ enum HealthKitDataType: String, CaseIterable {
         case .respiratoryRate: return "Respiratory Rate"
         case .oxygenSaturation: return "Blood Oxygen"
         case .bodyTemperature: return "Body Temperature"
+        case .appleSleepingWristTemperature: return "Wrist Temperature"
         case .vo2Max: return "VO2 Max"
         case .walkingHeartRateAverage: return "Walking HR Average"
         case .stepCount: return "Steps"

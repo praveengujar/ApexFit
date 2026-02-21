@@ -18,10 +18,12 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -53,11 +55,13 @@ import com.zyva.core.designsystem.theme.TextTertiary
 import com.zyva.core.designsystem.theme.recoveryColor
 import com.zyva.core.model.RecoveryZone
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RecoveryDashboardScreen(
     viewModel: RecoveryViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsState()
+    val isRefreshing by viewModel.isRefreshing.collectAsState()
     val metric = uiState.todayMetric
     val weekMetrics = uiState.weekMetrics
 
@@ -76,6 +80,11 @@ fun RecoveryDashboardScreen(
     val baseRespRate = viewModel.baselineRespRate(weekMetrics)
     val baseSleepPerf = viewModel.baselineSleepPerf(weekMetrics)
 
+    PullToRefreshBox(
+        isRefreshing = isRefreshing,
+        onRefresh = { viewModel.refresh() },
+        modifier = Modifier.fillMaxSize(),
+    ) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -166,6 +175,7 @@ fun RecoveryDashboardScreen(
             colorMapper = { Color(0xFF7B8CDE).copy(alpha = 0.7f) },
         )
     }
+    } // end PullToRefreshBox
 }
 
 @Composable

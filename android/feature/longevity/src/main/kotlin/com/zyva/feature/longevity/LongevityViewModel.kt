@@ -7,6 +7,7 @@ import com.zyva.core.data.entity.WorkoutRecordEntity
 import com.zyva.core.data.repository.DailyMetricRepository
 import com.zyva.core.data.repository.UserProfileRepository
 import com.zyva.core.data.repository.WorkoutRepository
+import com.zyva.core.domain.usecase.SyncHealthDataUseCase
 import com.zyva.core.engine.LongevityEngine
 import com.zyva.core.engine.LongevityMetricID
 import com.zyva.core.engine.LongevityMetricInput
@@ -14,6 +15,7 @@ import com.zyva.core.engine.LongevityResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import java.time.DayOfWeek
 import java.time.Instant
@@ -37,13 +39,28 @@ class LongevityViewModel @Inject constructor(
     private val dailyMetricRepo: DailyMetricRepository,
     private val workoutRepo: WorkoutRepository,
     private val userProfileRepo: UserProfileRepository,
+    private val syncUseCase: SyncHealthDataUseCase,
 ) : ViewModel() {
+
+    private val _isRefreshing = MutableStateFlow(false)
+    val isRefreshing: StateFlow<Boolean> = _isRefreshing.asStateFlow()
 
     private val _uiState = MutableStateFlow(LongevityUiState())
     val uiState: StateFlow<LongevityUiState> = _uiState
 
     init {
         loadData()
+    }
+
+    fun refresh() {
+        viewModelScope.launch {
+            _isRefreshing.value = true
+            try {
+                syncUseCase.syncForDate()
+                loadData()
+            } catch (_: Exception) {}
+            _isRefreshing.value = false
+        }
     }
 
     fun navigateWeek(offset: Int) {

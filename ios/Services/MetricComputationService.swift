@@ -18,6 +18,7 @@ actor MetricComputationService {
     }
 
     /// Run full computation pipeline for a date.
+    /// Each step is fault-isolated so one failure doesn't kill the whole pipeline.
     func computeAllMetrics(for date: Date) async throws {
         print("[Zyva]   Pipeline start for \(date.formatted(date: .abbreviated, time: .omitted))")
 
@@ -27,53 +28,82 @@ actor MetricComputationService {
         let dailyMetric = try getOrCreateDailyMetric(for: date)
         let maxHR = profile.estimatedMaxHR
 
-        // Step 1: Update baselines
+        // Step 1: Update baselines (SwiftData only — no HealthKit queries)
         print("[Zyva]   Step 1: Baselines...")
-        let baselineService = BaselineService(modelContext: modelContext)
-        try await baselineService.recomputeBaselines()
-        print("[Zyva]   ✓ Baselines done")
+        do {
+            let baselineService = BaselineService(modelContext: modelContext)
+            try await baselineService.recomputeBaselines()
+            print("[Zyva]   ✓ Baselines done")
+        } catch {
+            print("[Zyva]   ✘ Baselines failed: \(error)")
+        }
 
-        // Step 2: Process sleep (with composite scoring + consistency)
+        // Step 2: Process sleep
         print("[Zyva]   Step 2: Sleep...")
-        let sleepService = SleepService(modelContext: modelContext, queryService: queryService)
-        try await sleepService.processSleep(
-            for: date,
-            dailyMetric: dailyMetric,
-            baselineSleepHours: profile.sleepBaselineHours
-        )
-        print("[Zyva]   ✓ Sleep done — duration=\(dailyMetric.sleepDurationHours ?? -1)h, score=\(dailyMetric.sleepScore ?? -1)")
+        do {
+            let sleepService = SleepService(modelContext: modelContext, queryService: queryService)
+            try await sleepService.processSleep(
+                for: date,
+                dailyMetric: dailyMetric,
+                baselineSleepHours: profile.sleepBaselineHours
+            )
+            print("[Zyva]   ✓ Sleep done — duration=\(dailyMetric.sleepDurationHours ?? -1)h, score=\(dailyMetric.sleepScore ?? -1)")
+        } catch {
+            print("[Zyva]   ✘ Sleep failed: \(error)")
+        }
 
-        // Step 3: Compute recovery (now includes skin temperature)
+        // Step 3: Compute recovery
         print("[Zyva]   Step 3: Recovery...")
-        let recoveryService = RecoveryService(modelContext: modelContext, queryService: queryService)
-        try await recoveryService.computeRecovery(for: date, dailyMetric: dailyMetric)
-        print("[Zyva]   ✓ Recovery done — score=\(dailyMetric.recoveryScore ?? -1), zone=\(dailyMetric.recoveryZone?.rawValue ?? "nil")")
+        do {
+            let recoveryService = RecoveryService(modelContext: modelContext, queryService: queryService)
+            try await recoveryService.computeRecovery(for: date, dailyMetric: dailyMetric)
+            print("[Zyva]   ✓ Recovery done — score=\(dailyMetric.recoveryScore ?? -1), zone=\(dailyMetric.recoveryZone?.rawValue ?? "nil")")
+        } catch {
+            print("[Zyva]   ✘ Recovery failed: \(error)")
+        }
 
-        // Step 4: Compute strain and process workouts
+        // Step 4: Compute strain
         print("[Zyva]   Step 4: Strain...")
-        let strainService = StrainService(queryService: queryService)
-        try await strainService.updateStrain(for: dailyMetric, maxHeartRate: maxHR)
-        print("[Zyva]   ✓ Strain done — score=\(dailyMetric.strainScore)")
+        do {
+            let strainService = StrainService(queryService: queryService)
+            try await strainService.updateStrain(for: dailyMetric, maxHeartRate: maxHR)
+            print("[Zyva]   ✓ Strain done — score=\(dailyMetric.strainScore)")
+        } catch {
+            print("[Zyva]   ✘ Strain failed: \(error)")
+        }
 
+        // Step 4b: Process workouts
         print("[Zyva]   Step 4b: Workouts...")
-        let workoutService = WorkoutService(queryService: queryService)
-        try await workoutService.processWorkouts(
-            for: date,
-            dailyMetric: dailyMetric,
-            maxHeartRate: maxHR,
-            bodyWeightKG: profile.weightKG
-        )
-        print("[Zyva]   ✓ Workouts done — count=\(dailyMetric.workouts.count)")
+        do {
+            let workoutService = WorkoutService(queryService: queryService)
+            try await workoutService.processWorkouts(
+                for: date,
+                dailyMetric: dailyMetric,
+                maxHeartRate: maxHR,
+                bodyWeightKG: profile.weightKG
+            )
+            print("[Zyva]   ✓ Workouts done — count=\(dailyMetric.workouts.count)")
+        } catch {
+            print("[Zyva]   ✘ Workouts failed: \(error)")
+        }
 
         // Step 5: Additional data
         print("[Zyva]   Step 5: Additional data...")
-        async let steps = queryService.fetchSteps(for: date)
-        async let calories = queryService.fetchActiveCalories(for: date)
-        async let vo2Max = queryService.fetchVO2Max(for: date)
-
-        dailyMetric.steps = try await steps
-        dailyMetric.activeCalories = try await calories
-        dailyMetric.vo2Max = try await vo2Max
+        do {
+            dailyMetric.steps = try await queryService.fetchSteps(for: date)
+        } catch {
+            print("[Zyva]   ✘ Steps failed: \(error)")
+        }
+        do {
+            dailyMetric.activeCalories = try await queryService.fetchActiveCalories(for: date)
+        } catch {
+            print("[Zyva]   ✘ Calories failed: \(error)")
+        }
+        do {
+            dailyMetric.vo2Max = try await queryService.fetchVO2Max(for: date)
+        } catch {
+            print("[Zyva]   ✘ VO2Max failed: \(error)")
+        }
         print("[Zyva]   ✓ Steps=\(dailyMetric.steps), Cal=\(Int(dailyMetric.activeCalories)), VO2=\(dailyMetric.vo2Max ?? -1)")
 
         // Step 5b: Body composition for Longevity
@@ -86,8 +116,12 @@ actor MetricComputationService {
 
         // Step 6: Compute stress timeline and daily average
         print("[Zyva]   Step 6: Stress...")
-        try await computeStress(for: date, dailyMetric: dailyMetric)
-        print("[Zyva]   ✓ Stress done — avg=\(dailyMetric.stressAverage ?? -1)")
+        do {
+            try await computeStress(for: date, dailyMetric: dailyMetric)
+            print("[Zyva]   ✓ Stress done — avg=\(dailyMetric.stressAverage ?? -1)")
+        } catch {
+            print("[Zyva]   ✘ Stress failed: \(error)")
+        }
 
         // Mark as computed
         dailyMetric.isComputed = true

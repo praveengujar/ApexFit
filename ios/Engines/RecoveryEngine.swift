@@ -57,6 +57,17 @@ struct RecoveryResult {
 }
 
 struct RecoveryEngine {
+
+    // MARK: - Population Default Baselines (cold-start fallback)
+    // Used when personal baselines aren't available yet (< 3 days of data).
+    // Based on healthy adult population averages from clinical literature.
+    static let populationHRV = BaselineResult(mean: 40.0, standardDeviation: 15.0, sampleCount: 100, windowDays: 28)
+    static let populationRHR = BaselineResult(mean: 65.0, standardDeviation: 8.0, sampleCount: 100, windowDays: 28)
+    static let populationSleep = BaselineResult(mean: 75.0, standardDeviation: 12.0, sampleCount: 100, windowDays: 28)
+    static let populationRespRate = BaselineResult(mean: 15.0, standardDeviation: 2.0, sampleCount: 100, windowDays: 28)
+    static let populationSpO2 = BaselineResult(mean: 97.0, standardDeviation: 1.0, sampleCount: 100, windowDays: 28)
+    static let populationSkinTemp = BaselineResult(mean: 0.0, standardDeviation: 0.3, sampleCount: 100, windowDays: 28)
+
     /// Sigmoid function mapping z-score to 0-100.
     ///
     /// z = 0 → 50 (at baseline)
@@ -78,6 +89,7 @@ struct RecoveryEngine {
         let hrvScore: Double? = computeContributor(
             value: input.hrv,
             baseline: baselines.hrv,
+            populationDefault: populationHRV,
             invert: false,
             weight: HealthKitConstants.recoveryHRVWeight,
             totalWeight: &totalWeight,
@@ -89,6 +101,7 @@ struct RecoveryEngine {
         let rhrScore: Double? = computeContributor(
             value: input.restingHeartRate,
             baseline: baselines.restingHeartRate,
+            populationDefault: populationRHR,
             invert: true,
             weight: HealthKitConstants.recoveryRHRWeight,
             totalWeight: &totalWeight,
@@ -100,6 +113,7 @@ struct RecoveryEngine {
         let sleepScore: Double? = computeContributor(
             value: input.sleepPerformance,
             baseline: baselines.sleepPerformance,
+            populationDefault: populationSleep,
             invert: false,
             weight: HealthKitConstants.recoverySleepWeight,
             totalWeight: &totalWeight,
@@ -111,6 +125,7 @@ struct RecoveryEngine {
         let respRateScore: Double? = computeContributor(
             value: input.respiratoryRate,
             baseline: baselines.respiratoryRate,
+            populationDefault: populationRespRate,
             invert: true,
             weight: HealthKitConstants.recoveryRespRateWeight,
             totalWeight: &totalWeight,
@@ -122,6 +137,7 @@ struct RecoveryEngine {
         let spo2Score: Double? = computeContributor(
             value: input.spo2,
             baseline: baselines.spo2,
+            populationDefault: populationSpO2,
             invert: false,
             weight: HealthKitConstants.recoverySpO2Weight,
             totalWeight: &totalWeight,
@@ -130,11 +146,10 @@ struct RecoveryEngine {
         )
 
         // Skin Temperature: warmer than usual = worse recovery → invert
-        // Apple Watch's sleeping wrist temperature is already a deviation from personal baseline.
-        // We compare this deviation against its own baseline of deviations.
         let skinTempScore: Double? = computeContributor(
             value: input.skinTemperatureDeviation,
             baseline: baselines.skinTemperature,
+            populationDefault: populationSkinTemp,
             invert: true,
             weight: HealthKitConstants.recoverySkinTempWeight,
             totalWeight: &totalWeight,
@@ -170,15 +185,19 @@ struct RecoveryEngine {
     private static func computeContributor(
         value: Double?,
         baseline: BaselineResult?,
+        populationDefault: BaselineResult,
         invert: Bool,
         weight: Double,
         totalWeight: inout Double,
         weightedSum: inout Double,
         contributorCount: inout Int
     ) -> Double? {
-        guard let value, let baseline, baseline.isValid else { return nil }
+        guard let value else { return nil }
 
-        var z = BaselineEngine.zScore(value: value, baseline: baseline)
+        // Use personal baseline if valid, otherwise fall back to population default
+        let effectiveBaseline = (baseline?.isValid == true) ? baseline! : populationDefault
+
+        var z = BaselineEngine.zScore(value: value, baseline: effectiveBaseline)
         if invert { z = -z }
 
         let score = sigmoid(z)

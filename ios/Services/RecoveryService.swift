@@ -18,20 +18,14 @@ actor RecoveryService {
         let sleepStart = date.yesterday.startOfDay.addingTimeInterval(20 * 3600) // 8 PM
         let sleepEnd = date.startOfDay.addingTimeInterval(10 * 3600) // 10 AM
 
-        // Fetch vital signs during sleep
-        async let rrIntervals = queryService.fetchRRIntervals(from: sleepStart, to: sleepEnd)
-        async let hrvSamples = queryService.fetchHRVSamples(from: sleepStart, to: sleepEnd)
-        async let rhr = queryService.fetchRestingHeartRate(for: date)
-        async let respRate = queryService.fetchRespiratoryRate(for: date)
-        async let spo2 = queryService.fetchSpO2(for: date)
-        async let skinTemp = queryService.fetchSkinTemperature(for: date)
-
-        let fetchedRR = try await rrIntervals
-        let fetchedHRV = try await hrvSamples
-        let fetchedRHR = try await rhr
-        let fetchedRespRate = try await respRate
-        let fetchedSpO2 = try await spo2
-        let fetchedSkinTemp = try await skinTemp
+        // Fetch vital signs during sleep — each wrapped individually so one failure
+        // doesn't kill the entire recovery computation.
+        let fetchedRR = (try? await queryService.fetchRRIntervals(from: sleepStart, to: sleepEnd)) ?? []
+        let fetchedHRV = (try? await queryService.fetchHRVSamples(from: sleepStart, to: sleepEnd)) ?? []
+        let fetchedRHR = try? await queryService.fetchRestingHeartRate(for: date)
+        let fetchedRespRate = try? await queryService.fetchRespiratoryRate(for: date)
+        let fetchedSpO2 = try? await queryService.fetchSpO2(for: date)
+        let fetchedSkinTemp = try? await queryService.fetchSkinTemperature(for: date)
 
         // Compute best HRV value
         let sdnn = fetchedHRV.last?.sdnn

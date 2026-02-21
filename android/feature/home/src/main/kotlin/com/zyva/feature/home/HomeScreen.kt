@@ -43,6 +43,8 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import com.zyva.core.designsystem.component.CircularGauge
 import com.zyva.core.designsystem.theme.BackgroundCard
 import com.zyva.core.designsystem.theme.BackgroundPrimary
@@ -67,6 +69,7 @@ import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
     onSleepTap: () -> Unit = {},
@@ -84,7 +87,11 @@ fun HomeScreen(
     val uiState by viewModel.uiState.collectAsState()
     val syncState by viewModel.syncState.collectAsState()
 
-    Box(modifier = Modifier.fillMaxSize()) {
+    PullToRefreshBox(
+        isRefreshing = syncState == SyncState.SYNCING,
+        onRefresh = { viewModel.refresh() },
+        modifier = Modifier.fillMaxSize(),
+    ) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -217,7 +224,7 @@ fun HomeScreen(
             }
         }
     }
-    } // end Box
+    } // end PullToRefreshBox
 }
 
 // -- Dashboard Gauge Row --

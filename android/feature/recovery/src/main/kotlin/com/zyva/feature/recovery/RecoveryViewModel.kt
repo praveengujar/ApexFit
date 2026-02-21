@@ -4,12 +4,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zyva.core.data.entity.DailyMetricEntity
 import com.zyva.core.data.repository.DailyMetricRepository
+import com.zyva.core.domain.usecase.SyncHealthDataUseCase
 import com.zyva.core.model.RecoveryZone
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.ZoneId
 import javax.inject.Inject
@@ -23,7 +27,21 @@ data class RecoveryUiState(
 @HiltViewModel
 class RecoveryViewModel @Inject constructor(
     dailyMetricRepo: DailyMetricRepository,
+    private val syncUseCase: SyncHealthDataUseCase,
 ) : ViewModel() {
+
+    private val _isRefreshing = MutableStateFlow(false)
+    val isRefreshing: StateFlow<Boolean> = _isRefreshing.asStateFlow()
+
+    fun refresh() {
+        viewModelScope.launch {
+            _isRefreshing.value = true
+            try {
+                syncUseCase.syncForDate()
+            } catch (_: Exception) {}
+            _isRefreshing.value = false
+        }
+    }
 
     val uiState: StateFlow<RecoveryUiState> = dailyMetricRepo.observeRecent(30)
         .map { metrics ->

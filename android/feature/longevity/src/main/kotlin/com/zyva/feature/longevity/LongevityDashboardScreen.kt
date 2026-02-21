@@ -19,10 +19,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -51,12 +53,19 @@ import com.zyva.feature.longevity.components.OrganicBlobView
 import com.zyva.feature.longevity.components.PaceOfAgingGauge
 import com.zyva.feature.longevity.components.PaceOfAgingTrendChart
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LongevityDashboardScreen(
     viewModel: LongevityViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsState()
+    val isRefreshing by viewModel.isRefreshing.collectAsState()
 
+    PullToRefreshBox(
+        isRefreshing = isRefreshing,
+        onRefresh = { viewModel.refresh() },
+        modifier = Modifier.fillMaxSize(),
+    ) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -143,6 +152,7 @@ fun LongevityDashboardScreen(
 
         Spacer(Modifier.height(Spacing.xxl))
     }
+    } // end PullToRefreshBox
 }
 
 @Composable

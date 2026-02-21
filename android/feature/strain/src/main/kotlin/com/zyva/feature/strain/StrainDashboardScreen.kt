@@ -19,10 +19,12 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -60,11 +62,13 @@ import com.zyva.core.designsystem.theme.Zone4
 import com.zyva.core.designsystem.theme.Zone5
 import com.zyva.core.model.RecoveryZone
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StrainDashboardScreen(
     viewModel: StrainViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsState()
+    val isRefreshing by viewModel.isRefreshing.collectAsState()
     val metric = uiState.todayMetric
     val workouts = uiState.todayWorkouts
 
@@ -79,6 +83,11 @@ fun StrainDashboardScreen(
     val todayStrength = workouts.filter { it.isStrengthWorkout }.sumOf { it.durationMinutes }
     val todaySteps = metric?.steps ?: 0
 
+    PullToRefreshBox(
+        isRefreshing = isRefreshing,
+        onRefresh = { viewModel.refresh() },
+        modifier = Modifier.fillMaxSize(),
+    ) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -172,6 +181,7 @@ fun StrainDashboardScreen(
             maxValue = (uiState.weekMetrics.maxOfOrNull { it.activeCalories ?: 0.0 } ?: 2000.0) * 1.2,
         )
     }
+    } // end PullToRefreshBox
 }
 
 @Composable

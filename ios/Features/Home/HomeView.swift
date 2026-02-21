@@ -2,6 +2,9 @@ import SwiftUI
 import SwiftData
 
 struct HomeView: View {
+    @Environment(DataLoadingCoordinator.self) private var dataLoadingCoordinator
+    @Environment(\.modelContext) private var modelContext
+
     @Query(sort: \DailyMetric.date, order: .reverse)
     private var metrics: [DailyMetric]
 
@@ -135,6 +138,9 @@ struct HomeView: View {
                     .padding(.top, AppTheme.spacingSM)
                 }
                 .coordinateSpace(name: "scroll")
+                .refreshable {
+                    await dataLoadingCoordinator.forceRefresh(modelContext: modelContext)
+                }
                 .onPreferenceChange(GaugeOffsetKey.self) { value in
                     if gaugeRowInitialOffset == nil {
                         gaugeRowInitialOffset = value

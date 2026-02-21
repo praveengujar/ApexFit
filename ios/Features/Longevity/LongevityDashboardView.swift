@@ -3,6 +3,9 @@ import SwiftData
 import Charts
 
 struct LongevityDashboardView: View {
+    @Environment(DataLoadingCoordinator.self) private var dataLoadingCoordinator
+    @Environment(\.modelContext) private var modelContext
+
     @Query(sort: \DailyMetric.date, order: .reverse)
     private var allMetrics: [DailyMetric]
 
@@ -100,6 +103,9 @@ struct LongevityDashboardView: View {
                     .transition(.opacity)
                     .animation(AppTheme.animationDefault, value: isPinned)
                 }
+            }
+            .refreshable {
+                await dataLoadingCoordinator.forceRefresh(modelContext: modelContext)
             }
             .background(AppColors.backgroundPrimary)
             .navigationBarHidden(true)

@@ -131,6 +131,19 @@ class HomeViewModel @Inject constructor(
         return if (values.isEmpty()) null else values.average()
     }
 
+    fun refresh() {
+        viewModelScope.launch {
+            _syncState.value = SyncState.SYNCING
+            try {
+                syncUseCase.syncForDate()
+                _syncState.value = SyncState.DONE
+            } catch (e: Exception) {
+                android.util.Log.e("HomeViewModel", "Refresh failed", e)
+                _syncState.value = SyncState.ERROR
+            }
+        }
+    }
+
     private fun computeStreak(metrics: List<DailyMetricEntity>): Int {
         if (metrics.isEmpty()) return 0
         val zone = ZoneId.systemDefault()

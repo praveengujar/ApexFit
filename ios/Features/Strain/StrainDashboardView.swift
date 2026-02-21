@@ -3,6 +3,9 @@ import SwiftData
 import Charts
 
 struct StrainDashboardView: View {
+    @Environment(DataLoadingCoordinator.self) private var dataLoadingCoordinator
+    @Environment(\.modelContext) private var modelContext
+
     @Query(sort: \DailyMetric.date, order: .reverse)
     private var allMetrics: [DailyMetric]
 
@@ -110,6 +113,9 @@ struct StrainDashboardView: View {
                     weeklyTrendsSection
                 }
                 .padding(.bottom, AppTheme.spacingXL)
+            }
+            .refreshable {
+                await dataLoadingCoordinator.forceRefresh(modelContext: modelContext)
             }
             .background(AppColors.backgroundPrimary)
             .navigationTitle("TODAY")

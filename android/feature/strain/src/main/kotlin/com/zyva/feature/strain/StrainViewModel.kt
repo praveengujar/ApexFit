@@ -6,11 +6,13 @@ import com.zyva.core.data.entity.DailyMetricEntity
 import com.zyva.core.data.entity.WorkoutRecordEntity
 import com.zyva.core.data.repository.DailyMetricRepository
 import com.zyva.core.data.repository.WorkoutRepository
+import com.zyva.core.domain.usecase.SyncHealthDataUseCase
 import com.zyva.core.model.RecoveryZone
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -28,7 +30,11 @@ data class StrainUiState(
 class StrainViewModel @Inject constructor(
     private val dailyMetricRepo: DailyMetricRepository,
     private val workoutRepo: WorkoutRepository,
+    private val syncUseCase: SyncHealthDataUseCase,
 ) : ViewModel() {
+
+    private val _isRefreshing = MutableStateFlow(false)
+    val isRefreshing: StateFlow<Boolean> = _isRefreshing.asStateFlow()
 
     private val _workouts = MutableStateFlow<List<WorkoutRecordEntity>>(emptyList())
 
@@ -66,6 +72,17 @@ class StrainViewModel @Inject constructor(
             if (metric != null) {
                 _workouts.value = workoutRepo.getByDailyMetric(metric.id)
             }
+        }
+    }
+
+    fun refresh() {
+        viewModelScope.launch {
+            _isRefreshing.value = true
+            try {
+                syncUseCase.syncForDate()
+                loadWorkouts()
+            } catch (_: Exception) {}
+            _isRefreshing.value = false
         }
     }
 

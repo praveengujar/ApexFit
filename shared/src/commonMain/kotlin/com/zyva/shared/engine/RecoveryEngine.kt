@@ -37,23 +37,41 @@ data class RecoveryResult(
 
 class RecoveryEngine(private val config: RecoveryConfig) {
 
+    companion object {
+        // Population default baselines (cold-start fallback).
+        // Used when personal baselines aren't available yet (< 3 days of data).
+        // Based on healthy adult population averages from clinical literature.
+        val POPULATION_HRV = BaselineResult(mean = 40.0, standardDeviation = 15.0, sampleCount = 100, windowDays = 28)
+        val POPULATION_RHR = BaselineResult(mean = 65.0, standardDeviation = 8.0, sampleCount = 100, windowDays = 28)
+        val POPULATION_SLEEP = BaselineResult(mean = 75.0, standardDeviation = 12.0, sampleCount = 100, windowDays = 28)
+        val POPULATION_RESP_RATE = BaselineResult(mean = 15.0, standardDeviation = 2.0, sampleCount = 100, windowDays = 28)
+        val POPULATION_SPO2 = BaselineResult(mean = 97.0, standardDeviation = 1.0, sampleCount = 100, windowDays = 28)
+        val POPULATION_SKIN_TEMP = BaselineResult(mean = 0.0, standardDeviation = 0.3, sampleCount = 100, windowDays = 28)
+    }
+
     private fun sigmoid(z: Double): Double {
         return 100.0 / (1.0 + exp(-config.sigmoidSteepness * z))
     }
 
     fun computeRecovery(input: RecoveryInput, baselines: RecoveryBaselines): RecoveryResult {
-        data class Contributor(val value: Double?, val baseline: BaselineResult?, val invert: Boolean, val weight: Double)
-
-        val contributors = listOf(
-            Contributor(input.hrv, baselines.hrv, false, config.weights.hrv),
-            Contributor(input.restingHeartRate, baselines.restingHeartRate, true, config.weights.restingHeartRate),
-            Contributor(input.sleepPerformance, baselines.sleepPerformance, false, config.weights.sleep),
-            Contributor(input.respiratoryRate, baselines.respiratoryRate, true, config.weights.respiratoryRate),
-            Contributor(input.spo2, baselines.spo2, false, config.weights.spo2),
-            Contributor(input.skinTemperatureDeviation, baselines.skinTemperature, true, config.weights.skinTemperature),
+        data class Contributor(
+            val value: Double?,
+            val baseline: BaselineResult?,
+            val populationDefault: BaselineResult,
+            val invert: Boolean,
+            val weight: Double,
         )
 
-        val scores = contributors.map { c -> computeScore(c.value, c.baseline, c.invert) }
+        val contributors = listOf(
+            Contributor(input.hrv, baselines.hrv, POPULATION_HRV, false, config.weights.hrv),
+            Contributor(input.restingHeartRate, baselines.restingHeartRate, POPULATION_RHR, true, config.weights.restingHeartRate),
+            Contributor(input.sleepPerformance, baselines.sleepPerformance, POPULATION_SLEEP, false, config.weights.sleep),
+            Contributor(input.respiratoryRate, baselines.respiratoryRate, POPULATION_RESP_RATE, true, config.weights.respiratoryRate),
+            Contributor(input.spo2, baselines.spo2, POPULATION_SPO2, false, config.weights.spo2),
+            Contributor(input.skinTemperatureDeviation, baselines.skinTemperature, POPULATION_SKIN_TEMP, true, config.weights.skinTemperature),
+        )
+
+        val scores = contributors.map { c -> computeScore(c.value, c.baseline, c.populationDefault, c.invert) }
         val validPairs = contributors.zip(scores).filter { it.second != null }
 
         val totalWeight = validPairs.sumOf { it.first.weight }
@@ -78,9 +96,11 @@ class RecoveryEngine(private val config: RecoveryConfig) {
         )
     }
 
-    private fun computeScore(value: Double?, baseline: BaselineResult?, invert: Boolean): Double? {
-        if (value == null || baseline == null || !baseline.isValid) return null
-        var z = BaselineEngine.zScore(value, baseline)
+    private fun computeScore(value: Double?, baseline: BaselineResult?, populationDefault: BaselineResult, invert: Boolean): Double? {
+        if (value == null) return null
+        // Use personal baseline if valid, otherwise fall back to population default
+        val effectiveBaseline = if (baseline != null && baseline.isValid) baseline else populationDefault
+        var z = BaselineEngine.zScore(value, effectiveBaseline)
         if (invert) z = -z
         return sigmoid(z)
     }

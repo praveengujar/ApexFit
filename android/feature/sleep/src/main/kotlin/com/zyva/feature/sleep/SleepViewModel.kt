@@ -7,10 +7,12 @@ import com.zyva.core.data.entity.SleepSessionEntity
 import com.zyva.core.data.entity.SleepStageEntity
 import com.zyva.core.data.repository.DailyMetricRepository
 import com.zyva.core.data.repository.SleepRepository
+import com.zyva.core.domain.usecase.SyncHealthDataUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -29,7 +31,11 @@ data class SleepUiState(
 class SleepViewModel @Inject constructor(
     private val dailyMetricRepo: DailyMetricRepository,
     private val sleepRepo: SleepRepository,
+    private val syncUseCase: SyncHealthDataUseCase,
 ) : ViewModel() {
+
+    private val _isRefreshing = MutableStateFlow(false)
+    val isRefreshing: StateFlow<Boolean> = _isRefreshing.asStateFlow()
 
     private val _sleepData = MutableStateFlow<Pair<SleepSessionEntity?, List<SleepStageEntity>>>(null to emptyList())
 
@@ -80,6 +86,17 @@ class SleepViewModel @Inject constructor(
                 }
                 _sleepData.value = mainSleep to stages
             }
+        }
+    }
+
+    fun refresh() {
+        viewModelScope.launch {
+            _isRefreshing.value = true
+            try {
+                syncUseCase.syncForDate()
+                loadSleepData()
+            } catch (_: Exception) {}
+            _isRefreshing.value = false
         }
     }
 
