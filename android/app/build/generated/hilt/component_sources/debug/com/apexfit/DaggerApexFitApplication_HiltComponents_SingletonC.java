@@ -10,12 +10,14 @@ import com.apexfit.core.background.SyncScheduler;
 import com.apexfit.core.config.ConfigurationManager;
 import com.apexfit.core.config.di.ConfigModule_ProvideScoringConfigFactory;
 import com.apexfit.core.data.ApexFitDatabase;
+import com.apexfit.core.data.dao.BaselineMetricDao;
 import com.apexfit.core.data.dao.DailyMetricDao;
 import com.apexfit.core.data.dao.JournalDao;
 import com.apexfit.core.data.dao.NotificationPreferenceDao;
 import com.apexfit.core.data.dao.SleepDao;
 import com.apexfit.core.data.dao.UserProfileDao;
 import com.apexfit.core.data.dao.WorkoutRecordDao;
+import com.apexfit.core.data.di.DatabaseModule_ProvideBaselineMetricDaoFactory;
 import com.apexfit.core.data.di.DatabaseModule_ProvideDailyMetricDaoFactory;
 import com.apexfit.core.data.di.DatabaseModule_ProvideDatabaseFactory;
 import com.apexfit.core.data.di.DatabaseModule_ProvideJournalDaoFactory;
@@ -23,12 +25,14 @@ import com.apexfit.core.data.di.DatabaseModule_ProvideNotificationPreferenceDaoF
 import com.apexfit.core.data.di.DatabaseModule_ProvideSleepDaoFactory;
 import com.apexfit.core.data.di.DatabaseModule_ProvideUserProfileDaoFactory;
 import com.apexfit.core.data.di.DatabaseModule_ProvideWorkoutRecordDaoFactory;
+import com.apexfit.core.data.repository.BaselineRepository;
 import com.apexfit.core.data.repository.DailyMetricRepository;
 import com.apexfit.core.data.repository.JournalRepository;
 import com.apexfit.core.data.repository.NotificationPreferenceRepository;
 import com.apexfit.core.data.repository.SleepRepository;
 import com.apexfit.core.data.repository.UserProfileRepository;
 import com.apexfit.core.data.repository.WorkoutRepository;
+import com.apexfit.core.domain.usecase.SyncHealthDataUseCase;
 import com.apexfit.core.healthconnect.HealthConnectManager;
 import com.apexfit.core.healthconnect.HealthConnectQueryService;
 import com.apexfit.core.healthconnect.di.HealthConnectModule_ProvideHealthConnectQueryServiceFactory;
@@ -37,6 +41,10 @@ import com.apexfit.feature.activity.ActivityViewModel;
 import com.apexfit.feature.activity.ActivityViewModel_HiltModules;
 import com.apexfit.feature.activity.ActivityViewModel_HiltModules_BindsModule_Binds_LazyMapKey;
 import com.apexfit.feature.activity.ActivityViewModel_HiltModules_KeyModule_Provide_LazyMapKey;
+import com.apexfit.feature.home.DeviceHealthViewModel;
+import com.apexfit.feature.home.DeviceHealthViewModel_HiltModules;
+import com.apexfit.feature.home.DeviceHealthViewModel_HiltModules_BindsModule_Binds_LazyMapKey;
+import com.apexfit.feature.home.DeviceHealthViewModel_HiltModules_KeyModule_Provide_LazyMapKey;
 import com.apexfit.feature.home.HomeViewModel;
 import com.apexfit.feature.home.HomeViewModel_HiltModules;
 import com.apexfit.feature.home.HomeViewModel_HiltModules_BindsModule_Binds_LazyMapKey;
@@ -443,7 +451,7 @@ public final class DaggerApexFitApplication_HiltComponents_SingletonC {
 
     @Override
     public Map<Class<?>, Boolean> getViewModelKeys() {
-      return LazyClassKeyMap.<Boolean>of(ImmutableMap.<String, Boolean>builderWithExpectedSize(12).put(ActivityViewModel_HiltModules_KeyModule_Provide_LazyMapKey.lazyClassKeyName, ActivityViewModel_HiltModules.KeyModule.provide()).put(HomeViewModel_HiltModules_KeyModule_Provide_LazyMapKey.lazyClassKeyName, HomeViewModel_HiltModules.KeyModule.provide()).put(JournalViewModel_HiltModules_KeyModule_Provide_LazyMapKey.lazyClassKeyName, JournalViewModel_HiltModules.KeyModule.provide()).put(LongevityViewModel_HiltModules_KeyModule_Provide_LazyMapKey.lazyClassKeyName, LongevityViewModel_HiltModules.KeyModule.provide()).put(MainViewModel_HiltModules_KeyModule_Provide_LazyMapKey.lazyClassKeyName, MainViewModel_HiltModules.KeyModule.provide()).put(OnboardingViewModel_HiltModules_KeyModule_Provide_LazyMapKey.lazyClassKeyName, OnboardingViewModel_HiltModules.KeyModule.provide()).put(ProfileViewModel_HiltModules_KeyModule_Provide_LazyMapKey.lazyClassKeyName, ProfileViewModel_HiltModules.KeyModule.provide()).put(RecoveryViewModel_HiltModules_KeyModule_Provide_LazyMapKey.lazyClassKeyName, RecoveryViewModel_HiltModules.KeyModule.provide()).put(SettingsViewModel_HiltModules_KeyModule_Provide_LazyMapKey.lazyClassKeyName, SettingsViewModel_HiltModules.KeyModule.provide()).put(SleepViewModel_HiltModules_KeyModule_Provide_LazyMapKey.lazyClassKeyName, SleepViewModel_HiltModules.KeyModule.provide()).put(StrainViewModel_HiltModules_KeyModule_Provide_LazyMapKey.lazyClassKeyName, StrainViewModel_HiltModules.KeyModule.provide()).put(TrendsViewModel_HiltModules_KeyModule_Provide_LazyMapKey.lazyClassKeyName, TrendsViewModel_HiltModules.KeyModule.provide()).build());
+      return LazyClassKeyMap.<Boolean>of(ImmutableMap.<String, Boolean>builderWithExpectedSize(13).put(ActivityViewModel_HiltModules_KeyModule_Provide_LazyMapKey.lazyClassKeyName, ActivityViewModel_HiltModules.KeyModule.provide()).put(DeviceHealthViewModel_HiltModules_KeyModule_Provide_LazyMapKey.lazyClassKeyName, DeviceHealthViewModel_HiltModules.KeyModule.provide()).put(HomeViewModel_HiltModules_KeyModule_Provide_LazyMapKey.lazyClassKeyName, HomeViewModel_HiltModules.KeyModule.provide()).put(JournalViewModel_HiltModules_KeyModule_Provide_LazyMapKey.lazyClassKeyName, JournalViewModel_HiltModules.KeyModule.provide()).put(LongevityViewModel_HiltModules_KeyModule_Provide_LazyMapKey.lazyClassKeyName, LongevityViewModel_HiltModules.KeyModule.provide()).put(MainViewModel_HiltModules_KeyModule_Provide_LazyMapKey.lazyClassKeyName, MainViewModel_HiltModules.KeyModule.provide()).put(OnboardingViewModel_HiltModules_KeyModule_Provide_LazyMapKey.lazyClassKeyName, OnboardingViewModel_HiltModules.KeyModule.provide()).put(ProfileViewModel_HiltModules_KeyModule_Provide_LazyMapKey.lazyClassKeyName, ProfileViewModel_HiltModules.KeyModule.provide()).put(RecoveryViewModel_HiltModules_KeyModule_Provide_LazyMapKey.lazyClassKeyName, RecoveryViewModel_HiltModules.KeyModule.provide()).put(SettingsViewModel_HiltModules_KeyModule_Provide_LazyMapKey.lazyClassKeyName, SettingsViewModel_HiltModules.KeyModule.provide()).put(SleepViewModel_HiltModules_KeyModule_Provide_LazyMapKey.lazyClassKeyName, SleepViewModel_HiltModules.KeyModule.provide()).put(StrainViewModel_HiltModules_KeyModule_Provide_LazyMapKey.lazyClassKeyName, StrainViewModel_HiltModules.KeyModule.provide()).put(TrendsViewModel_HiltModules_KeyModule_Provide_LazyMapKey.lazyClassKeyName, TrendsViewModel_HiltModules.KeyModule.provide()).build());
     }
 
     @Override
@@ -470,6 +478,8 @@ public final class DaggerApexFitApplication_HiltComponents_SingletonC {
     private final ViewModelCImpl viewModelCImpl = this;
 
     private Provider<ActivityViewModel> activityViewModelProvider;
+
+    private Provider<DeviceHealthViewModel> deviceHealthViewModelProvider;
 
     private Provider<HomeViewModel> homeViewModelProvider;
 
@@ -507,22 +517,23 @@ public final class DaggerApexFitApplication_HiltComponents_SingletonC {
     private void initialize(final SavedStateHandle savedStateHandleParam,
         final ViewModelLifecycle viewModelLifecycleParam) {
       this.activityViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 0);
-      this.homeViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 1);
-      this.journalViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 2);
-      this.longevityViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 3);
-      this.mainViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 4);
-      this.onboardingViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 5);
-      this.profileViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 6);
-      this.recoveryViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 7);
-      this.settingsViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 8);
-      this.sleepViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 9);
-      this.strainViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 10);
-      this.trendsViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 11);
+      this.deviceHealthViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 1);
+      this.homeViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 2);
+      this.journalViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 3);
+      this.longevityViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 4);
+      this.mainViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 5);
+      this.onboardingViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 6);
+      this.profileViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 7);
+      this.recoveryViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 8);
+      this.settingsViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 9);
+      this.sleepViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 10);
+      this.strainViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 11);
+      this.trendsViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 12);
     }
 
     @Override
     public Map<Class<?>, javax.inject.Provider<ViewModel>> getHiltViewModelMap() {
-      return LazyClassKeyMap.<javax.inject.Provider<ViewModel>>of(ImmutableMap.<String, javax.inject.Provider<ViewModel>>builderWithExpectedSize(12).put(ActivityViewModel_HiltModules_BindsModule_Binds_LazyMapKey.lazyClassKeyName, ((Provider) activityViewModelProvider)).put(HomeViewModel_HiltModules_BindsModule_Binds_LazyMapKey.lazyClassKeyName, ((Provider) homeViewModelProvider)).put(JournalViewModel_HiltModules_BindsModule_Binds_LazyMapKey.lazyClassKeyName, ((Provider) journalViewModelProvider)).put(LongevityViewModel_HiltModules_BindsModule_Binds_LazyMapKey.lazyClassKeyName, ((Provider) longevityViewModelProvider)).put(MainViewModel_HiltModules_BindsModule_Binds_LazyMapKey.lazyClassKeyName, ((Provider) mainViewModelProvider)).put(OnboardingViewModel_HiltModules_BindsModule_Binds_LazyMapKey.lazyClassKeyName, ((Provider) onboardingViewModelProvider)).put(ProfileViewModel_HiltModules_BindsModule_Binds_LazyMapKey.lazyClassKeyName, ((Provider) profileViewModelProvider)).put(RecoveryViewModel_HiltModules_BindsModule_Binds_LazyMapKey.lazyClassKeyName, ((Provider) recoveryViewModelProvider)).put(SettingsViewModel_HiltModules_BindsModule_Binds_LazyMapKey.lazyClassKeyName, ((Provider) settingsViewModelProvider)).put(SleepViewModel_HiltModules_BindsModule_Binds_LazyMapKey.lazyClassKeyName, ((Provider) sleepViewModelProvider)).put(StrainViewModel_HiltModules_BindsModule_Binds_LazyMapKey.lazyClassKeyName, ((Provider) strainViewModelProvider)).put(TrendsViewModel_HiltModules_BindsModule_Binds_LazyMapKey.lazyClassKeyName, ((Provider) trendsViewModelProvider)).build());
+      return LazyClassKeyMap.<javax.inject.Provider<ViewModel>>of(ImmutableMap.<String, javax.inject.Provider<ViewModel>>builderWithExpectedSize(13).put(ActivityViewModel_HiltModules_BindsModule_Binds_LazyMapKey.lazyClassKeyName, ((Provider) activityViewModelProvider)).put(DeviceHealthViewModel_HiltModules_BindsModule_Binds_LazyMapKey.lazyClassKeyName, ((Provider) deviceHealthViewModelProvider)).put(HomeViewModel_HiltModules_BindsModule_Binds_LazyMapKey.lazyClassKeyName, ((Provider) homeViewModelProvider)).put(JournalViewModel_HiltModules_BindsModule_Binds_LazyMapKey.lazyClassKeyName, ((Provider) journalViewModelProvider)).put(LongevityViewModel_HiltModules_BindsModule_Binds_LazyMapKey.lazyClassKeyName, ((Provider) longevityViewModelProvider)).put(MainViewModel_HiltModules_BindsModule_Binds_LazyMapKey.lazyClassKeyName, ((Provider) mainViewModelProvider)).put(OnboardingViewModel_HiltModules_BindsModule_Binds_LazyMapKey.lazyClassKeyName, ((Provider) onboardingViewModelProvider)).put(ProfileViewModel_HiltModules_BindsModule_Binds_LazyMapKey.lazyClassKeyName, ((Provider) profileViewModelProvider)).put(RecoveryViewModel_HiltModules_BindsModule_Binds_LazyMapKey.lazyClassKeyName, ((Provider) recoveryViewModelProvider)).put(SettingsViewModel_HiltModules_BindsModule_Binds_LazyMapKey.lazyClassKeyName, ((Provider) settingsViewModelProvider)).put(SleepViewModel_HiltModules_BindsModule_Binds_LazyMapKey.lazyClassKeyName, ((Provider) sleepViewModelProvider)).put(StrainViewModel_HiltModules_BindsModule_Binds_LazyMapKey.lazyClassKeyName, ((Provider) strainViewModelProvider)).put(TrendsViewModel_HiltModules_BindsModule_Binds_LazyMapKey.lazyClassKeyName, ((Provider) trendsViewModelProvider)).build());
     }
 
     @Override
@@ -554,37 +565,40 @@ public final class DaggerApexFitApplication_HiltComponents_SingletonC {
           case 0: // com.apexfit.feature.activity.ActivityViewModel 
           return (T) new ActivityViewModel(singletonCImpl.workoutRepositoryProvider.get(), singletonCImpl.dailyMetricRepositoryProvider.get(), singletonCImpl.userProfileRepositoryProvider.get(), singletonCImpl.provideHealthConnectQueryServiceProvider.get(), singletonCImpl.provideScoringConfigProvider.get());
 
-          case 1: // com.apexfit.feature.home.HomeViewModel 
-          return (T) new HomeViewModel(singletonCImpl.dailyMetricRepositoryProvider.get(), singletonCImpl.workoutRepositoryProvider.get());
+          case 1: // com.apexfit.feature.home.DeviceHealthViewModel 
+          return (T) new DeviceHealthViewModel(singletonCImpl.userProfileRepositoryProvider.get(), singletonCImpl.healthConnectManagerProvider.get());
 
-          case 2: // com.apexfit.feature.journal.JournalViewModel 
+          case 2: // com.apexfit.feature.home.HomeViewModel 
+          return (T) new HomeViewModel(singletonCImpl.dailyMetricRepositoryProvider.get(), singletonCImpl.workoutRepositoryProvider.get(), singletonCImpl.syncHealthDataUseCaseProvider.get(), singletonCImpl.healthConnectManagerProvider.get());
+
+          case 3: // com.apexfit.feature.journal.JournalViewModel 
           return (T) new JournalViewModel(ApplicationContextModule_ProvideContextFactory.provideContext(singletonCImpl.applicationContextModule), singletonCImpl.journalRepositoryProvider.get(), singletonCImpl.userProfileRepositoryProvider.get(), singletonCImpl.dailyMetricRepositoryProvider.get());
 
-          case 3: // com.apexfit.feature.longevity.LongevityViewModel 
+          case 4: // com.apexfit.feature.longevity.LongevityViewModel 
           return (T) new LongevityViewModel(singletonCImpl.dailyMetricRepositoryProvider.get(), singletonCImpl.workoutRepositoryProvider.get(), singletonCImpl.userProfileRepositoryProvider.get());
 
-          case 4: // com.apexfit.navigation.MainViewModel 
+          case 5: // com.apexfit.navigation.MainViewModel 
           return (T) new MainViewModel(singletonCImpl.userProfileRepositoryProvider.get());
 
-          case 5: // com.apexfit.feature.onboarding.OnboardingViewModel 
-          return (T) new OnboardingViewModel(ApplicationContextModule_ProvideContextFactory.provideContext(singletonCImpl.applicationContextModule), singletonCImpl.userProfileRepositoryProvider.get(), singletonCImpl.healthConnectManagerProvider.get());
+          case 6: // com.apexfit.feature.onboarding.OnboardingViewModel 
+          return (T) new OnboardingViewModel(ApplicationContextModule_ProvideContextFactory.provideContext(singletonCImpl.applicationContextModule), singletonCImpl.userProfileRepositoryProvider.get(), singletonCImpl.healthConnectManagerProvider.get(), singletonCImpl.syncSchedulerProvider.get());
 
-          case 6: // com.apexfit.feature.profile.ProfileViewModel 
+          case 7: // com.apexfit.feature.profile.ProfileViewModel 
           return (T) new ProfileViewModel(singletonCImpl.dailyMetricRepositoryProvider.get(), singletonCImpl.workoutRepositoryProvider.get(), singletonCImpl.userProfileRepositoryProvider.get());
 
-          case 7: // com.apexfit.feature.recovery.RecoveryViewModel 
+          case 8: // com.apexfit.feature.recovery.RecoveryViewModel 
           return (T) new RecoveryViewModel(singletonCImpl.dailyMetricRepositoryProvider.get());
 
-          case 8: // com.apexfit.feature.settings.SettingsViewModel 
+          case 9: // com.apexfit.feature.settings.SettingsViewModel 
           return (T) new SettingsViewModel(singletonCImpl.userProfileRepositoryProvider.get(), singletonCImpl.notificationPreferenceRepositoryProvider.get(), singletonCImpl.healthConnectManagerProvider.get(), singletonCImpl.provideScoringConfigProvider.get());
 
-          case 9: // com.apexfit.feature.sleep.SleepViewModel 
+          case 10: // com.apexfit.feature.sleep.SleepViewModel 
           return (T) new SleepViewModel(singletonCImpl.dailyMetricRepositoryProvider.get(), singletonCImpl.sleepRepositoryProvider.get());
 
-          case 10: // com.apexfit.feature.strain.StrainViewModel 
+          case 11: // com.apexfit.feature.strain.StrainViewModel 
           return (T) new StrainViewModel(singletonCImpl.dailyMetricRepositoryProvider.get(), singletonCImpl.workoutRepositoryProvider.get());
 
-          case 11: // com.apexfit.feature.trends.TrendsViewModel 
+          case 12: // com.apexfit.feature.trends.TrendsViewModel 
           return (T) new TrendsViewModel(singletonCImpl.dailyMetricRepositoryProvider.get());
 
           default: throw new AssertionError(id);
@@ -687,11 +701,15 @@ public final class DaggerApexFitApplication_HiltComponents_SingletonC {
 
     private Provider<ScoringConfig> provideScoringConfigProvider;
 
+    private Provider<SleepRepository> sleepRepositoryProvider;
+
+    private Provider<BaselineRepository> baselineRepositoryProvider;
+
+    private Provider<SyncHealthDataUseCase> syncHealthDataUseCaseProvider;
+
     private Provider<JournalRepository> journalRepositoryProvider;
 
     private Provider<NotificationPreferenceRepository> notificationPreferenceRepositoryProvider;
-
-    private Provider<SleepRepository> sleepRepositoryProvider;
 
     private SingletonCImpl(ApplicationContextModule applicationContextModuleParam) {
       this.applicationContextModule = applicationContextModuleParam;
@@ -711,16 +729,20 @@ public final class DaggerApexFitApplication_HiltComponents_SingletonC {
       return DatabaseModule_ProvideUserProfileDaoFactory.provideUserProfileDao(provideDatabaseProvider.get());
     }
 
+    private SleepDao sleepDao() {
+      return DatabaseModule_ProvideSleepDaoFactory.provideSleepDao(provideDatabaseProvider.get());
+    }
+
+    private BaselineMetricDao baselineMetricDao() {
+      return DatabaseModule_ProvideBaselineMetricDaoFactory.provideBaselineMetricDao(provideDatabaseProvider.get());
+    }
+
     private JournalDao journalDao() {
       return DatabaseModule_ProvideJournalDaoFactory.provideJournalDao(provideDatabaseProvider.get());
     }
 
     private NotificationPreferenceDao notificationPreferenceDao() {
       return DatabaseModule_ProvideNotificationPreferenceDaoFactory.provideNotificationPreferenceDao(provideDatabaseProvider.get());
-    }
-
-    private SleepDao sleepDao() {
-      return DatabaseModule_ProvideSleepDaoFactory.provideSleepDao(provideDatabaseProvider.get());
     }
 
     @SuppressWarnings("unchecked")
@@ -735,9 +757,11 @@ public final class DaggerApexFitApplication_HiltComponents_SingletonC {
       this.provideHealthConnectQueryServiceProvider = DoubleCheck.provider(new SwitchingProvider<HealthConnectQueryService>(singletonCImpl, 6));
       this.configurationManagerProvider = DoubleCheck.provider(new SwitchingProvider<ConfigurationManager>(singletonCImpl, 9));
       this.provideScoringConfigProvider = DoubleCheck.provider(new SwitchingProvider<ScoringConfig>(singletonCImpl, 8));
-      this.journalRepositoryProvider = DoubleCheck.provider(new SwitchingProvider<JournalRepository>(singletonCImpl, 10));
-      this.notificationPreferenceRepositoryProvider = DoubleCheck.provider(new SwitchingProvider<NotificationPreferenceRepository>(singletonCImpl, 11));
-      this.sleepRepositoryProvider = DoubleCheck.provider(new SwitchingProvider<SleepRepository>(singletonCImpl, 12));
+      this.sleepRepositoryProvider = DoubleCheck.provider(new SwitchingProvider<SleepRepository>(singletonCImpl, 11));
+      this.baselineRepositoryProvider = DoubleCheck.provider(new SwitchingProvider<BaselineRepository>(singletonCImpl, 12));
+      this.syncHealthDataUseCaseProvider = DoubleCheck.provider(new SwitchingProvider<SyncHealthDataUseCase>(singletonCImpl, 10));
+      this.journalRepositoryProvider = DoubleCheck.provider(new SwitchingProvider<JournalRepository>(singletonCImpl, 13));
+      this.notificationPreferenceRepositoryProvider = DoubleCheck.provider(new SwitchingProvider<NotificationPreferenceRepository>(singletonCImpl, 14));
     }
 
     @Override
@@ -811,14 +835,20 @@ public final class DaggerApexFitApplication_HiltComponents_SingletonC {
           case 9: // com.apexfit.core.config.ConfigurationManager 
           return (T) new ConfigurationManager(ApplicationContextModule_ProvideContextFactory.provideContext(singletonCImpl.applicationContextModule));
 
-          case 10: // com.apexfit.core.data.repository.JournalRepository 
+          case 10: // com.apexfit.core.domain.usecase.SyncHealthDataUseCase 
+          return (T) new SyncHealthDataUseCase(singletonCImpl.provideHealthConnectQueryServiceProvider.get(), singletonCImpl.dailyMetricRepositoryProvider.get(), singletonCImpl.workoutRepositoryProvider.get(), singletonCImpl.sleepRepositoryProvider.get(), singletonCImpl.userProfileRepositoryProvider.get(), singletonCImpl.baselineRepositoryProvider.get(), singletonCImpl.provideScoringConfigProvider.get());
+
+          case 11: // com.apexfit.core.data.repository.SleepRepository 
+          return (T) new SleepRepository(singletonCImpl.sleepDao());
+
+          case 12: // com.apexfit.core.data.repository.BaselineRepository 
+          return (T) new BaselineRepository(singletonCImpl.baselineMetricDao());
+
+          case 13: // com.apexfit.core.data.repository.JournalRepository 
           return (T) new JournalRepository(singletonCImpl.journalDao());
 
-          case 11: // com.apexfit.core.data.repository.NotificationPreferenceRepository 
+          case 14: // com.apexfit.core.data.repository.NotificationPreferenceRepository 
           return (T) new NotificationPreferenceRepository(singletonCImpl.notificationPreferenceDao());
-
-          case 12: // com.apexfit.core.data.repository.SleepRepository 
-          return (T) new SleepRepository(singletonCImpl.sleepDao());
 
           default: throw new AssertionError(id);
         }

@@ -33817,6 +33817,836 @@
         ]
       },
       {
+        "kind": "TypeDecl",
+        "name": "WearableDevice",
+        "printedName": "WearableDevice",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "appleWatch",
+            "printedName": "appleWatch",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(ApexFitShared.WearableDevice.Type) -> ApexFitShared.WearableDevice",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WearableDevice",
+                    "printedName": "ApexFitShared.WearableDevice",
+                    "usr": "s:13ApexFitShared14WearableDeviceO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "ApexFitShared.WearableDevice.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "WearableDevice",
+                        "printedName": "ApexFitShared.WearableDevice",
+                        "usr": "s:13ApexFitShared14WearableDeviceO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:13ApexFitShared14WearableDeviceO10appleWatchyA2CmF",
+            "mangledName": "$s13ApexFitShared14WearableDeviceO10appleWatchyA2CmF",
+            "moduleName": "ApexFitShared",
+            "fixedbinaryorder": 0
+          },
+          {
+            "kind": "Var",
+            "name": "pixelWatch",
+            "printedName": "pixelWatch",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(ApexFitShared.WearableDevice.Type) -> ApexFitShared.WearableDevice",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WearableDevice",
+                    "printedName": "ApexFitShared.WearableDevice",
+                    "usr": "s:13ApexFitShared14WearableDeviceO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "ApexFitShared.WearableDevice.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "WearableDevice",
+                        "printedName": "ApexFitShared.WearableDevice",
+                        "usr": "s:13ApexFitShared14WearableDeviceO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:13ApexFitShared14WearableDeviceO10pixelWatchyA2CmF",
+            "mangledName": "$s13ApexFitShared14WearableDeviceO10pixelWatchyA2CmF",
+            "moduleName": "ApexFitShared",
+            "fixedbinaryorder": 1
+          },
+          {
+            "kind": "Var",
+            "name": "garmin",
+            "printedName": "garmin",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(ApexFitShared.WearableDevice.Type) -> ApexFitShared.WearableDevice",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WearableDevice",
+                    "printedName": "ApexFitShared.WearableDevice",
+                    "usr": "s:13ApexFitShared14WearableDeviceO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "ApexFitShared.WearableDevice.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "WearableDevice",
+                        "printedName": "ApexFitShared.WearableDevice",
+                        "usr": "s:13ApexFitShared14WearableDeviceO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:13ApexFitShared14WearableDeviceO6garminyA2CmF",
+            "mangledName": "$s13ApexFitShared14WearableDeviceO6garminyA2CmF",
+            "moduleName": "ApexFitShared",
+            "fixedbinaryorder": 2
+          },
+          {
+            "kind": "Var",
+            "name": "amazfit",
+            "printedName": "amazfit",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(ApexFitShared.WearableDevice.Type) -> ApexFitShared.WearableDevice",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WearableDevice",
+                    "printedName": "ApexFitShared.WearableDevice",
+                    "usr": "s:13ApexFitShared14WearableDeviceO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "ApexFitShared.WearableDevice.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "WearableDevice",
+                        "printedName": "ApexFitShared.WearableDevice",
+                        "usr": "s:13ApexFitShared14WearableDeviceO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:13ApexFitShared14WearableDeviceO7amazfityA2CmF",
+            "mangledName": "$s13ApexFitShared14WearableDeviceO7amazfityA2CmF",
+            "moduleName": "ApexFitShared",
+            "fixedbinaryorder": 3
+          },
+          {
+            "kind": "Var",
+            "name": "ouraRing",
+            "printedName": "ouraRing",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(ApexFitShared.WearableDevice.Type) -> ApexFitShared.WearableDevice",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WearableDevice",
+                    "printedName": "ApexFitShared.WearableDevice",
+                    "usr": "s:13ApexFitShared14WearableDeviceO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "ApexFitShared.WearableDevice.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "WearableDevice",
+                        "printedName": "ApexFitShared.WearableDevice",
+                        "usr": "s:13ApexFitShared14WearableDeviceO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:13ApexFitShared14WearableDeviceO8ouraRingyA2CmF",
+            "mangledName": "$s13ApexFitShared14WearableDeviceO8ouraRingyA2CmF",
+            "moduleName": "ApexFitShared",
+            "fixedbinaryorder": 4
+          },
+          {
+            "kind": "Var",
+            "name": "other",
+            "printedName": "other",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(ApexFitShared.WearableDevice.Type) -> ApexFitShared.WearableDevice",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WearableDevice",
+                    "printedName": "ApexFitShared.WearableDevice",
+                    "usr": "s:13ApexFitShared14WearableDeviceO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "ApexFitShared.WearableDevice.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "WearableDevice",
+                        "printedName": "ApexFitShared.WearableDevice",
+                        "usr": "s:13ApexFitShared14WearableDeviceO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:13ApexFitShared14WearableDeviceO5otheryA2CmF",
+            "mangledName": "$s13ApexFitShared14WearableDeviceO5otheryA2CmF",
+            "moduleName": "ApexFitShared",
+            "fixedbinaryorder": 5
+          },
+          {
+            "kind": "Var",
+            "name": "none",
+            "printedName": "none",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(ApexFitShared.WearableDevice.Type) -> ApexFitShared.WearableDevice",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WearableDevice",
+                    "printedName": "ApexFitShared.WearableDevice",
+                    "usr": "s:13ApexFitShared14WearableDeviceO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "ApexFitShared.WearableDevice.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "WearableDevice",
+                        "printedName": "ApexFitShared.WearableDevice",
+                        "usr": "s:13ApexFitShared14WearableDeviceO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:13ApexFitShared14WearableDeviceO4noneyA2CmF",
+            "mangledName": "$s13ApexFitShared14WearableDeviceO4noneyA2CmF",
+            "moduleName": "ApexFitShared",
+            "fixedbinaryorder": 6
+          },
+          {
+            "kind": "Var",
+            "name": "name",
+            "printedName": "name",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:13ApexFitShared14WearableDeviceO4nameSSvp",
+            "mangledName": "$s13ApexFitShared14WearableDeviceO4nameSSvp",
+            "moduleName": "ApexFitShared",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:13ApexFitShared14WearableDeviceO4nameSSvg",
+                "mangledName": "$s13ApexFitShared14WearableDeviceO4nameSSvg",
+                "moduleName": "ApexFitShared",
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "ordinal",
+            "printedName": "ordinal",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int32",
+                "printedName": "Swift.Int32",
+                "usr": "s:s5Int32V"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:13ApexFitShared14WearableDeviceO7ordinals5Int32Vvp",
+            "mangledName": "$s13ApexFitShared14WearableDeviceO7ordinals5Int32Vvp",
+            "moduleName": "ApexFitShared",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int32",
+                    "printedName": "Swift.Int32",
+                    "usr": "s:s5Int32V"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:13ApexFitShared14WearableDeviceO7ordinals5Int32Vvg",
+                "mangledName": "$s13ApexFitShared14WearableDeviceO7ordinals5Int32Vvg",
+                "moduleName": "ApexFitShared",
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "companion",
+            "printedName": "companion",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Companion",
+                "printedName": "ApexFitShared.__WearableDevice.Companion",
+                "usr": "c:objc(cs)AFSWearableDeviceCompanion"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:13ApexFitShared14WearableDeviceO9companionSo011AFSWearableE9CompanionCvpZ",
+            "mangledName": "$s13ApexFitShared14WearableDeviceO9companionSo011AFSWearableE9CompanionCvpZ",
+            "moduleName": "ApexFitShared",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Companion",
+                    "printedName": "ApexFitShared.__WearableDevice.Companion",
+                    "usr": "c:objc(cs)AFSWearableDeviceCompanion"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:13ApexFitShared14WearableDeviceO9companionSo011AFSWearableE9CompanionCvgZ",
+                "mangledName": "$s13ApexFitShared14WearableDeviceO9companionSo011AFSWearableE9CompanionCvgZ",
+                "moduleName": "ApexFitShared",
+                "static": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "_forceBridgeFromObjectiveC",
+            "printedName": "_forceBridgeFromObjectiveC(_:result:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "__WearableDevice",
+                "printedName": "ApexFitShared.__WearableDevice",
+                "usr": "c:objc(cs)AFSWearableDevice"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "ApexFitShared.WearableDevice?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WearableDevice",
+                    "printedName": "ApexFitShared.WearableDevice",
+                    "usr": "s:13ApexFitShared14WearableDeviceO"
+                  }
+                ],
+                "paramValueOwnership": "InOut",
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13ApexFitShared14WearableDeviceO26_forceBridgeFromObjectiveC_6resultySo011AFSWearableE0C_ACSgztFZ",
+            "mangledName": "$s13ApexFitShared14WearableDeviceO26_forceBridgeFromObjectiveC_6resultySo011AFSWearableE0C_ACSgztFZ",
+            "moduleName": "ApexFitShared",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "_conditionallyBridgeFromObjectiveC",
+            "printedName": "_conditionallyBridgeFromObjectiveC(_:result:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "__WearableDevice",
+                "printedName": "ApexFitShared.__WearableDevice",
+                "usr": "c:objc(cs)AFSWearableDevice"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "ApexFitShared.WearableDevice?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WearableDevice",
+                    "printedName": "ApexFitShared.WearableDevice",
+                    "usr": "s:13ApexFitShared14WearableDeviceO"
+                  }
+                ],
+                "paramValueOwnership": "InOut",
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13ApexFitShared14WearableDeviceO34_conditionallyBridgeFromObjectiveC_6resultSbSo011AFSWearableE0C_ACSgztFZ",
+            "mangledName": "$s13ApexFitShared14WearableDeviceO34_conditionallyBridgeFromObjectiveC_6resultSbSo011AFSWearableE0C_ACSgztFZ",
+            "moduleName": "ApexFitShared",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "_unconditionallyBridgeFromObjectiveC",
+            "printedName": "_unconditionallyBridgeFromObjectiveC(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "WearableDevice",
+                "printedName": "ApexFitShared.WearableDevice",
+                "usr": "s:13ApexFitShared14WearableDeviceO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "ApexFitShared.__WearableDevice?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "__WearableDevice",
+                    "printedName": "ApexFitShared.__WearableDevice",
+                    "usr": "c:objc(cs)AFSWearableDevice"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13ApexFitShared14WearableDeviceO36_unconditionallyBridgeFromObjectiveCyACSo011AFSWearableE0CSgFZ",
+            "mangledName": "$s13ApexFitShared14WearableDeviceO36_unconditionallyBridgeFromObjectiveCyACSo011AFSWearableE0CSgFZ",
+            "moduleName": "ApexFitShared",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "_bridgeToObjectiveC",
+            "printedName": "_bridgeToObjectiveC()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "__WearableDevice",
+                "printedName": "ApexFitShared.__WearableDevice",
+                "usr": "c:objc(cs)AFSWearableDevice"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13ApexFitShared14WearableDeviceO19_bridgeToObjectiveCSo011AFSWearableE0CyF",
+            "mangledName": "$s13ApexFitShared14WearableDeviceO19_bridgeToObjectiveCSo011AFSWearableE0CyF",
+            "moduleName": "ApexFitShared",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "==",
+            "printedName": "==(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "WearableDevice",
+                "printedName": "ApexFitShared.WearableDevice",
+                "usr": "s:13ApexFitShared14WearableDeviceO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "WearableDevice",
+                "printedName": "ApexFitShared.WearableDevice",
+                "usr": "s:13ApexFitShared14WearableDeviceO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13ApexFitShared14WearableDeviceO2eeoiySbAC_ACtFZ",
+            "mangledName": "$s13ApexFitShared14WearableDeviceO2eeoiySbAC_ACtFZ",
+            "moduleName": "ApexFitShared",
+            "static": true,
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:13ApexFitShared14WearableDeviceO9hashValueSivp",
+            "mangledName": "$s13ApexFitShared14WearableDeviceO9hashValueSivp",
+            "moduleName": "ApexFitShared",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:13ApexFitShared14WearableDeviceO9hashValueSivg",
+                "mangledName": "$s13ApexFitShared14WearableDeviceO9hashValueSivg",
+                "moduleName": "ApexFitShared",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13ApexFitShared14WearableDeviceO4hash4intoys6HasherVz_tF",
+            "mangledName": "$s13ApexFitShared14WearableDeviceO4hash4intoys6HasherVz_tF",
+            "moduleName": "ApexFitShared",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "allCases",
+            "printedName": "allCases",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[ApexFitShared.WearableDevice]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WearableDevice",
+                    "printedName": "ApexFitShared.WearableDevice",
+                    "usr": "s:13ApexFitShared14WearableDeviceO"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:13ApexFitShared14WearableDeviceO8allCasesSayACGvpZ",
+            "mangledName": "$s13ApexFitShared14WearableDeviceO8allCasesSayACGvpZ",
+            "moduleName": "ApexFitShared",
+            "static": true,
+            "implicit": true,
+            "declAttributes": [
+              "Nonisolated"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[ApexFitShared.WearableDevice]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "WearableDevice",
+                        "printedName": "ApexFitShared.WearableDevice",
+                        "usr": "s:13ApexFitShared14WearableDeviceO"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:13ApexFitShared14WearableDeviceO8allCasesSayACGvgZ",
+                "mangledName": "$s13ApexFitShared14WearableDeviceO8allCasesSayACGvgZ",
+                "moduleName": "ApexFitShared",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "toKotlinEnum",
+            "printedName": "toKotlinEnum()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "__WearableDevice",
+                "printedName": "ApexFitShared.__WearableDevice",
+                "usr": "c:objc(cs)AFSWearableDevice"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13ApexFitShared14WearableDeviceO12toKotlinEnumSo011AFSWearableE0CyF",
+            "mangledName": "$s13ApexFitShared14WearableDeviceO12toKotlinEnumSo011AFSWearableE0CyF",
+            "moduleName": "ApexFitShared",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:13ApexFitShared14WearableDeviceO",
+        "mangledName": "$s13ApexFitShared14WearableDeviceO",
+        "moduleName": "ApexFitShared",
+        "declAttributes": [
+          "AccessControl",
+          "Frozen"
+        ],
+        "isEnumExhaustive": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CaseIterable",
+            "printedName": "CaseIterable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "AllCases",
+                "printedName": "AllCases",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[ApexFitShared.WearableDevice]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "WearableDevice",
+                        "printedName": "ApexFitShared.WearableDevice",
+                        "usr": "s:13ApexFitShared14WearableDeviceO"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:s12CaseIterableP",
+            "mangledName": "$ss12CaseIterableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_ObjectiveCBridgeable",
+            "printedName": "_ObjectiveCBridgeable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "_ObjectiveCType",
+                "printedName": "_ObjectiveCType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "__WearableDevice",
+                    "printedName": "ApexFitShared.__WearableDevice",
+                    "usr": "c:objc(cs)AFSWearableDevice"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:s21_ObjectiveCBridgeableP",
+            "mangledName": "$ss21_ObjectiveCBridgeableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "BitwiseCopyable",
+            "printedName": "BitwiseCopyable",
+            "usr": "s:s15BitwiseCopyableP",
+            "mangledName": "$ss15BitwiseCopyableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "ApexFitShared",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
         "kind": "Function",
         "name": "onEnum",
         "printedName": "onEnum(of:)",
@@ -39028,6 +39858,116 @@
         "inheritsConvenienceInitializers": true,
         "superclassNames": [
           "ApexFitShared.KotlinEnum<ApexFitShared.__SleepGoal>",
+          "ApexFitShared.KotlinBase",
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "__WearableDevice",
+        "printedName": "__WearableDevice",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "toSwiftEnum",
+            "printedName": "toSwiftEnum()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "WearableDevice",
+                "printedName": "ApexFitShared.WearableDevice",
+                "usr": "s:13ApexFitShared14WearableDeviceO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:So17AFSWearableDeviceC13ApexFitSharedE11toSwiftEnumAC08WearableB0OyF",
+            "mangledName": "$sSo17AFSWearableDeviceC13ApexFitSharedE11toSwiftEnumAC08WearableB0OyF",
+            "moduleName": "ApexFitShared",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:objc(cs)AFSWearableDevice",
+        "moduleName": "ApexFitShared",
+        "objc_name": "AFSWearableDevice",
+        "declAttributes": [
+          "ObjC",
+          "Dynamic"
+        ],
+        "superclassUsr": "c:objc(cs)AFSKotlinEnum",
+        "isExternal": true,
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "ApexFitShared.KotlinEnum<ApexFitShared.__WearableDevice>",
           "ApexFitShared.KotlinBase",
           "ObjectiveC.NSObject"
         ],

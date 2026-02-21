@@ -43,4 +43,8 @@ class UserProfileRepository @Inject constructor(
         val json = Json.encodeToString<List<String>>(behaviorIds)
         dao.updateJournalBehaviors(profileId, json)
     }
+
+    suspend fun updateWearableDevice(profileId: String, device: String?) {
+        dao.updateWearableDevice(profileId, device)
+    }
 }

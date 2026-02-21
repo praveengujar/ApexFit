@@ -47,6 +47,7 @@ fun DateNavigationHeader(
     onPreviousDay: () -> Unit,
     onNextDay: () -> Unit,
     onProfileTap: () -> Unit,
+    onWatchTap: () -> Unit = {},
 ) {
     val dateText = if (isToday) {
         "TODAY"
@@ -136,7 +137,9 @@ fun DateNavigationHeader(
             imageVector = Icons.Filled.Watch,
             contentDescription = "Watch",
             tint = TextSecondary,
-            modifier = Modifier.size(16.dp),
+            modifier = Modifier
+                .size(16.dp)
+                .clickable { onWatchTap() },
         )
     }
 }

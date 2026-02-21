@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -21,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.apexfit.core.healthconnect.HealthConnectManager
 import com.apexfit.core.designsystem.theme.BackgroundPrimary
 import com.apexfit.core.designsystem.theme.BackgroundTertiary
 import com.apexfit.core.designsystem.theme.PrimaryBlue
@@ -32,6 +34,12 @@ fun OnboardingScreen(
     viewModel: OnboardingViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsState()
+
+    val permissionLauncher = rememberLauncherForActivityResult(
+        contract = viewModel.getPermissionRequestContract(),
+    ) { grantedPermissions ->
+        viewModel.onPermissionsResult(grantedPermissions)
+    }
 
     if (uiState.onboardingComplete) {
         onOnboardingComplete()
@@ -47,6 +55,7 @@ fun OnboardingScreen(
         val progressSteps = listOf(
             OnboardingStep.SIGN_IN,
             OnboardingStep.HEALTH_CONNECT,
+            OnboardingStep.WEARABLE_SELECTION,
             OnboardingStep.PROFILE,
             OnboardingStep.JOURNAL_SETUP,
         )
@@ -79,8 +88,19 @@ fun OnboardingScreen(
                 OnboardingStep.HEALTH_CONNECT -> HealthConnectPermissionScreen(
                     uiState = uiState,
                     onPermissionsResult = viewModel::onPermissionsResult,
-                    onRequestPermissions = { viewModel.setRequestingPermissions(true) },
-                    onContinue = { viewModel.advanceTo(OnboardingStep.PROFILE) },
+                    onRequestPermissions = {
+                        viewModel.setRequestingPermissions(true)
+                        permissionLauncher.launch(HealthConnectManager.REQUIRED_PERMISSIONS)
+                    },
+                    onContinue = { viewModel.advanceTo(OnboardingStep.WEARABLE_SELECTION) },
+                )
+                OnboardingStep.WEARABLE_SELECTION -> WearableSelectionScreen(
+                    selectedDevice = uiState.selectedWearableDevice,
+                    onDeviceSelected = viewModel::updateWearableDevice,
+                    onContinue = {
+                        viewModel.saveWearableDevice()
+                        viewModel.advanceTo(OnboardingStep.PROFILE)
+                    },
                 )
                 OnboardingStep.PROFILE -> ProfileSetupScreen(
                     uiState = uiState,

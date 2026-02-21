@@ -22,6 +22,8 @@ import com.apexfit.core.data.entity.SleepSessionEntity
 import com.apexfit.core.data.entity.SleepStageEntity
 import com.apexfit.core.data.entity.UserProfileEntity
 import com.apexfit.core.data.entity.WorkoutRecordEntity
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 
 @Database(
     entities = [
@@ -36,7 +38,7 @@ import com.apexfit.core.data.entity.WorkoutRecordEntity
         HealthConnectAnchorEntity::class,
         NotificationPreferenceEntity::class,
     ],
-    version = 1,
+    version = 2,
     exportSchema = true,
 )
 @TypeConverters(Converters::class)

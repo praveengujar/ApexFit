@@ -534,19 +534,19 @@
         "isExported": true,
         "statistics": {
             "exportedDeclarations": {
-                "classes": 177,
-                "callableMembers": 869
+                "classes": 179,
+                "callableMembers": 873
             },
             "exportableNonExportedDeclarations": {
                 "classes": 0,
-                "callableMembers": 515
+                "callableMembers": 517
             },
             "nonExportableDeclarations": {
                 "classes": 46,
-                "callableMembers": 226
+                "callableMembers": 228
             },
-            "overriddenCallableMembers": 988,
-            "numberOfIrElements": 52039
+            "overriddenCallableMembers": 997,
+            "numberOfIrElements": 52186
         }
     }
 ]

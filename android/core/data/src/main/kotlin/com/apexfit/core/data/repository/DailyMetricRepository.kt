@@ -32,4 +32,9 @@ class DailyMetricRepository @Inject constructor(
     suspend fun getRecentSleepNeeds(days: Int = 7): List<Double> = dao.getRecentSleepNeeds(days)
     suspend fun getRecentRecoveryScores(days: Int = 28): List<Double> = dao.getRecentRecoveryScores(days)
     suspend fun getRecentStrainScores(days: Int = 28): List<Double> = dao.getRecentStrainScores(days)
+
+    suspend fun isComputed(dateMillis: Long): Boolean {
+        val metric = dao.getByDate(dateMillis)
+        return metric != null && metric.recoveryScore != null
+    }
 }

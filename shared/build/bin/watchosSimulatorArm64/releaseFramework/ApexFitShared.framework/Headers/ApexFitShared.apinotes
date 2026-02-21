@@ -5983,6 +5983,54 @@ Classes:
     MethodKind: "Instance"
     SwiftName: "init(name:ordinal:)"
     Availability: "nonswift"
+- Name: "AFSWearableDevice"
+  SwiftBridge: "WearableDevice"
+  SwiftName: "__WearableDevice"
+  SwiftPrivate: true
+  Properties:
+  - Name: "appleWatch"
+    PropertyKind: "Class"
+    SwiftName: "appleWatch"
+    Type: "AFSWearableDevice * _Nonnull"
+  - Name: "pixelWatch"
+    PropertyKind: "Class"
+    SwiftName: "pixelWatch"
+    Type: "AFSWearableDevice * _Nonnull"
+  - Name: "garmin"
+    PropertyKind: "Class"
+    SwiftName: "garmin"
+    Type: "AFSWearableDevice * _Nonnull"
+  - Name: "amazfit"
+    PropertyKind: "Class"
+    SwiftName: "amazfit"
+    Type: "AFSWearableDevice * _Nonnull"
+  - Name: "ouraRing"
+    PropertyKind: "Class"
+    SwiftName: "ouraRing"
+    Type: "AFSWearableDevice * _Nonnull"
+  - Name: "other"
+    PropertyKind: "Class"
+    SwiftName: "other"
+    Type: "AFSWearableDevice * _Nonnull"
+  - Name: "none"
+    PropertyKind: "Class"
+    SwiftName: "none"
+    Type: "AFSWearableDevice * _Nonnull"
+  Methods:
+  - Selector: "initWithName:ordinal:"
+    MethodKind: "Instance"
+    SwiftName: "init(name:ordinal:)"
+    Availability: "nonswift"
+- Name: "AFSWearableDeviceCompanion"
+  SwiftName: "__WearableDevice.Companion"
+  Methods:
+  - Selector: "fromStringValue:"
+    MethodKind: "Instance"
+    SwiftName: "fromString(value:)"
+    ResultType: "AFSWearableDevice * _Nonnull"
+    Parameters:
+    - Position: 0
+      Type: "NSString * _Nonnull"
 - Name: "AFSHealthDataAnchor"
   SwiftName: "HealthDataAnchor"
   Properties:
@@ -6390,14 +6438,18 @@ Classes:
     PropertyKind: "Instance"
     SwiftName: "updatedAt"
     Type: "int64_t"
+  - Name: "wearableDevice"
+    PropertyKind: "Instance"
+    SwiftName: "wearableDevice"
+    Type: "NSString * _Nullable"
   - Name: "weightKG"
     PropertyKind: "Instance"
     SwiftName: "weightKG"
     Type: "AFSDouble * _Nullable"
   Methods:
-  - Selector: "initWithId:firebaseUID:displayName:email:dateOfBirthMillis:biologicalSex:heightCM:weightKG:maxHeartRate:maxHeartRateSource:sleepBaselineHours:preferredUnits:selectedJournalBehaviorIDs:hasCompletedOnboarding:createdAt:updatedAt:deviceToken:lastSyncedAt:"
+  - Selector: "initWithId:firebaseUID:displayName:email:dateOfBirthMillis:biologicalSex:heightCM:weightKG:maxHeartRate:maxHeartRateSource:sleepBaselineHours:preferredUnits:selectedJournalBehaviorIDs:hasCompletedOnboarding:createdAt:updatedAt:deviceToken:lastSyncedAt:wearableDevice:"
     MethodKind: "Instance"
-    SwiftName: "init(id:firebaseUID:displayName:email:dateOfBirthMillis:biologicalSex:heightCM:weightKG:maxHeartRate:maxHeartRateSource:sleepBaselineHours:preferredUnits:selectedJournalBehaviorIDs:hasCompletedOnboarding:createdAt:updatedAt:deviceToken:lastSyncedAt:)"
+    SwiftName: "init(id:firebaseUID:displayName:email:dateOfBirthMillis:biologicalSex:heightCM:weightKG:maxHeartRate:maxHeartRateSource:sleepBaselineHours:preferredUnits:selectedJournalBehaviorIDs:hasCompletedOnboarding:createdAt:updatedAt:deviceToken:lastSyncedAt:wearableDevice:)"
     Parameters:
     - Position: 0
       Type: "NSString * _Nonnull"
@@ -6435,9 +6487,11 @@ Classes:
       Type: "NSString * _Nullable"
     - Position: 17
       Type: "AFSLong * _Nullable"
-  - Selector: "doCopyId:firebaseUID:displayName:email:dateOfBirthMillis:biologicalSex:heightCM:weightKG:maxHeartRate:maxHeartRateSource:sleepBaselineHours:preferredUnits:selectedJournalBehaviorIDs:hasCompletedOnboarding:createdAt:updatedAt:deviceToken:lastSyncedAt:"
+    - Position: 18
+      Type: "NSString * _Nullable"
+  - Selector: "doCopyId:firebaseUID:displayName:email:dateOfBirthMillis:biologicalSex:heightCM:weightKG:maxHeartRate:maxHeartRateSource:sleepBaselineHours:preferredUnits:selectedJournalBehaviorIDs:hasCompletedOnboarding:createdAt:updatedAt:deviceToken:lastSyncedAt:wearableDevice:"
     MethodKind: "Instance"
-    SwiftName: "doCopy(id:firebaseUID:displayName:email:dateOfBirthMillis:biologicalSex:heightCM:weightKG:maxHeartRate:maxHeartRateSource:sleepBaselineHours:preferredUnits:selectedJournalBehaviorIDs:hasCompletedOnboarding:createdAt:updatedAt:deviceToken:lastSyncedAt:)"
+    SwiftName: "doCopy(id:firebaseUID:displayName:email:dateOfBirthMillis:biologicalSex:heightCM:weightKG:maxHeartRate:maxHeartRateSource:sleepBaselineHours:preferredUnits:selectedJournalBehaviorIDs:hasCompletedOnboarding:createdAt:updatedAt:deviceToken:lastSyncedAt:wearableDevice:)"
     ResultType: "AFSUserProfile * _Nonnull"
     Parameters:
     - Position: 0
@@ -6476,6 +6530,8 @@ Classes:
       Type: "NSString * _Nullable"
     - Position: 17
       Type: "AFSLong * _Nullable"
+    - Position: 18
+      Type: "NSString * _Nullable"
   - Selector: "isEqual:"
     MethodKind: "Instance"
     SwiftName: "isEqual(_:)"

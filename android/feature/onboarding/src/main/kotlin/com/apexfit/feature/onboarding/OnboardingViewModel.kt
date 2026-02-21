@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.apexfit.core.data.entity.UserProfileEntity
 import com.apexfit.core.data.repository.UserProfileRepository
+import com.apexfit.core.background.SyncScheduler
 import com.apexfit.core.healthconnect.HealthConnectAvailability
 import com.apexfit.core.healthconnect.HealthConnectManager
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,7 +19,7 @@ import org.json.JSONArray
 import javax.inject.Inject
 
 enum class OnboardingStep {
-    WELCOME, SIGN_IN, HEALTH_CONNECT, PROFILE, JOURNAL_SETUP, COMPLETE
+    WELCOME, SIGN_IN, HEALTH_CONNECT, WEARABLE_SELECTION, PROFILE, JOURNAL_SETUP, COMPLETE
 }
 
 data class OnboardingUiState(
@@ -37,6 +38,8 @@ data class OnboardingUiState(
     // Journal
     val selectedBehaviorIds: Set<String> = emptySet(),
     val journalBehaviors: List<JournalBehaviorItem> = emptyList(),
+    // Wearable
+    val selectedWearableDevice: String? = null,
     // Navigation
     val onboardingComplete: Boolean = false,
 )
@@ -54,6 +57,7 @@ class OnboardingViewModel @Inject constructor(
     @ApplicationContext private val context: Context,
     private val userProfileRepo: UserProfileRepository,
     private val healthConnectManager: HealthConnectManager,
+    private val syncScheduler: SyncScheduler,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(OnboardingUiState())
@@ -92,6 +96,19 @@ class OnboardingViewModel @Inject constructor(
 
     fun updateDateOfBirth(millis: Long?) {
         _uiState.update { it.copy(dateOfBirthMillis = millis) }
+    }
+
+    // --- Wearable ---
+
+    fun updateWearableDevice(device: String) {
+        _uiState.update { it.copy(selectedWearableDevice = device) }
+    }
+
+    fun saveWearableDevice() {
+        viewModelScope.launch {
+            val profile = userProfileRepo.getOrCreateProfile()
+            userProfileRepo.updateWearableDevice(profile.id, _uiState.value.selectedWearableDevice)
+        }
     }
 
     fun saveProfile() {
@@ -147,6 +164,8 @@ class OnboardingViewModel @Inject constructor(
         _uiState.update { it.copy(isRequestingPermissions = requesting) }
     }
 
+    fun getPermissionRequestContract() = healthConnectManager.createPermissionRequestContract()
+
     // --- Journal ---
 
     private fun loadJournalBehaviors() {
@@ -200,6 +219,8 @@ class OnboardingViewModel @Inject constructor(
         viewModelScope.launch {
             val profile = userProfileRepo.getOrCreateProfile()
             userProfileRepo.markOnboardingComplete(profile.id)
+            // Trigger immediate data sync so HomeScreen has data right away
+            syncScheduler.scheduleOneTimeSync()
             _uiState.update { it.copy(onboardingComplete = true) }
         }
     }

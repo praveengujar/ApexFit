@@ -5,6 +5,7 @@ import SwiftData
 struct ApexFitApp: App {
     let modelContainer: ModelContainer
     let healthKitManager = HealthKitManager.shared
+    let dataLoadingCoordinator = DataLoadingCoordinator()
 
     init() {
         do {
@@ -12,12 +13,15 @@ struct ApexFitApp: App {
         } catch {
             fatalError("Failed to create ModelContainer: \(error)")
         }
+
+        BackgroundTaskManager.shared.configure(modelContainer: modelContainer)
     }
 
     var body: some Scene {
         WindowGroup {
             RootView()
                 .environment(healthKitManager)
+                .environment(dataLoadingCoordinator)
                 .preferredColorScheme(.dark)
         }
         .modelContainer(modelContainer)

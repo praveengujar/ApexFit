@@ -2,6 +2,8 @@ package com.apexfit.core.data.di
 
 import android.content.Context
 import androidx.room.Room
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.apexfit.core.data.ApexFitDatabase
 import com.apexfit.core.data.dao.BaselineMetricDao
 import com.apexfit.core.data.dao.DailyMetricDao
@@ -22,6 +24,12 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
 
+    private val MIGRATION_1_2 = object : Migration(1, 2) {
+        override fun migrate(db: SupportSQLiteDatabase) {
+            db.execSQL("ALTER TABLE user_profiles ADD COLUMN wearableDevice TEXT")
+        }
+    }
+
     @Provides
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context): ApexFitDatabase {
@@ -29,7 +37,9 @@ object DatabaseModule {
             context,
             ApexFitDatabase::class.java,
             "apexfit.db",
-        ).build()
+        )
+            .addMigrations(MIGRATION_1_2)
+            .build()
     }
 
     @Provides fun provideUserProfileDao(db: ApexFitDatabase): UserProfileDao = db.userProfileDao()

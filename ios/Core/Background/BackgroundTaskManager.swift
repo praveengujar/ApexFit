@@ -1,10 +1,20 @@
 import BackgroundTasks
 import Foundation
+import SwiftData
 
 final class BackgroundTaskManager {
     static let shared = BackgroundTaskManager()
 
+    private var modelContainer: ModelContainer?
+
     private init() {}
+
+    func configure(modelContainer: ModelContainer) {
+        self.modelContainer = modelContainer
+        Task {
+            await BackgroundSyncCoordinator.shared.configure(modelContainer: modelContainer)
+        }
+    }
 
     func registerBackgroundTasks() {
         BGTaskScheduler.shared.register(
