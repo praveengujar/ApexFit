@@ -1,6 +1,6 @@
 # Memorystore Redis instance
 resource "google_redis_instance" "cache" {
-  name           = "apexfit-redis-${var.environment}"
+  name           = "zyva-redis-${var.environment}"
   tier           = var.redis_tier
   memory_size_gb = 1
   region         = var.region
@@ -9,7 +9,7 @@ resource "google_redis_instance" "cache" {
   authorized_network = google_compute_network.vpc.id
   connect_mode       = "PRIVATE_SERVICE_ACCESS"
 
-  display_name = "ApexFit Cache (${var.environment})"
+  display_name = "Zyva Cache (${var.environment})"
 
   redis_configs = {
     maxmemory-policy = "allkeys-lru"

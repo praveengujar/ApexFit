@@ -101,8 +101,8 @@ async def compute_healthspan(
     score = HealthspanScore(
         user_id=user_id,
         date=today,
-        vitalos_age=round(result.apex_fit_age, 1),
-        biological_age=round(result.apex_fit_age, 1),
+        vitalos_age=round(result.zyva_age, 1),
+        biological_age=round(result.zyva_age, 1),
         cardiovascular_score=round(avg_recovery, 1) if avg_recovery else None,
         recovery_score=round(avg_recovery, 1) if avg_recovery else None,
         sleep_score=round(avg_sleep, 1) if avg_sleep else None,

@@ -124,7 +124,7 @@ def test_metric_id_higher_is_better():
 
 def test_compute_empty_inputs():
     result = compute(chronological_age=40.0, inputs=[])
-    _approx(40.0, result.apex_fit_age)
+    _approx(40.0, result.zyva_age)
     _approx(0.0, result.years_younger_older)
 
 
@@ -132,7 +132,7 @@ def test_compute_single_protective_metric():
     inputs = [MetricInput(id=MetricID.VO2_MAX, six_month_avg=50.0, thirty_day_avg=50.0)]
     result = compute(chronological_age=40.0, inputs=inputs)
     # VO2 50 -> hr=0.64, delta=ln(0.64)/0.09 ≈ -4.96, corrected * 0.85 ≈ -4.22
-    assert result.apex_fit_age < 40.0  # should be younger
+    assert result.zyva_age < 40.0  # should be younger
     assert result.years_younger_older < 0
 
 
@@ -140,7 +140,7 @@ def test_compute_single_harmful_metric():
     inputs = [MetricInput(id=MetricID.VO2_MAX, six_month_avg=15.0, thirty_day_avg=15.0)]
     result = compute(chronological_age=40.0, inputs=inputs)
     # VO2 15 -> hr=2.0, delta=ln(2.0)/0.09 ≈ 7.70, corrected * 0.85 ≈ 6.55
-    assert result.apex_fit_age > 40.0  # should be older
+    assert result.zyva_age > 40.0  # should be older
     assert result.years_younger_older > 0
 
 
@@ -153,14 +153,14 @@ def test_compute_multiple_metrics():
     result = compute(chronological_age=35.0, inputs=inputs)
     assert len(result.metric_results) == 3
     # All protective metrics -> should be younger
-    assert result.apex_fit_age < 35.0
+    assert result.zyva_age < 35.0
 
 
 def test_compute_skips_none_inputs():
     inputs = [MetricInput(id=MetricID.VO2_MAX, six_month_avg=None, thirty_day_avg=None)]
     result = compute(chronological_age=40.0, inputs=inputs)
     assert len(result.metric_results) == 0
-    _approx(40.0, result.apex_fit_age)
+    _approx(40.0, result.zyva_age)
 
 
 # -- Value formatting --

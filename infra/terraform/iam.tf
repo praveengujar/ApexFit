@@ -1,14 +1,14 @@
 # Service account for Cloud Run
 resource "google_service_account" "cloud_run_sa" {
-  account_id   = "apexfit-run-sa-${var.environment}"
-  display_name = "ApexFit Cloud Run Service Account (${var.environment})"
-  description  = "Service account used by the ApexFit API Cloud Run service"
+  account_id   = "zyva-run-sa-${var.environment}"
+  display_name = "Zyva Cloud Run Service Account (${var.environment})"
+  description  = "Service account used by the Zyva API Cloud Run service"
 }
 
 # Service account for Cloud Tasks
 resource "google_service_account" "cloud_tasks_sa" {
-  account_id   = "apexfit-tasks-sa-${var.environment}"
-  display_name = "ApexFit Cloud Tasks Service Account (${var.environment})"
+  account_id   = "zyva-tasks-sa-${var.environment}"
+  display_name = "Zyva Cloud Tasks Service Account (${var.environment})"
   description  = "Service account used by Cloud Tasks to invoke task handlers"
 }
 

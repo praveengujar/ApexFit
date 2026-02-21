@@ -188,7 +188,8 @@ extension UserProfile {
             createdAt: createdAt.epochMillis,
             updatedAt: updatedAt.epochMillis,
             deviceToken: deviceToken,
-            lastSyncedAt: lastSyncedAt.map { KotlinLong(value: $0.epochMillis) }
+            lastSyncedAt: lastSyncedAt.map { KotlinLong(value: $0.epochMillis) },
+            wearableDevice: wearableDevice
         )
     }
 }

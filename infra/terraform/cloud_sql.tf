@@ -6,7 +6,7 @@ resource "random_password" "db_password" {
 
 # Cloud SQL PostgreSQL 16 instance
 resource "google_sql_database_instance" "main" {
-  name                = "apexfit-db-${var.environment}"
+  name                = "zyva-db-${var.environment}"
   database_version    = "POSTGRES_16"
   region              = var.region
   deletion_protection = var.environment == "prod" ? true : false
@@ -62,14 +62,14 @@ resource "google_sql_database_instance" "main" {
 }
 
 # Database
-resource "google_sql_database" "apexfit" {
-  name     = "apexfit"
+resource "google_sql_database" "zyva" {
+  name     = "zyva"
   instance = google_sql_database_instance.main.name
 }
 
 # Database user
-resource "google_sql_user" "apexfit_app" {
-  name     = "apexfit_app"
+resource "google_sql_user" "zyva_app" {
+  name     = "zyva_app"
   instance = google_sql_database_instance.main.name
   password = random_password.db_password.result
 

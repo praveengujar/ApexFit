@@ -1,16 +1,16 @@
 # Artifact Registry repository for Docker images
-resource "google_artifact_registry_repository" "apexfit" {
+resource "google_artifact_registry_repository" "zyva" {
   location      = var.region
-  repository_id = "apexfit-${var.environment}"
+  repository_id = "zyva-${var.environment}"
   format        = "DOCKER"
-  description   = "ApexFit API container images (${var.environment})"
+  description   = "Zyva API container images (${var.environment})"
 
   depends_on = [google_project_service.required_apis]
 }
 
 # Cloud Run service
 resource "google_cloud_run_v2_service" "api" {
-  name     = "apexfit-api-${var.environment}"
+  name     = "zyva-api-${var.environment}"
   location = var.region
   ingress  = "INGRESS_TRAFFIC_ALL"
 
@@ -28,7 +28,7 @@ resource "google_cloud_run_v2_service" "api" {
     service_account = google_service_account.cloud_run_sa.email
 
     containers {
-      image = "${var.region}-docker.pkg.dev/${var.project_id}/${google_artifact_registry_repository.apexfit.repository_id}/apexfit-api:latest"
+      image = "${var.region}-docker.pkg.dev/${var.project_id}/${google_artifact_registry_repository.zyva.repository_id}/zyva-api:latest"
 
       resources {
         limits = {
@@ -39,7 +39,7 @@ resource "google_cloud_run_v2_service" "api" {
 
       env {
         name  = "DB_URL"
-        value = "postgresql+asyncpg://apexfit_app:${random_password.db_password.result}@${google_sql_database_instance.main.private_ip_address}:5432/apexfit"
+        value = "postgresql+asyncpg://zyva_app:${random_password.db_password.result}@${google_sql_database_instance.main.private_ip_address}:5432/zyva"
       }
 
       env {
@@ -77,7 +77,7 @@ resource "google_cloud_run_v2_service" "api" {
 
   depends_on = [
     google_project_service.required_apis,
-    google_sql_database.apexfit,
+    google_sql_database.zyva,
     google_redis_instance.cache,
   ]
 }

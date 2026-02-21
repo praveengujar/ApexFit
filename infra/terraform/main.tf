@@ -17,7 +17,7 @@ terraform {
   }
 
   backend "gcs" {
-    bucket = "apexfit-terraform-state"
+    bucket = "zyva-terraform-state"
     prefix = "terraform/state"
   }
 }
@@ -52,7 +52,7 @@ resource "google_project_service" "required_apis" {
 
 # VPC for private networking
 resource "google_compute_network" "vpc" {
-  name                    = "apexfit-vpc-${var.environment}"
+  name                    = "zyva-vpc-${var.environment}"
   auto_create_subnetworks = false
   project                 = var.project_id
 
@@ -60,7 +60,7 @@ resource "google_compute_network" "vpc" {
 }
 
 resource "google_compute_subnetwork" "subnet" {
-  name          = "apexfit-subnet-${var.environment}"
+  name          = "zyva-subnet-${var.environment}"
   ip_cidr_range = "10.0.0.0/24"
   region        = var.region
   network       = google_compute_network.vpc.id
@@ -68,7 +68,7 @@ resource "google_compute_subnetwork" "subnet" {
 
 # Private IP range for services (Cloud SQL, Redis)
 resource "google_compute_global_address" "private_ip_range" {
-  name          = "apexfit-private-ip-${var.environment}"
+  name          = "zyva-private-ip-${var.environment}"
   purpose       = "VPC_PEERING"
   address_type  = "INTERNAL"
   prefix_length = 16
@@ -85,7 +85,7 @@ resource "google_service_networking_connection" "private_vpc_connection" {
 
 # VPC connector for Cloud Run to reach private resources
 resource "google_vpc_access_connector" "connector" {
-  name          = "apexfit-vpc-cx-${var.environment}"
+  name          = "zyva-vpc-cx-${var.environment}"
   region        = var.region
   network       = google_compute_network.vpc.name
   ip_cidr_range = "10.8.0.0/28"

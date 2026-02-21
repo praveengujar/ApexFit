@@ -38,7 +38,7 @@ variable "redis_tier" {
 }
 
 variable "domain_name" {
-  description = "Custom domain name for the Cloud Run service (e.g. api.apexfit.app)"
+  description = "Custom domain name for the Cloud Run service (e.g. api.zyva.app)"
   type        = string
   default     = ""
 }

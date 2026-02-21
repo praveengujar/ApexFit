@@ -122,7 +122,7 @@ class MetricResult:
 @dataclass
 class LongevityResult:
     chronological_age: float
-    apex_fit_age: float
+    zyva_age: float
     years_younger_older: float  # negative = younger
     pace_of_aging: float  # -1.0 to 3.0
     metric_results: list[MetricResult]
@@ -179,11 +179,11 @@ def compute(
     total_delta_6mo *= OVERLAP_CORRECTION
     total_delta_30day *= OVERLAP_CORRECTION
 
-    apex_fit_age = chronological_age + total_delta_6mo
+    zyva_age = chronological_age + total_delta_6mo
     years_younger_older = total_delta_6mo
     projected_age_30 = chronological_age + total_delta_30day
 
-    age_diff = projected_age_30 - apex_fit_age
+    age_diff = projected_age_30 - zyva_age
     raw_pace = 1.0 + (age_diff / 2.5)
     pace_of_aging = max(-1.0, min(3.0, raw_pace))
 
@@ -193,7 +193,7 @@ def compute(
 
     return LongevityResult(
         chronological_age=chronological_age,
-        apex_fit_age=apex_fit_age,
+        zyva_age=zyva_age,
         years_younger_older=years_younger_older,
         pace_of_aging=pace_of_aging,
         metric_results=metric_results,
