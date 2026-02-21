@@ -47,13 +47,15 @@ public final class UserProfileDao_Impl implements UserProfileDao {
 
   private final SharedSQLiteStatement __preparedStmtOfUpdateJournalBehaviors;
 
+  private final SharedSQLiteStatement __preparedStmtOfUpdateWearableDevice;
+
   public UserProfileDao_Impl(@NonNull final RoomDatabase __db) {
     this.__db = __db;
     this.__insertionAdapterOfUserProfileEntity = new EntityInsertionAdapter<UserProfileEntity>(__db) {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR REPLACE INTO `user_profiles` (`id`,`firebaseUID`,`displayName`,`email`,`dateOfBirth`,`biologicalSex`,`heightCM`,`weightKG`,`maxHeartRate`,`maxHeartRateSource`,`sleepBaselineHours`,`preferredUnits`,`selectedJournalBehaviorIDs`,`hasCompletedOnboarding`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        return "INSERT OR REPLACE INTO `user_profiles` (`id`,`firebaseUID`,`displayName`,`email`,`dateOfBirth`,`biologicalSex`,`heightCM`,`weightKG`,`maxHeartRate`,`maxHeartRateSource`,`sleepBaselineHours`,`preferredUnits`,`selectedJournalBehaviorIDs`,`hasCompletedOnboarding`,`wearableDevice`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
       }
 
       @Override
@@ -94,15 +96,20 @@ public final class UserProfileDao_Impl implements UserProfileDao {
         statement.bindString(13, entity.getSelectedJournalBehaviorIDs());
         final int _tmp = entity.getHasCompletedOnboarding() ? 1 : 0;
         statement.bindLong(14, _tmp);
-        statement.bindLong(15, entity.getCreatedAt());
-        statement.bindLong(16, entity.getUpdatedAt());
+        if (entity.getWearableDevice() == null) {
+          statement.bindNull(15);
+        } else {
+          statement.bindString(15, entity.getWearableDevice());
+        }
+        statement.bindLong(16, entity.getCreatedAt());
+        statement.bindLong(17, entity.getUpdatedAt());
       }
     };
     this.__updateAdapterOfUserProfileEntity = new EntityDeletionOrUpdateAdapter<UserProfileEntity>(__db) {
       @Override
       @NonNull
       protected String createQuery() {
-        return "UPDATE OR ABORT `user_profiles` SET `id` = ?,`firebaseUID` = ?,`displayName` = ?,`email` = ?,`dateOfBirth` = ?,`biologicalSex` = ?,`heightCM` = ?,`weightKG` = ?,`maxHeartRate` = ?,`maxHeartRateSource` = ?,`sleepBaselineHours` = ?,`preferredUnits` = ?,`selectedJournalBehaviorIDs` = ?,`hasCompletedOnboarding` = ?,`createdAt` = ?,`updatedAt` = ? WHERE `id` = ?";
+        return "UPDATE OR ABORT `user_profiles` SET `id` = ?,`firebaseUID` = ?,`displayName` = ?,`email` = ?,`dateOfBirth` = ?,`biologicalSex` = ?,`heightCM` = ?,`weightKG` = ?,`maxHeartRate` = ?,`maxHeartRateSource` = ?,`sleepBaselineHours` = ?,`preferredUnits` = ?,`selectedJournalBehaviorIDs` = ?,`hasCompletedOnboarding` = ?,`wearableDevice` = ?,`createdAt` = ?,`updatedAt` = ? WHERE `id` = ?";
       }
 
       @Override
@@ -143,9 +150,14 @@ public final class UserProfileDao_Impl implements UserProfileDao {
         statement.bindString(13, entity.getSelectedJournalBehaviorIDs());
         final int _tmp = entity.getHasCompletedOnboarding() ? 1 : 0;
         statement.bindLong(14, _tmp);
-        statement.bindLong(15, entity.getCreatedAt());
-        statement.bindLong(16, entity.getUpdatedAt());
-        statement.bindString(17, entity.getId());
+        if (entity.getWearableDevice() == null) {
+          statement.bindNull(15);
+        } else {
+          statement.bindString(15, entity.getWearableDevice());
+        }
+        statement.bindLong(16, entity.getCreatedAt());
+        statement.bindLong(17, entity.getUpdatedAt());
+        statement.bindString(18, entity.getId());
       }
     };
     this.__preparedStmtOfMarkOnboardingComplete = new SharedSQLiteStatement(__db) {
@@ -177,6 +189,14 @@ public final class UserProfileDao_Impl implements UserProfileDao {
       @NonNull
       public String createQuery() {
         final String _query = "UPDATE user_profiles SET selectedJournalBehaviorIDs = ? WHERE id = ?";
+        return _query;
+      }
+    };
+    this.__preparedStmtOfUpdateWearableDevice = new SharedSQLiteStatement(__db) {
+      @Override
+      @NonNull
+      public String createQuery() {
+        final String _query = "UPDATE user_profiles SET wearableDevice = ? WHERE id = ?";
         return _query;
       }
     };
@@ -333,6 +353,38 @@ public final class UserProfileDao_Impl implements UserProfileDao {
   }
 
   @Override
+  public Object updateWearableDevice(final String id, final String device,
+      final Continuation<? super Unit> $completion) {
+    return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
+      @Override
+      @NonNull
+      public Unit call() throws Exception {
+        final SupportSQLiteStatement _stmt = __preparedStmtOfUpdateWearableDevice.acquire();
+        int _argIndex = 1;
+        if (device == null) {
+          _stmt.bindNull(_argIndex);
+        } else {
+          _stmt.bindString(_argIndex, device);
+        }
+        _argIndex = 2;
+        _stmt.bindString(_argIndex, id);
+        try {
+          __db.beginTransaction();
+          try {
+            _stmt.executeUpdateDelete();
+            __db.setTransactionSuccessful();
+            return Unit.INSTANCE;
+          } finally {
+            __db.endTransaction();
+          }
+        } finally {
+          __preparedStmtOfUpdateWearableDevice.release(_stmt);
+        }
+      }
+    }, $completion);
+  }
+
+  @Override
   public Flow<UserProfileEntity> observeProfile() {
     final String _sql = "SELECT * FROM user_profiles LIMIT 1";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
@@ -356,6 +408,7 @@ public final class UserProfileDao_Impl implements UserProfileDao {
           final int _cursorIndexOfPreferredUnits = CursorUtil.getColumnIndexOrThrow(_cursor, "preferredUnits");
           final int _cursorIndexOfSelectedJournalBehaviorIDs = CursorUtil.getColumnIndexOrThrow(_cursor, "selectedJournalBehaviorIDs");
           final int _cursorIndexOfHasCompletedOnboarding = CursorUtil.getColumnIndexOrThrow(_cursor, "hasCompletedOnboarding");
+          final int _cursorIndexOfWearableDevice = CursorUtil.getColumnIndexOrThrow(_cursor, "wearableDevice");
           final int _cursorIndexOfCreatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "createdAt");
           final int _cursorIndexOfUpdatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "updatedAt");
           final UserProfileEntity _result;
@@ -410,11 +463,17 @@ public final class UserProfileDao_Impl implements UserProfileDao {
             final int _tmp;
             _tmp = _cursor.getInt(_cursorIndexOfHasCompletedOnboarding);
             _tmpHasCompletedOnboarding = _tmp != 0;
+            final String _tmpWearableDevice;
+            if (_cursor.isNull(_cursorIndexOfWearableDevice)) {
+              _tmpWearableDevice = null;
+            } else {
+              _tmpWearableDevice = _cursor.getString(_cursorIndexOfWearableDevice);
+            }
             final long _tmpCreatedAt;
             _tmpCreatedAt = _cursor.getLong(_cursorIndexOfCreatedAt);
             final long _tmpUpdatedAt;
             _tmpUpdatedAt = _cursor.getLong(_cursorIndexOfUpdatedAt);
-            _result = new UserProfileEntity(_tmpId,_tmpFirebaseUID,_tmpDisplayName,_tmpEmail,_tmpDateOfBirth,_tmpBiologicalSex,_tmpHeightCM,_tmpWeightKG,_tmpMaxHeartRate,_tmpMaxHeartRateSource,_tmpSleepBaselineHours,_tmpPreferredUnits,_tmpSelectedJournalBehaviorIDs,_tmpHasCompletedOnboarding,_tmpCreatedAt,_tmpUpdatedAt);
+            _result = new UserProfileEntity(_tmpId,_tmpFirebaseUID,_tmpDisplayName,_tmpEmail,_tmpDateOfBirth,_tmpBiologicalSex,_tmpHeightCM,_tmpWeightKG,_tmpMaxHeartRate,_tmpMaxHeartRateSource,_tmpSleepBaselineHours,_tmpPreferredUnits,_tmpSelectedJournalBehaviorIDs,_tmpHasCompletedOnboarding,_tmpWearableDevice,_tmpCreatedAt,_tmpUpdatedAt);
           } else {
             _result = null;
           }
@@ -456,6 +515,7 @@ public final class UserProfileDao_Impl implements UserProfileDao {
           final int _cursorIndexOfPreferredUnits = CursorUtil.getColumnIndexOrThrow(_cursor, "preferredUnits");
           final int _cursorIndexOfSelectedJournalBehaviorIDs = CursorUtil.getColumnIndexOrThrow(_cursor, "selectedJournalBehaviorIDs");
           final int _cursorIndexOfHasCompletedOnboarding = CursorUtil.getColumnIndexOrThrow(_cursor, "hasCompletedOnboarding");
+          final int _cursorIndexOfWearableDevice = CursorUtil.getColumnIndexOrThrow(_cursor, "wearableDevice");
           final int _cursorIndexOfCreatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "createdAt");
           final int _cursorIndexOfUpdatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "updatedAt");
           final UserProfileEntity _result;
@@ -510,11 +570,17 @@ public final class UserProfileDao_Impl implements UserProfileDao {
             final int _tmp;
             _tmp = _cursor.getInt(_cursorIndexOfHasCompletedOnboarding);
             _tmpHasCompletedOnboarding = _tmp != 0;
+            final String _tmpWearableDevice;
+            if (_cursor.isNull(_cursorIndexOfWearableDevice)) {
+              _tmpWearableDevice = null;
+            } else {
+              _tmpWearableDevice = _cursor.getString(_cursorIndexOfWearableDevice);
+            }
             final long _tmpCreatedAt;
             _tmpCreatedAt = _cursor.getLong(_cursorIndexOfCreatedAt);
             final long _tmpUpdatedAt;
             _tmpUpdatedAt = _cursor.getLong(_cursorIndexOfUpdatedAt);
-            _result = new UserProfileEntity(_tmpId,_tmpFirebaseUID,_tmpDisplayName,_tmpEmail,_tmpDateOfBirth,_tmpBiologicalSex,_tmpHeightCM,_tmpWeightKG,_tmpMaxHeartRate,_tmpMaxHeartRateSource,_tmpSleepBaselineHours,_tmpPreferredUnits,_tmpSelectedJournalBehaviorIDs,_tmpHasCompletedOnboarding,_tmpCreatedAt,_tmpUpdatedAt);
+            _result = new UserProfileEntity(_tmpId,_tmpFirebaseUID,_tmpDisplayName,_tmpEmail,_tmpDateOfBirth,_tmpBiologicalSex,_tmpHeightCM,_tmpWeightKG,_tmpMaxHeartRate,_tmpMaxHeartRateSource,_tmpSleepBaselineHours,_tmpPreferredUnits,_tmpSelectedJournalBehaviorIDs,_tmpHasCompletedOnboarding,_tmpWearableDevice,_tmpCreatedAt,_tmpUpdatedAt);
           } else {
             _result = null;
           }

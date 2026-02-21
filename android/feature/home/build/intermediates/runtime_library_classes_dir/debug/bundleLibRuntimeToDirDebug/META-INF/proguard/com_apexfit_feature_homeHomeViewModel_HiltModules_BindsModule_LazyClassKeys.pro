@@ -1,1 +1,3 @@
+-keep,allowobfuscation,allowshrinking class com.apexfit.feature.home.DeviceHealthViewModel
+-keep,allowobfuscation,allowshrinking class com.apexfit.feature.home.DeviceHealthViewModel
 -keep,allowobfuscation,allowshrinking class com.apexfit.feature.home.HomeViewModel

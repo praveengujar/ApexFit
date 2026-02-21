@@ -25,6 +25,8 @@ import hilt_aggregated_deps._com_apexfit_core_data_di_DatabaseModule;
 import hilt_aggregated_deps._com_apexfit_core_healthconnect_di_HealthConnectModule;
 import hilt_aggregated_deps._com_apexfit_feature_activity_ActivityViewModel_HiltModules_BindsModule;
 import hilt_aggregated_deps._com_apexfit_feature_activity_ActivityViewModel_HiltModules_KeyModule;
+import hilt_aggregated_deps._com_apexfit_feature_home_DeviceHealthViewModel_HiltModules_BindsModule;
+import hilt_aggregated_deps._com_apexfit_feature_home_DeviceHealthViewModel_HiltModules_KeyModule;
 import hilt_aggregated_deps._com_apexfit_feature_home_HomeViewModel_HiltModules_BindsModule;
 import hilt_aggregated_deps._com_apexfit_feature_home_HomeViewModel_HiltModules_KeyModule;
 import hilt_aggregated_deps._com_apexfit_feature_journal_JournalViewModel_HiltModules_BindsModule;
@@ -95,6 +97,8 @@ import hilt_aggregated_deps._dagger_hilt_android_internal_modules_HiltWrapper_Ac
         _com_apexfit_core_healthconnect_di_HealthConnectModule.class,
         _com_apexfit_feature_activity_ActivityViewModel_HiltModules_BindsModule.class,
         _com_apexfit_feature_activity_ActivityViewModel_HiltModules_KeyModule.class,
+        _com_apexfit_feature_home_DeviceHealthViewModel_HiltModules_BindsModule.class,
+        _com_apexfit_feature_home_DeviceHealthViewModel_HiltModules_KeyModule.class,
         _com_apexfit_feature_home_HomeViewModel_HiltModules_BindsModule.class,
         _com_apexfit_feature_home_HomeViewModel_HiltModules_KeyModule.class,
         _com_apexfit_feature_journal_JournalViewModel_HiltModules_BindsModule.class,

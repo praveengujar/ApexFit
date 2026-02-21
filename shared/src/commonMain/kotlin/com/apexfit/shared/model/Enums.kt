@@ -106,3 +106,12 @@ enum class NotificationType(val label: String, val description: String) {
 enum class SleepGoal {
     PEAK, PERFORM, GET_BY
 }
+
+enum class WearableDevice {
+    APPLE_WATCH, PIXEL_WATCH, GARMIN, AMAZFIT, OURA_RING, OTHER, NONE;
+
+    companion object {
+        fun fromString(value: String): WearableDevice =
+            entries.find { it.name.equals(value, ignoreCase = true) } ?: NONE
+    }
+}

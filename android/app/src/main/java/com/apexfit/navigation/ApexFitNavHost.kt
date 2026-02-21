@@ -37,6 +37,7 @@ import com.apexfit.core.designsystem.theme.TextSecondary
 import com.apexfit.feature.activity.AddActivityScreen
 import com.apexfit.feature.activity.StartActivityScreen
 import com.apexfit.feature.coach.CoachScreen
+import com.apexfit.feature.home.DeviceHealthScreen
 import com.apexfit.feature.home.HomeScreen
 import com.apexfit.feature.longevity.LongevityDashboardScreen
 import com.apexfit.feature.myplan.MyPlanScreen
@@ -193,6 +194,7 @@ private fun MainTabScaffold() {
                 "profile" -> ProfileScreen(
                     onBack = { detailScreen = null },
                 )
+                "device_health" -> DeviceHealthScreen()
                 else -> {
                     when (selectedTab) {
                         0 -> HomeScreen(
@@ -205,6 +207,7 @@ private fun MainTabScaffold() {
                             onStartActivityTap = { detailScreen = "start_activity" },
                             onSettingsTap = { detailScreen = "settings" },
                             onProfileTap = { detailScreen = "profile" },
+                            onWatchTap = { detailScreen = "device_health" },
                         )
                         1 -> LongevityDashboardScreen()
                         2 -> {

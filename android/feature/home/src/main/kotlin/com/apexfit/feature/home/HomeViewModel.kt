@@ -6,15 +6,24 @@ import com.apexfit.core.data.entity.DailyMetricEntity
 import com.apexfit.core.data.entity.WorkoutRecordEntity
 import com.apexfit.core.data.repository.DailyMetricRepository
 import com.apexfit.core.data.repository.WorkoutRepository
+import com.apexfit.core.domain.usecase.SyncHealthDataUseCase
+import com.apexfit.core.healthconnect.HealthConnectAvailability
+import com.apexfit.core.healthconnect.HealthConnectManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.ZoneId
 import javax.inject.Inject
+
+enum class SyncState {
+    IDLE, SYNCING, DONE, ERROR
+}
 
 data class HomeUiState(
     val todayMetric: DailyMetricEntity? = null,
@@ -22,15 +31,68 @@ data class HomeUiState(
     val todayWorkouts: List<WorkoutRecordEntity> = emptyList(),
     val selectedDate: LocalDate = LocalDate.now(),
     val streak: Int = 0,
+    val syncProgress: String = "",
 )
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val dailyMetricRepo: DailyMetricRepository,
     private val workoutRepo: WorkoutRepository,
+    private val syncUseCase: SyncHealthDataUseCase,
+    private val healthConnectManager: HealthConnectManager,
 ) : ViewModel() {
 
+    private val _syncState = MutableStateFlow(SyncState.IDLE)
+    val syncState: StateFlow<SyncState> = _syncState.asStateFlow()
+
+    private val _syncProgress = MutableStateFlow("")
+
+    private var hasSyncedThisSession = false
+
     private val _selectedDate = MutableStateFlow(LocalDate.now())
+
+    init {
+        triggerInitialSync()
+    }
+
+    private fun triggerInitialSync() {
+        viewModelScope.launch {
+            if (hasSyncedThisSession) return@launch
+            if (healthConnectManager.availability != HealthConnectAvailability.AVAILABLE) return@launch
+
+            try {
+                if (!healthConnectManager.hasAllPermissions()) return@launch
+            } catch (_: Exception) {
+                return@launch
+            }
+
+            hasSyncedThisSession = true
+            _syncState.value = SyncState.SYNCING
+
+            try {
+                val today = LocalDate.now()
+                val zone = ZoneId.systemDefault()
+
+                // Backfill past 7 days (oldest first) for baselines
+                for (dayOffset in 7 downTo 1) {
+                    val date = today.minusDays(dayOffset.toLong())
+                    val dateMillis = date.atStartOfDay(zone).toInstant().toEpochMilli()
+                    if (dailyMetricRepo.isComputed(dateMillis)) continue
+                    _syncProgress.value = "Processing ${date}..."
+                    syncUseCase.syncForDate(date)
+                }
+
+                // Sync today (always recompute)
+                _syncProgress.value = "Processing today..."
+                syncUseCase.syncForDate(today)
+
+                _syncState.value = SyncState.DONE
+            } catch (e: Exception) {
+                android.util.Log.e("HomeViewModel", "Sync failed", e)
+                _syncState.value = SyncState.ERROR
+            }
+        }
+    }
 
     val uiState: StateFlow<HomeUiState> = combine(
         _selectedDate,

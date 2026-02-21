@@ -1546,6 +1546,51 @@ extension ApexFitShared.SleepGoal {
 extension ApexFitShared.__SleepGoal {
   public func toSwiftEnum() -> ApexFitShared.SleepGoal
 }
+@frozen public enum WearableDevice : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
+  case appleWatch
+  case pixelWatch
+  case garmin
+  case amazfit
+  case ouraRing
+  case other
+  case none
+  public var name: Swift.String {
+    get
+  }
+  public var ordinal: Swift.Int32 {
+    get
+  }
+  public static var companion: ApexFitShared.__WearableDevice.Companion {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func _forceBridgeFromObjectiveC(_ source: ApexFitShared.__WearableDevice, result: inout ApexFitShared.WearableDevice?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func _conditionallyBridgeFromObjectiveC(_ source: ApexFitShared.__WearableDevice, result: inout ApexFitShared.WearableDevice?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: ApexFitShared.__WearableDevice?) -> ApexFitShared.WearableDevice
+  #endif
+  public func _bridgeToObjectiveC() -> ApexFitShared.__WearableDevice
+  public typealias _ObjectiveCType = ApexFitShared.__WearableDevice
+  public typealias Companion = ApexFitShared.__WearableDevice.Companion
+  public static func == (a: ApexFitShared.WearableDevice, b: ApexFitShared.WearableDevice) -> Swift.Bool
+  public typealias AllCases = [ApexFitShared.WearableDevice]
+  nonisolated public static var allCases: [ApexFitShared.WearableDevice] {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension ApexFitShared.WearableDevice {
+  public func toKotlinEnum() -> ApexFitShared.__WearableDevice
+}
+extension ApexFitShared.__WearableDevice {
+  public func toSwiftEnum() -> ApexFitShared.WearableDevice
+}
 extension ApexFitShared.Skie.RuntimeKotlin.Skie_SuspendResult {
   @frozen public enum __Sealed : Swift.Hashable {
     case canceled(ApexFitShared.Skie_SuspendResult.Canceled)
@@ -1708,5 +1753,7 @@ extension ApexFitShared.NotificationType : Swift.Sendable {}
 extension ApexFitShared.NotificationType : Swift.BitwiseCopyable {}
 extension ApexFitShared.SleepGoal : Swift.Sendable {}
 extension ApexFitShared.SleepGoal : Swift.BitwiseCopyable {}
+extension ApexFitShared.WearableDevice : Swift.Sendable {}
+extension ApexFitShared.WearableDevice : Swift.BitwiseCopyable {}
 extension ApexFitShared.Skie.KotlinxSerializationCore.SerializersModule.__Sealed : Swift.Sendable {}
 extension ApexFitShared.Skie.KotlinxSerializationCore.SerializersModule.__Sealed : Swift.BitwiseCopyable {}

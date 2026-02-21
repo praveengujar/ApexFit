@@ -41,6 +41,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.material3.CircularProgressIndicator
 import com.apexfit.core.designsystem.component.CircularGauge
 import com.apexfit.core.designsystem.theme.BackgroundCard
 import com.apexfit.core.designsystem.theme.BackgroundPrimary
@@ -76,10 +78,13 @@ fun HomeScreen(
     onStartActivityTap: () -> Unit = {},
     onSettingsTap: () -> Unit = {},
     onProfileTap: () -> Unit = {},
+    onWatchTap: () -> Unit = {},
     viewModel: HomeViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsState()
+    val syncState by viewModel.syncState.collectAsState()
 
+    Box(modifier = Modifier.fillMaxSize()) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -97,6 +102,7 @@ fun HomeScreen(
             onPreviousDay = { viewModel.navigateDate(-1) },
             onNextDay = { viewModel.navigateDate(1) },
             onProfileTap = onProfileTap,
+            onWatchTap = onWatchTap,
         )
 
         Spacer(Modifier.height(Spacing.md))
@@ -191,6 +197,27 @@ fun HomeScreen(
 
         Spacer(Modifier.height(Spacing.xl))
     }
+
+    // Loading overlay
+    if (syncState == SyncState.SYNCING) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(BackgroundPrimary.copy(alpha = 0.85f)),
+            contentAlignment = Alignment.Center,
+        ) {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                CircularProgressIndicator(color = PrimaryBlue)
+                Spacer(Modifier.height(Spacing.md))
+                Text(
+                    text = "Loading health data...",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = TextSecondary,
+                )
+            }
+        }
+    }
+    } // end Box
 }
 
 // -- Dashboard Gauge Row --

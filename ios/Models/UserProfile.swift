@@ -21,6 +21,7 @@ final class UserProfile {
     var updatedAt: Date
     var deviceToken: String?
     var lastSyncedAt: Date?
+    var wearableDevice: String?
 
     @Relationship(deleteRule: .cascade, inverse: \DailyMetric.userProfile)
     var dailyMetrics: [DailyMetric]

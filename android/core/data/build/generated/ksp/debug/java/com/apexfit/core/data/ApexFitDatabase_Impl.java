@@ -62,10 +62,10 @@ public final class ApexFitDatabase_Impl extends ApexFitDatabase {
   @Override
   @NonNull
   protected SupportSQLiteOpenHelper createOpenHelper(@NonNull final DatabaseConfiguration config) {
-    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(1) {
+    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(2) {
       @Override
       public void createAllTables(@NonNull final SupportSQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS `user_profiles` (`id` TEXT NOT NULL, `firebaseUID` TEXT, `displayName` TEXT NOT NULL, `email` TEXT, `dateOfBirth` INTEGER, `biologicalSex` TEXT NOT NULL, `heightCM` REAL, `weightKG` REAL, `maxHeartRate` INTEGER NOT NULL, `maxHeartRateSource` TEXT NOT NULL, `sleepBaselineHours` REAL NOT NULL, `preferredUnits` TEXT NOT NULL, `selectedJournalBehaviorIDs` TEXT NOT NULL, `hasCompletedOnboarding` INTEGER NOT NULL, `createdAt` INTEGER NOT NULL, `updatedAt` INTEGER NOT NULL, PRIMARY KEY(`id`))");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `user_profiles` (`id` TEXT NOT NULL, `firebaseUID` TEXT, `displayName` TEXT NOT NULL, `email` TEXT, `dateOfBirth` INTEGER, `biologicalSex` TEXT NOT NULL, `heightCM` REAL, `weightKG` REAL, `maxHeartRate` INTEGER NOT NULL, `maxHeartRateSource` TEXT NOT NULL, `sleepBaselineHours` REAL NOT NULL, `preferredUnits` TEXT NOT NULL, `selectedJournalBehaviorIDs` TEXT NOT NULL, `hasCompletedOnboarding` INTEGER NOT NULL, `wearableDevice` TEXT, `createdAt` INTEGER NOT NULL, `updatedAt` INTEGER NOT NULL, PRIMARY KEY(`id`))");
         db.execSQL("CREATE TABLE IF NOT EXISTS `daily_metrics` (`id` TEXT NOT NULL, `userProfileId` TEXT NOT NULL, `date` INTEGER NOT NULL, `recoveryScore` REAL, `recoveryZone` TEXT, `strainScore` REAL, `sleepPerformance` REAL, `sleepScore` REAL, `sleepConsistency` REAL, `sleepEfficiency` REAL, `restorativeSleepPercentage` REAL, `deepSleepPercentage` REAL, `remSleepPercentage` REAL, `hrvRMSSD` REAL, `hrvSDNN` REAL, `restingHeartRate` REAL, `respiratoryRate` REAL, `spo2` REAL, `skinTemperatureDeviation` REAL, `steps` INTEGER, `activeCalories` REAL, `vo2Max` REAL, `peakWorkoutStrain` REAL, `workoutCount` INTEGER NOT NULL, `totalSleepHours` REAL, `sleepDebtHours` REAL, `sleepNeedHours` REAL, `stressScore` REAL, `createdAt` INTEGER NOT NULL, `updatedAt` INTEGER NOT NULL, PRIMARY KEY(`id`), FOREIGN KEY(`userProfileId`) REFERENCES `user_profiles`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )");
         db.execSQL("CREATE INDEX IF NOT EXISTS `index_daily_metrics_userProfileId` ON `daily_metrics` (`userProfileId`)");
         db.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS `index_daily_metrics_date` ON `daily_metrics` (`date`)");
@@ -84,7 +84,7 @@ public final class ApexFitDatabase_Impl extends ApexFitDatabase {
         db.execSQL("CREATE TABLE IF NOT EXISTS `health_connect_anchors` (`dataTypeIdentifier` TEXT NOT NULL, `anchorToken` TEXT, PRIMARY KEY(`dataTypeIdentifier`))");
         db.execSQL("CREATE TABLE IF NOT EXISTS `notification_preferences` (`notificationType` TEXT NOT NULL, `isEnabled` INTEGER NOT NULL, `customTimeHour` INTEGER, `customTimeMinute` INTEGER, PRIMARY KEY(`notificationType`))");
         db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'ef5d3f2d1aa71f248f11f0c2c033af64')");
+        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'fc8433bad6e08ded1c04670a5ae12135')");
       }
 
       @Override
@@ -143,7 +143,7 @@ public final class ApexFitDatabase_Impl extends ApexFitDatabase {
       @NonNull
       public RoomOpenHelper.ValidationResult onValidateSchema(
           @NonNull final SupportSQLiteDatabase db) {
-        final HashMap<String, TableInfo.Column> _columnsUserProfiles = new HashMap<String, TableInfo.Column>(16);
+        final HashMap<String, TableInfo.Column> _columnsUserProfiles = new HashMap<String, TableInfo.Column>(17);
         _columnsUserProfiles.put("id", new TableInfo.Column("id", "TEXT", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsUserProfiles.put("firebaseUID", new TableInfo.Column("firebaseUID", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsUserProfiles.put("displayName", new TableInfo.Column("displayName", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
@@ -158,6 +158,7 @@ public final class ApexFitDatabase_Impl extends ApexFitDatabase {
         _columnsUserProfiles.put("preferredUnits", new TableInfo.Column("preferredUnits", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsUserProfiles.put("selectedJournalBehaviorIDs", new TableInfo.Column("selectedJournalBehaviorIDs", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsUserProfiles.put("hasCompletedOnboarding", new TableInfo.Column("hasCompletedOnboarding", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsUserProfiles.put("wearableDevice", new TableInfo.Column("wearableDevice", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsUserProfiles.put("createdAt", new TableInfo.Column("createdAt", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsUserProfiles.put("updatedAt", new TableInfo.Column("updatedAt", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         final HashSet<TableInfo.ForeignKey> _foreignKeysUserProfiles = new HashSet<TableInfo.ForeignKey>(0);
@@ -378,7 +379,7 @@ public final class ApexFitDatabase_Impl extends ApexFitDatabase {
         }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "ef5d3f2d1aa71f248f11f0c2c033af64", "c4adbca0001c934133f796f73d4417e0");
+    }, "fc8433bad6e08ded1c04670a5ae12135", "d1f1d70bfc476e0142c7920bcab7618e");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(config.context).name(config.name).callback(_openCallback).build();
     final SupportSQLiteOpenHelper _helper = config.sqliteOpenHelperFactory.create(_sqliteConfig);
     return _helper;

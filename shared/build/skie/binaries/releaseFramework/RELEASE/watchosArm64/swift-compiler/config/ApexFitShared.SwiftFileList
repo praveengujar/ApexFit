@@ -45,6 +45,7 @@
 'generated/Shared/Shared.JournalResponseType.swift'
 'generated/Shared/Shared.NotificationType.swift'
 'generated/Shared/Shared.SleepGoal.swift'
+'generated/Shared/Shared.WearableDevice.swift'
 'generated/Skie/Skie.Skie_SuspendResult.swift'
 'generated/Shared/Shared.ApiError.swift'
 'generated/KotlinxSerializationCore/KotlinxSerializationCore.SerialKind.swift'

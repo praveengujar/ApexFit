@@ -19,6 +19,7 @@ data class UserProfileEntity(
     val preferredUnits: String = "METRIC",
     val selectedJournalBehaviorIDs: String = "[]", // JSON array of strings
     val hasCompletedOnboarding: Boolean = false,
+    val wearableDevice: String? = null,
     val createdAt: Long = System.currentTimeMillis(),
     val updatedAt: Long = System.currentTimeMillis(),
 )

@@ -4,6 +4,7 @@ struct DateNavigationHeader: View {
     @Binding var selectedDate: Date
     let streak: Int
     var onProfileTap: (() -> Void)? = nil
+    var onWatchTap: (() -> Void)? = nil
 
     var body: some View {
         HStack {
@@ -62,10 +63,13 @@ struct DateNavigationHeader: View {
             Spacer()
 
             // MARK: - Right: Device Info
-            HStack(spacing: AppTheme.spacingXS) {
+            Button {
+                onWatchTap?()
+            } label: {
                 Image(systemName: "applewatch")
                     .font(.system(size: 16))
                     .foregroundStyle(AppColors.textSecondary)
+                    .frame(width: AppTheme.minimumTapTarget, height: AppTheme.minimumTapTarget)
             }
         }
         .padding(.horizontal, AppTheme.spacingMD)

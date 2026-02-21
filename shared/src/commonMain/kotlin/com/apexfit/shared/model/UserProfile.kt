@@ -23,6 +23,7 @@ data class UserProfile(
     val updatedAt: Long = currentTimeMillis(),
     val deviceToken: String? = null,
     val lastSyncedAt: Long? = null,
+    val wearableDevice: String? = null,
 ) {
     val age: Int?
         get() = dateOfBirthMillis?.let { calculateAge(it) }

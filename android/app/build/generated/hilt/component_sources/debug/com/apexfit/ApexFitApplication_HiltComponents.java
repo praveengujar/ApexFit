@@ -5,6 +5,7 @@ import com.apexfit.core.config.di.ConfigModule;
 import com.apexfit.core.data.di.DatabaseModule;
 import com.apexfit.core.healthconnect.di.HealthConnectModule;
 import com.apexfit.feature.activity.ActivityViewModel_HiltModules;
+import com.apexfit.feature.home.DeviceHealthViewModel_HiltModules;
 import com.apexfit.feature.home.HomeViewModel_HiltModules;
 import com.apexfit.feature.journal.JournalViewModel_HiltModules;
 import com.apexfit.feature.longevity.LongevityViewModel_HiltModules;
@@ -173,6 +174,7 @@ public final class ApexFitApplication_HiltComponents {
           ActivityViewModel_HiltModules.KeyModule.class,
           ActivityCBuilderModule.class,
           ViewModelCBuilderModule.class,
+          DeviceHealthViewModel_HiltModules.KeyModule.class,
           HiltWrapper_ActivityRetainedComponentManager_LifecycleModule.class,
           HiltWrapper_SavedStateHandleModule.class,
           HomeViewModel_HiltModules.KeyModule.class,
@@ -222,6 +224,7 @@ public final class ApexFitApplication_HiltComponents {
   @Subcomponent(
       modules = {
           ActivityViewModel_HiltModules.BindsModule.class,
+          DeviceHealthViewModel_HiltModules.BindsModule.class,
           HiltWrapper_HiltViewModelFactory_ViewModelModule.class,
           HomeViewModel_HiltModules.BindsModule.class,
           JournalViewModel_HiltModules.BindsModule.class,

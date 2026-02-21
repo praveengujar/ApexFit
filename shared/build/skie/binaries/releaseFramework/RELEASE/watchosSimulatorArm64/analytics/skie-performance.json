@@ -1,627 +1,627 @@
 [
     {
         "name": "InitSkiePhase",
-        "duration": "PT0.027172042S",
+        "duration": "PT0.027369208S",
         "kind": "Foreground"
     },
     {
         "name": "CreateMainSkieContextPhase",
-        "duration": "PT0.155332459S",
+        "duration": "PT0.184788542S",
         "kind": "Foreground"
     },
     {
         "name": "InitializeClassExportPhases",
-        "duration": "PT0.001220S",
+        "duration": "PT0.001242458S",
         "kind": "Foreground"
     },
     {
         "name": "VerifyModuleNamePhase",
-        "duration": "PT0.000020875S",
+        "duration": "PT0.000034042S",
         "kind": "Foreground"
     },
     {
         "name": "VerifyMinOSVersionPhase",
-        "duration": "PT0.000168208S",
+        "duration": "PT0.000234959S",
         "kind": "Foreground"
     },
     {
         "name": "VerifyNoBitcodeEmbeddingPhase",
-        "duration": "PT0.000004625S",
+        "duration": "PT0.000006125S",
         "kind": "Foreground"
     },
     {
         "name": "CheckSkieRuntimePresencePhase",
-        "duration": "PT0.000490583S",
+        "duration": "PT0.000572875S",
         "kind": "Foreground"
     },
     {
         "name": "FixLibrariesShortNamePhase",
-        "duration": "PT0.000102708S",
+        "duration": "PT0.000154250S",
         "kind": "Foreground"
     },
     {
         "name": "ClassExportAnalyticsPhase",
-        "duration": "PT0.000502S",
+        "duration": "PT0.000667583S",
         "kind": "Foreground"
     },
     {
         "name": "ExtraClassExportPhase",
-        "duration": "PT0.027350542S",
+        "duration": "PT0.024880125S",
         "kind": "Foreground"
     },
     {
         "name": "ValidateSkieVisibilityAnnotationsPhase",
-        "duration": "PT0.001818375S",
+        "duration": "PT0.001997209S",
         "kind": "Foreground"
     },
     {
         "name": "InitializeFrontendIrPhases",
-        "duration": "PT0.002707917S",
+        "duration": "PT0.001993834S",
         "kind": "Foreground"
     },
     {
         "name": "DefaultArgumentGenerator",
-        "duration": "PT0.011686166S",
+        "duration": "PT0.009107917S",
         "kind": "Foreground"
     },
     {
         "name": "SuspendGenerator",
-        "duration": "PT0.006855584S",
+        "duration": "PT0.007615416S",
         "kind": "Foreground"
     },
     {
         "name": "InitializeSymbolTablePhases",
-        "duration": "PT0.000412834S",
+        "duration": "PT0.000589625S",
         "kind": "Foreground"
     },
     {
         "name": "DeclareMissingSymbolsPhase",
-        "duration": "PT0.001563917S",
+        "duration": "PT0.001604042S",
         "kind": "Foreground"
     },
     {
         "name": "InitializeKirPhases",
-        "duration": "PT0.009356125S",
+        "duration": "PT0.009768167S",
         "kind": "Foreground"
     },
     {
         "name": "VerifyDescriptorProviderConsistencyPhase",
-        "duration": "PT0.000439750S",
+        "duration": "PT0.000454917S",
         "kind": "Foreground"
     },
     {
         "name": "CreateExposedKirTypesPhase",
-        "duration": "PT0.005262792S",
+        "duration": "PT0.004193625S",
         "kind": "Foreground"
     },
     {
         "name": "CreateKirConstructorsPhase",
-        "duration": "PT0.010012083S",
+        "duration": "PT0.011176417S",
         "kind": "Foreground"
     },
     {
         "name": "CreateKirPropertiesPhase",
-        "duration": "PT0.014598S",
+        "duration": "PT0.020345292S",
         "kind": "Foreground"
     },
     {
         "name": "CreateKirSimpleFunctionsPhase",
-        "duration": "PT0.028373S",
+        "duration": "PT0.034104042S",
         "kind": "Foreground"
     },
     {
         "name": "InitializeKirMembersCachePhase",
-        "duration": "PT0.000382291S",
+        "duration": "PT0.000418S",
         "kind": "Foreground"
     },
     {
         "name": "UnifyFlowConfigurationForOverridesPhase",
-        "duration": "PT0.001308S",
+        "duration": "PT0.001447500S",
         "kind": "Foreground"
     },
     {
         "name": "SuspendGenerator.FlowMappingConfigurationPhase",
-        "duration": "PT0.000687875S",
+        "duration": "PT0.000739250S",
         "kind": "Foreground"
     },
     {
         "name": "ConvertFlowsPhase",
-        "duration": "PT0.004093542S",
+        "duration": "PT0.005078750S",
         "kind": "Foreground"
     },
     {
         "name": "ExtraClassExportPhase.HideExportFunctionsInitPhase",
-        "duration": "PT0.001226084S",
+        "duration": "PT0.000909S",
         "kind": "Foreground"
     },
     {
         "name": "DefaultArgumentGenerator.RegisterOverloadsPhase",
-        "duration": "PT0.000234834S",
+        "duration": "PT0.000275459S",
         "kind": "Foreground"
     },
     {
         "name": "DefaultArgumentGenerator.RemoveManglingOfOverloadsInitPhase",
-        "duration": "PT0.000069084S",
+        "duration": "PT0.000095625S",
         "kind": "Foreground"
     },
     {
         "name": "SuspendGenerator.KotlinBridgingFunctionVisibilityConfigurationInitPhase",
-        "duration": "PT0.000233708S",
+        "duration": "PT0.000272375S",
         "kind": "Foreground"
     },
     {
         "name": "SuspendGenerator.SwiftBridgeGeneratorInitPhase",
-        "duration": "PT0.000236833S",
+        "duration": "PT0.000383416S",
         "kind": "Foreground"
     },
     {
         "name": "InitializeSirPhases",
-        "duration": "PT0.137653583S",
+        "duration": "PT0.087240S",
         "kind": "Background"
     },
     {
         "name": "CreateKotlinOirTypesPhase",
-        "duration": "PT0.001502417S",
+        "duration": "PT0.001390167S",
         "kind": "Background"
     },
     {
         "name": "CreateExternalOirTypesPhase",
-        "duration": "PT0.000041875S",
+        "duration": "PT0.000046334S",
         "kind": "Background"
     },
     {
         "name": "InitializeOirSuperTypesPhase",
-        "duration": "PT0.000448167S",
+        "duration": "PT0.000437625S",
         "kind": "Background"
     },
     {
         "name": "CreateOirMembersPhase",
-        "duration": "PT0.005669S",
+        "duration": "PT0.006006375S",
         "kind": "Background"
     },
     {
         "name": "CreateKotlinSirTypesPhase",
-        "duration": "PT0.001572S",
+        "duration": "PT0.001562709S",
         "kind": "Background"
     },
     {
         "name": "CreateKotlinSirExtensionsPhase",
-        "duration": "PT0.004614666S",
+        "duration": "PT0.000123709S",
         "kind": "Background"
     },
     {
         "name": "CreateExternalSirTypesPhase",
-        "duration": "PT0.000270833S",
+        "duration": "PT0.000111959S",
         "kind": "Background"
     },
     {
         "name": "InitializeSirSuperTypesPhase",
-        "duration": "PT0.003931375S",
+        "duration": "PT0.003512042S",
         "kind": "Background"
     },
     {
         "name": "ConfigureExternalOirTypesBridgingPhase",
-        "duration": "PT0.004824083S",
+        "duration": "PT0.006356750S",
         "kind": "Background"
     },
     {
         "name": "ConfigureStableNameTypeAliasesForKotlinRuntimePhase",
-        "duration": "PT0.000023S",
+        "duration": "PT0.000036833S",
         "kind": "Background"
     },
     {
         "name": "CreateStableNameTypeAliasesPhase",
-        "duration": "PT0.001030916S",
+        "duration": "PT0.001401250S",
         "kind": "Background"
     },
     {
         "name": "CreateSirMembersPhase",
-        "duration": "PT0.019701792S",
+        "duration": "PT0.048556958S",
         "kind": "Background"
     },
     {
         "name": "CreateAsyncSirFunctionsPhase",
-        "duration": "PT0.000842125S",
+        "duration": "PT0.002295708S",
         "kind": "Background"
     },
     {
         "name": "InitializeSirOverridesPhase",
-        "duration": "PT0.001146583S",
+        "duration": "PT0.001572291S",
         "kind": "Background"
     },
     {
         "name": "InitializeSirMembersCachePhase",
-        "duration": "PT0.000851500S",
+        "duration": "PT0.001041375S",
         "kind": "Background"
     },
     {
         "name": "StripKonanCallableDeclarationManglingPhase",
-        "duration": "PT0.002797458S",
+        "duration": "PT0.003926750S",
         "kind": "Background"
     },
     {
         "name": "FixNamesOfInaccessibleNestedClassesPhase",
-        "duration": "PT0.000116750S",
+        "duration": "PT0.000207583S",
         "kind": "Background"
     },
     {
         "name": "CommitSirIsReplacedPropertyPhase",
-        "duration": "PT0.000826S",
+        "duration": "PT0.001139292S",
         "kind": "Background"
     },
     {
         "name": "PropagateSirIsHiddenPropertyInMembersPhase",
-        "duration": "PT0.001062750S",
+        "duration": "PT0.000952875S",
         "kind": "Background"
     },
     {
         "name": "NormalizeKotlinSirPrivateVisibilityPhase",
-        "duration": "PT0.000507083S",
+        "duration": "PT0.000502458S",
         "kind": "Background"
     },
     {
         "name": "PropagateSirVisibilityToClassesPhase",
-        "duration": "PT0.002108542S",
+        "duration": "PT0.005117875S",
         "kind": "Background"
     },
     {
         "name": "PropagateSirVisibilityToMembersPhase",
-        "duration": "PT0.028205541S",
+        "duration": "PT0.009123500S",
         "kind": "Background"
     },
     {
         "name": "PropagateSirVisibilityToTypeAliasesPhase",
-        "duration": "PT0.000908542S",
+        "duration": "PT0.000402S",
         "kind": "Background"
     },
     {
         "name": "VerifySirVisibilityInAbstractMembersPhase",
-        "duration": "PT0.000453709S",
+        "duration": "PT0.000452709S",
         "kind": "Background"
     },
     {
         "name": "RenameTypesConflictingWithKeywordsPhase",
-        "duration": "PT0.000882417S",
+        "duration": "PT0.001057333S",
         "kind": "Background"
     },
     {
         "name": "RenameTypesConflictingWithKotlinModulePhase",
-        "duration": "PT0.000607500S",
+        "duration": "PT0.000457042S",
         "kind": "Background"
     },
     {
         "name": "RenameNonAsciiDeclarationPhase",
-        "duration": "PT0.000310666S",
+        "duration": "PT0.000311792S",
         "kind": "Background"
     },
     {
         "name": "KotlinRuntimeHidingPhase",
-        "duration": "PT0.000083125S",
+        "duration": "PT0.000167292S",
         "kind": "Background"
     },
     {
         "name": "SwiftRuntimeGenerator",
-        "duration": "PT0.011393125S",
+        "duration": "PT0.010196292S",
         "kind": "Background"
     },
     {
         "name": "LoadCustomSwiftSourceFilesPhase",
-        "duration": "PT0.000530750S",
+        "duration": "PT0.000781167S",
         "kind": "Background"
     },
     {
         "name": "RenameConflictingCallableDeclarationsPhase",
-        "duration": "PT0.046022750S",
+        "duration": "PT0.067776459S",
         "kind": "Background"
     },
     {
         "name": "ExtraClassExportPhase.HideExportFunctionsFinalizePhase",
-        "duration": "PT0.000299S",
+        "duration": "PT0.000227416S",
         "kind": "Background"
     },
     {
         "name": "DefaultArgumentGenerator.RemoveManglingOfOverloadsFinalizePhase",
-        "duration": "PT0.000187625S",
+        "duration": "PT0.000159416S",
         "kind": "Background"
     },
     {
         "name": "RemoveConflictingDefaultArgumentOverloadsPhase",
-        "duration": "PT0.009127667S",
+        "duration": "PT0.009745625S",
         "kind": "Background"
     },
     {
         "name": "SuspendGenerator.KotlinBridgingFunctionVisibilityConfigurationFinalizePhase",
-        "duration": "PT0.001349542S",
+        "duration": "PT0.000359S",
         "kind": "Background"
     },
     {
         "name": "SuspendGenerator.SwiftBridgeGeneratorFinalizePhase",
-        "duration": "PT0.002139167S",
+        "duration": "PT0.003480667S",
         "kind": "Background"
     },
     {
         "name": "FlowBridgingConfigurationPhase",
-        "duration": "PT0.000063042S",
+        "duration": "PT0.000082292S",
         "kind": "Background"
     },
     {
         "name": "FlowConversionConstructorsGenerator",
-        "duration": "PT0.001891291S",
+        "duration": "PT0.002902917S",
         "kind": "Background"
     },
     {
         "name": "EnumEntryRenamingPhase",
-        "duration": "PT0.000470084S",
+        "duration": "PT0.000564875S",
         "kind": "Background"
     },
     {
         "name": "ExhaustiveEnumsGenerator",
-        "duration": "PT0.004070709S",
+        "duration": "PT0.003792458S",
         "kind": "Background"
     },
     {
         "name": "SealedInteropGenerator",
-        "duration": "PT0.001511167S",
+        "duration": "PT0.002024375S",
         "kind": "Background"
     },
     {
         "name": "FileScopeConvertorPhase",
-        "duration": "PT0.001017750S",
+        "duration": "PT0.001822667S",
         "kind": "Background"
     },
     {
         "name": "ExhaustiveEnumsGenerator.NestedTypeDeclarationsPhase",
-        "duration": "PT0.000678708S",
+        "duration": "PT0.000843625S",
         "kind": "Background"
     },
     {
         "name": "MoveBridgesToTopLevelPhase",
-        "duration": "PT0.000342791S",
+        "duration": "PT0.000915666S",
         "kind": "Background"
     },
     {
         "name": "NormalizeKotlinSirPrivateVisibilityPhase",
-        "duration": "PT0.000422417S",
+        "duration": "PT0.000666708S",
         "kind": "Background"
     },
     {
         "name": "ConfigureInternalVisibilityForWrappedCallableDeclarationsPhase",
-        "duration": "PT0.000731417S",
+        "duration": "PT0.000564750S",
         "kind": "Background"
     },
     {
         "name": "PropagateSirVisibilityToClassesPhase",
-        "duration": "PT0.001505833S",
+        "duration": "PT0.001954625S",
         "kind": "Background"
     },
     {
         "name": "PropagateSirVisibilityToMembersPhase",
-        "duration": "PT0.004821042S",
+        "duration": "PT0.008059875S",
         "kind": "Background"
     },
     {
         "name": "PropagateSirVisibilityToFileClassesPhase",
-        "duration": "PT0.000395125S",
+        "duration": "PT0.000531292S",
         "kind": "Background"
     },
     {
         "name": "PropagateSirVisibilityToTypeAliasesPhase",
-        "duration": "PT0.000329958S",
+        "duration": "PT0.000526625S",
         "kind": "Background"
     },
     {
         "name": "VerifySirVisibilityInAbstractMembersPhase",
-        "duration": "PT0.000473917S",
+        "duration": "PT0.000555500S",
         "kind": "Background"
     },
     {
         "name": "AddAvailabilityBasedDeprecationLevelPhase",
-        "duration": "PT0.000241958S",
+        "duration": "PT0.000323S",
         "kind": "Background"
     },
     {
         "name": "AddAvailabilityToAsyncFunctionsPhase",
-        "duration": "PT0.000170084S",
+        "duration": "PT0.000136875S",
         "kind": "Background"
     },
     {
         "name": "RenameTypesConflictingWithKeywordsPhase",
-        "duration": "PT0.000407750S",
+        "duration": "PT0.000422208S",
         "kind": "Background"
     },
     {
         "name": "RenameTypesConflictingWithKotlinModulePhase",
-        "duration": "PT0.000301417S",
+        "duration": "PT0.000459708S",
         "kind": "Background"
     },
     {
         "name": "RenameTypesConflictsWithOtherTypesPhase",
-        "duration": "PT0.004514834S",
+        "duration": "PT0.004500958S",
         "kind": "Background"
     },
     {
         "name": "RenameCallableDeclarationsConflictingWithTypeDeclarationsPhase",
-        "duration": "PT0.000147375S",
+        "duration": "PT0.000159708S",
         "kind": "Background"
     },
     {
         "name": "RenameParametersNamedSelfPhase",
-        "duration": "PT0.000227458S",
+        "duration": "PT0.000244167S",
         "kind": "Background"
     },
     {
         "name": "RenameConflictingCallableDeclarationsPhase",
-        "duration": "PT0.041161958S",
+        "duration": "PT0.034439042S",
         "kind": "Background"
     },
     {
         "name": "FixDuplicatedOverriddenFunctionsPhase",
-        "duration": "PT0.001220750S",
+        "duration": "PT0.000775291S",
         "kind": "Background"
     },
     {
         "name": "TemporarilyRenameTypesConflictingWithExternalModulesPhase",
-        "duration": "PT0.000930125S",
+        "duration": "PT0.000940625S",
         "kind": "Background"
     },
     {
         "name": "FixOirFunctionSignaturesForApiNotesPhase",
-        "duration": "PT0.002974541S",
+        "duration": "PT0.002566250S",
         "kind": "Background"
     },
     {
         "name": "CreateFakeObjCConstructorsPhase",
-        "duration": "PT0.000828792S",
+        "duration": "PT0.000673333S",
         "kind": "Background"
     },
     {
         "name": "AddFoundationImportsPhase",
-        "duration": "PT0.000020792S",
+        "duration": "PT0.000019417S",
         "kind": "Background"
     },
     {
         "name": "DeleteSkieFrameworkContentPhase",
-        "duration": "PT0.000353958S",
+        "duration": "PT0.000872083S",
         "kind": "Background"
     },
     {
         "name": "FixHeaderFilePropertyOrderingPhase",
-        "duration": "PT0.001433291S",
+        "duration": "PT0.001593417S",
         "kind": "Background"
     },
     {
         "name": "DeclareSkieErrorTypesPhase",
-        "duration": "PT0.001612750S",
+        "duration": "PT0.002009542S",
         "kind": "Background"
     },
     {
         "name": "ApiNotesGenerationPhase.ForSwiftCompilation",
-        "duration": "PT0.050469166S",
+        "duration": "PT0.056150209S",
         "kind": "Background"
     },
     {
         "name": "FixForwardDeclarationsPhase",
-        "duration": "PT0.001704417S",
+        "duration": "PT0.003158166S",
         "kind": "Background"
     },
     {
         "name": "AddTypeDefPhase",
-        "duration": "PT0.001192166S",
+        "duration": "PT0.001517416S",
         "kind": "Background"
     },
     {
         "name": "ConvertSirIrFilesToSourceFilesPhase",
-        "duration": "PT0.046580375S",
+        "duration": "PT0.074790833S",
         "kind": "Background"
     },
     {
         "name": "ConvertSirSourceFilesToCompilableFilesPhase",
-        "duration": "PT0.008749041S",
+        "duration": "PT0.005866S",
         "kind": "Background"
     },
     {
         "name": "GenerateFakeObjCDependenciesPhase",
-        "duration": "PT0.000374500S",
+        "duration": "PT0.000440375S",
         "kind": "Background"
     },
     {
         "name": "ImportFakeObjCDependenciesPhase",
-        "duration": "PT0.000027917S",
+        "duration": "PT0.000143833S",
         "kind": "Background"
     },
     {
         "name": "GenerateModulemapFilePhase.ForSwiftCompilation",
-        "duration": "PT0.000275750S",
+        "duration": "PT0.000629250S",
         "kind": "Background"
     },
     {
         "name": "SwiftKotlinFrameworkCacheSetupPhase",
-        "duration": "PT0.002512375S",
+        "duration": "PT0.001260709S",
         "kind": "Background"
     },
     {
         "name": "ImportFakeObjCDependenciesPhase.RevertPhase",
-        "duration": "PT0.000507417S",
+        "duration": "PT0.000511042S",
         "kind": "Background"
     },
     {
         "name": "InitializeKotlinIrPhases",
-        "duration": "PT0.000477292S",
+        "duration": "PT0.000795333S",
         "kind": "Foreground"
     },
     {
         "name": "KotlinIrAnalyticsPhase",
-        "duration": "PT0.051868S",
+        "duration": "PT0.108362250S",
         "kind": "Foreground"
     },
     {
         "name": "GenerateIrPhase",
-        "duration": "PT0.009985125S",
+        "duration": "PT0.016434541S",
         "kind": "Foreground"
     },
     {
         "name": "CompileSwiftPhase",
-        "duration": "PT3.246829084S",
+        "duration": "PT1.240101042S",
         "kind": "Background"
     },
     {
         "name": "DeleteOldObjectFilesPhase",
-        "duration": "PT0.000176958S",
+        "duration": "PT0.000164834S",
         "kind": "Background"
     },
     {
         "name": "CopySwiftOutputFilesToFrameworkPhase",
-        "duration": "PT0.004141709S",
+        "duration": "PT0.003353459S",
         "kind": "Background"
     },
     {
         "name": "TemporarilyRenameTypesConflictingWithExternalModulesPhase.RevertPhase",
-        "duration": "PT0.000928208S",
+        "duration": "PT0.000683334S",
         "kind": "Background"
     },
     {
         "name": "GenerateModulemapFilePhase.ForFramework",
-        "duration": "PT0.000205S",
+        "duration": "PT0.000578208S",
         "kind": "Background"
     },
     {
         "name": "ApiNotesGenerationPhase.ForFramework",
-        "duration": "PT0.012281708S",
+        "duration": "PT0.017094542S",
         "kind": "Background"
     },
     {
         "name": "InitializeLinkPhases",
-        "duration": "PT0.000754958S",
+        "duration": "PT0.000989291S",
         "kind": "Foreground"
     },
     {
         "name": "ConfigureSwiftSpecificLinkerArgsPhase",
-        "duration": "PT0.000132625S",
+        "duration": "PT0.000186125S",
         "kind": "Foreground"
     },
     {
         "name": "AwaitAllBackgroundJobsPhase",
-        "duration": "PT0.000317166S",
+        "duration": "PT0.000258833S",
         "kind": "Foreground"
     },
     {
         "name": "LinkObjectFilesPhase",
-        "duration": "PT0.044678208S",
+        "duration": "PT0.025348750S",
         "kind": "Foreground"
     },
     {
         "name": "ProcessReportedMessagesPhase",
-        "duration": "PT0.000794208S",
+        "duration": "PT0.000939833S",
         "kind": "Foreground"
     },
     {
         "name": "Total",
-        "duration": "PT0.422930418S",
+        "duration": "PT0.505835001S",
         "kind": "Foreground"
     },
     {
         "name": "Total",
-        "duration": "PT3.746272499S",
+        "duration": "PT1.760623754S",
         "kind": "Background"
     }
 ]

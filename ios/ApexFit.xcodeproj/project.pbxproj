@@ -75,6 +75,7 @@
 		44F2BF578623B7801EFC676E /* MyPlanCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537E8C9DCF55FACF4D4462BE /* MyPlanCard.swift */; };
 		457C2E4A5B45CDF4260A4B1C /* APIModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF4915A25AAB1B7023CB54B /* APIModels.swift */; };
 		463F5CC179E3A0F6803611C2 /* DataStalenessService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78DCCFB03479BC8364EBCA4 /* DataStalenessService.swift */; };
+		B2C3D4E5F6A7B8C9D0E1F2A3 /* DataLoadingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6A7B8C9D0E1F2 /* DataLoadingCoordinator.swift */; };
 		46743E42C0C181573ACFF30D /* HealthMonitorCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557EF8D20F8B5A61A95144E9 /* HealthMonitorCard.swift */; };
 		47D8FD7F9B88314197A1FA5F /* WorkoutSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F62FEF3A25047D25D32292F /* WorkoutSummaryView.swift */; };
 		48353F518A69F25759936C84 /* AddActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB136F17F7584893000DE9A4 /* AddActivityView.swift */; };
@@ -240,6 +241,8 @@
 		FDB3D3744D2701CF43A12DBD /* JournalSetupEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F470D440E8D79E55936C6B9 /* JournalSetupEditView.swift */; };
 		FE4E5AB254F9384B21698701 /* LongevityEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC70751BF5242F240DF0733 /* LongevityEngine.swift */; };
 		FF736DD9BD083F7D42D2DA22 /* DailyMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172834A9A919A8225FB4645A /* DailyMetric.swift */; };
+		FDD14B739516408D95CE3357 /* DeviceHealthSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CDFA015E4E4277AC8EA1EF /* DeviceHealthSheet.swift */; };
+		0F84880136EC4D5DA24C5829 /* WearableSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B49F13784E4D96A65328F0 /* WearableSelectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -397,6 +400,7 @@
 		A6D35E765E0BB7FC3550B3ED /* StrainDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrainDashboardView.swift; sourceTree = "<group>"; };
 		A735A71B0C86086458E82A01 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A78DCCFB03479BC8364EBCA4 /* DataStalenessService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStalenessService.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F6A7B8C9D0E1F2 /* DataLoadingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoadingCoordinator.swift; sourceTree = "<group>"; };
 		ABEB666B6EBCE88E9D1539C0 /* GlanceDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceDashboardView.swift; sourceTree = "<group>"; };
 		AC7A66CE4852AB69A2AA2B0A /* HealthKitConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitConstants.swift; sourceTree = "<group>"; };
 		B4236948AF04F85CCE21E665 /* HapticCoachingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticCoachingManager.swift; sourceTree = "<group>"; };
@@ -443,6 +447,8 @@
 		FDD79C0AFBDC96889DD05587 /* JournalBehaviors.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JournalBehaviors.json; sourceTree = "<group>"; };
 		FEBB31BFAF53359B321B535F /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		FFC70751BF5242F240DF0733 /* LongevityEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongevityEngine.swift; sourceTree = "<group>"; };
+		84CDFA015E4E4277AC8EA1EF /* DeviceHealthSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceHealthSheet.swift; sourceTree = "<group>"; };
+		E2B49F13784E4D96A65328F0 /* WearableSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WearableSelectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -675,6 +681,7 @@
 				07BAE2F438DFC78B69C84C70 /* OnboardingFlowView.swift */,
 				BD96537CA7CB61B0CA20AAA5 /* ProfileSetupView.swift */,
 				84470B7BE9BF1F65648567B2 /* SignInView.swift */,
+				E2B49F13784E4D96A65328F0 /* WearableSelectionView.swift */,
 				5FFBF46DAE42DD739CEE2636 /* WelcomeView.swift */,
 			);
 			path = Onboarding;
@@ -773,6 +780,7 @@
 			isa = PBXGroup;
 			children = (
 				712F6911BD4F57061E7ADDEB /* BaselineService.swift */,
+				A1B2C3D4E5F6A7B8C9D0E1F2 /* DataLoadingCoordinator.swift */,
 				A78DCCFB03479BC8364EBCA4 /* DataStalenessService.swift */,
 				6C455E215F2CFFB869A25C21 /* DeviceCapabilityService.swift */,
 				3FF5E4160C7D88C7059A3C71 /* HealthMonitorService.swift */,
@@ -832,6 +840,7 @@
 		D618453FCF2F9784D9F66AA5 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				84CDFA015E4E4277AC8EA1EF /* DeviceHealthSheet.swift */,
 				1B5B938532BE6562AFDC8E96 /* HomeView.swift */,
 			);
 			path = Home;
@@ -1157,11 +1166,13 @@
 				1044634AD7A8BDE0FB2B6B16 /* DashboardActivityCard.swift in Sources */,
 				D97B2EC56E2F9B6D24D7BAF0 /* DashboardGaugeRow.swift in Sources */,
 				183E97C153134D38A128CAED /* DashboardMetricRow.swift in Sources */,
+				B2C3D4E5F6A7B8C9D0E1F2A3 /* DataLoadingCoordinator.swift in Sources */,
 				463F5CC179E3A0F6803611C2 /* DataStalenessService.swift in Sources */,
 				F9796E59111F18816088524D /* Date+Extensions.swift in Sources */,
 				A8703CFD3D8A999028A551EF /* DateNavigationHeader.swift in Sources */,
 				3B357CDF9676E42C719B7D08 /* DeviceCapabilityService.swift in Sources */,
 				1923CB4B3E5C237C423BF116 /* DeviceCompatibilityView.swift in Sources */,
+				FDD14B739516408D95CE3357 /* DeviceHealthSheet.swift in Sources */,
 				0F23752FC8B1F853334D3DBC /* Double+Extensions.swift in Sources */,
 				9798654D172A4B82061C3659 /* HKWorkoutActivityType+Extensions.swift in Sources */,
 				9AB819A39BD6BC52A48935C8 /* HRTimelineView.swift in Sources */,
@@ -1267,6 +1278,7 @@
 				B78F0121817B012618CCE41D /* UserProfile.swift in Sources */,
 				7B10A7ABFF4B75A7B04601EA /* WeeklyStrainRecoveryChart.swift in Sources */,
 				0D28B2AA88973CCE2BF8A750 /* WelcomeView.swift in Sources */,
+				0F84880136EC4D5DA24C5829 /* WearableSelectionView.swift in Sources */,
 				31BF3D8189BFFE644DA09237 /* WorkoutCard.swift in Sources */,
 				99FBC712EDE12BF825A3CEC3 /* WorkoutDetailView.swift in Sources */,
 				3253AAFAB11613FA026FC5AB /* WorkoutManager.swift in Sources */,

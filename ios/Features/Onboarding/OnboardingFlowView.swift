@@ -5,6 +5,7 @@ enum OnboardingStep: Int, CaseIterable {
     case welcome = 0
     case signIn
     case healthKit
+    case wearableDevice
     case profile
     case journalSetup
     case complete
@@ -14,6 +15,7 @@ enum OnboardingStep: Int, CaseIterable {
         case .welcome: return "Welcome"
         case .signIn: return "Sign In"
         case .healthKit: return "Health Access"
+        case .wearableDevice: return "Wearable"
         case .profile: return "Profile"
         case .journalSetup: return "Journal"
         case .complete: return "Complete"
@@ -22,7 +24,7 @@ enum OnboardingStep: Int, CaseIterable {
 
     /// Steps that appear in the progress indicator (excludes welcome and complete)
     static var progressSteps: [OnboardingStep] {
-        [.signIn, .healthKit, .profile, .journalSetup]
+        [.signIn, .healthKit, .wearableDevice, .profile, .journalSetup]
     }
 }
 
@@ -110,6 +112,11 @@ struct OnboardingFlowView: View {
 
         case .healthKit:
             HealthKitPermissionView {
+                advanceTo(.wearableDevice)
+            }
+
+        case .wearableDevice:
+            WearableSelectionView(profile: profile) {
                 advanceTo(.profile)
             }
 

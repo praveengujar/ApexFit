@@ -33,4 +33,7 @@ interface UserProfileDao {
 
     @Query("UPDATE user_profiles SET selectedJournalBehaviorIDs = :ids WHERE id = :id")
     suspend fun updateJournalBehaviors(id: String, ids: String)
+
+    @Query("UPDATE user_profiles SET wearableDevice = :device WHERE id = :id")
+    suspend fun updateWearableDevice(id: String, device: String?)
 }
