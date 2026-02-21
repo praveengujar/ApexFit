@@ -19,30 +19,43 @@ actor MetricComputationService {
 
     /// Run full computation pipeline for a date.
     func computeAllMetrics(for date: Date) async throws {
+        print("[Zyva]   Pipeline start for \(date.formatted(date: .abbreviated, time: .omitted))")
+
         let profile = try fetchUserProfile()
+        print("[Zyva]   ✓ UserProfile found: maxHR=\(profile.estimatedMaxHR), sleepBaseline=\(profile.sleepBaselineHours)h")
+
         let dailyMetric = try getOrCreateDailyMetric(for: date)
         let maxHR = profile.estimatedMaxHR
 
         // Step 1: Update baselines
+        print("[Zyva]   Step 1: Baselines...")
         let baselineService = BaselineService(modelContext: modelContext)
         try await baselineService.recomputeBaselines()
+        print("[Zyva]   ✓ Baselines done")
 
         // Step 2: Process sleep (with composite scoring + consistency)
+        print("[Zyva]   Step 2: Sleep...")
         let sleepService = SleepService(modelContext: modelContext, queryService: queryService)
         try await sleepService.processSleep(
             for: date,
             dailyMetric: dailyMetric,
             baselineSleepHours: profile.sleepBaselineHours
         )
+        print("[Zyva]   ✓ Sleep done — duration=\(dailyMetric.sleepDurationHours ?? -1)h, score=\(dailyMetric.sleepScore ?? -1)")
 
         // Step 3: Compute recovery (now includes skin temperature)
+        print("[Zyva]   Step 3: Recovery...")
         let recoveryService = RecoveryService(modelContext: modelContext, queryService: queryService)
         try await recoveryService.computeRecovery(for: date, dailyMetric: dailyMetric)
+        print("[Zyva]   ✓ Recovery done — score=\(dailyMetric.recoveryScore ?? -1), zone=\(dailyMetric.recoveryZone?.rawValue ?? "nil")")
 
         // Step 4: Compute strain and process workouts
+        print("[Zyva]   Step 4: Strain...")
         let strainService = StrainService(queryService: queryService)
         try await strainService.updateStrain(for: dailyMetric, maxHeartRate: maxHR)
+        print("[Zyva]   ✓ Strain done — score=\(dailyMetric.strainScore)")
 
+        print("[Zyva]   Step 4b: Workouts...")
         let workoutService = WorkoutService(queryService: queryService)
         try await workoutService.processWorkouts(
             for: date,
@@ -50,8 +63,10 @@ actor MetricComputationService {
             maxHeartRate: maxHR,
             bodyWeightKG: profile.weightKG
         )
+        print("[Zyva]   ✓ Workouts done — count=\(dailyMetric.workouts.count)")
 
         // Step 5: Additional data
+        print("[Zyva]   Step 5: Additional data...")
         async let steps = queryService.fetchSteps(for: date)
         async let calories = queryService.fetchActiveCalories(for: date)
         async let vo2Max = queryService.fetchVO2Max(for: date)
@@ -59,6 +74,7 @@ actor MetricComputationService {
         dailyMetric.steps = try await steps
         dailyMetric.activeCalories = try await calories
         dailyMetric.vo2Max = try await vo2Max
+        print("[Zyva]   ✓ Steps=\(dailyMetric.steps), Cal=\(Int(dailyMetric.activeCalories)), VO2=\(dailyMetric.vo2Max ?? -1)")
 
         // Step 5b: Body composition for Longevity
         if let bodyFatPct = try? await queryService.fetchBodyFatPercentage(for: date) {
@@ -69,13 +85,16 @@ actor MetricComputationService {
         }
 
         // Step 6: Compute stress timeline and daily average
+        print("[Zyva]   Step 6: Stress...")
         try await computeStress(for: date, dailyMetric: dailyMetric)
+        print("[Zyva]   ✓ Stress done — avg=\(dailyMetric.stressAverage ?? -1)")
 
         // Mark as computed
         dailyMetric.isComputed = true
         dailyMetric.computedAt = Date()
 
         try modelContext.save()
+        print("[Zyva]   ✓ Pipeline COMPLETE for \(date.formatted(date: .abbreviated, time: .omitted))")
     }
 
     /// Quick update: only refresh strain (for real-time updates during the day).

@@ -54,10 +54,12 @@ targets:
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ENABLE_PREVIEWS: "YES"
         SWIFT_EMIT_LOC_STRINGS: "YES"
-        DEVELOPMENT_TEAM: ""
+        DEVELOPMENT_TEAM: "J5ZSGU2725"
 
     entitlements:
       path: Zyva.entitlements
+      properties:
+        com.apple.developer.healthkit: true
 
     attributes:
       SystemCapabilities:
@@ -107,7 +109,7 @@ targets:
         CODE_SIGN_ENTITLEMENTS: ZyvaWatch/ZyvaWatch.entitlements
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         GENERATE_INFOPLIST_FILE: false
-        DEVELOPMENT_TEAM: ""
+        DEVELOPMENT_TEAM: "J5ZSGU2725"
 
     entitlements:
       path: ZyvaWatch/ZyvaWatch.entitlements
@@ -143,7 +145,7 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.zyva.app.watchkitapp.complications
         ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME: WidgetBackground
         GENERATE_INFOPLIST_FILE: true
-        DEVELOPMENT_TEAM: ""
+        DEVELOPMENT_TEAM: "J5ZSGU2725"
 
     entitlements:
       path: ZyvaWatchComplications/ZyvaWatchComplications.entitlements

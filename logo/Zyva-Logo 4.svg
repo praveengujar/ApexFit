@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="2400" viewBox="0 0 2400 2400">
+<defs>
+  <!-- Main gradient: coral to amber with richer depth -->
+  <linearGradient id="zg" x1="0" y1="0" x2="2400" y2="2400" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#E45A3E"/>
+    <stop offset="45%" stop-color="#EB7A54"/>
+    <stop offset="100%" stop-color="#F0A04B"/>
+  </linearGradient>
+
+  <!-- Dark underside gradient (3D depth/shadow on the stroke itself) -->
+  <linearGradient id="zg_dark" x1="0" y1="0" x2="2400" y2="2400" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#B8402A"/>
+    <stop offset="45%" stop-color="#9C3422"/>
+    <stop offset="100%" stop-color="#C07828"/>
+  </linearGradient>
+
+  <!-- Light top-edge gradient (3D highlight) -->
+  <linearGradient id="zg_light" x1="0" y1="0" x2="2400" y2="2400" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#F09878" stop-opacity="0.7"/>
+    <stop offset="100%" stop-color="#F5BC7A" stop-opacity="0.5"/>
+  </linearGradient>
+
+  <!-- Drop shadow filter -->
+  <filter id="dropshadow" x="-8%" y="-8%" width="116%" height="116%">
+    <feGaussianBlur in="SourceAlpha" stdDeviation="18"/>
+    <feOffset dx="12" dy="16" result="offsetblur"/>
+    <feFlood flood-color="#3D1A0A" flood-opacity="0.25"/>
+    <feComposite in2="offsetblur" operator="in"/>
+    <feMerge>
+      <feMergeNode/>
+      <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+  </filter>
+
+  <!-- Inner bevel light filter for the highlight stroke -->
+  <filter id="glow" x="-5%" y="-5%" width="110%" height="110%">
+    <feGaussianBlur stdDeviation="3" result="blur"/>
+    <feMerge>
+      <feMergeNode in="blur"/>
+      <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+  </filter>
+
+  <!-- Background radial gradient -->
+  <radialGradient id="bg" cx="50%" cy="44%" r="58%">
+    <stop offset="0%" stop-color="#FDFAF6"/>
+    <stop offset="100%" stop-color="#F0E6D8"/>
+  </radialGradient>
+</defs>
+
+<rect x="60" y="60" width="2280" height="2280" rx="440" ry="440" fill="url(#bg)"/>
+
+<!-- LAYER 1: Dark underside stroke (offset down-right for 3D depth) -->
+<g transform="translate(10,14)">
+  <path d="M 660,680
+L 1600,680
+Q 1740,680 1740,820
+L 1290.0,1136.7
+L 1290.1,1203.8
+L 1073.4,1020.1
+L 1110.0,1263.3
+L 660,1580
+Q 660,1720 800,1720
+L 1740,1720" fill="none" stroke="url(#zg_dark)" stroke-width="134" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+
+<!-- LAYER 2: Main Z stroke with drop shadow -->
+<path d="M 660,680
+L 1600,680
+Q 1740,680 1740,820
+L 1290.0,1136.7
+L 1290.1,1203.8
+L 1073.4,1020.1
+L 1110.0,1263.3
+L 660,1580
+Q 660,1720 800,1720
+L 1740,1720" fill="none" stroke="url(#zg)" stroke-width="130" stroke-linecap="round" stroke-linejoin="round" filter="url(#dropshadow)"/>
+
+<!-- LAYER 3: Highlight edge (top-left, catching light) -->
+<g transform="translate(-4,-6)" filter="url(#glow)">
+  <path d="M 660,680
+L 1600,680
+Q 1740,680 1740,820
+L 1290.0,1136.7
+L 1290.1,1203.8
+L 1073.4,1020.1
+L 1110.0,1263.3
+L 660,1580
+Q 660,1720 800,1720
+L 1740,1720" fill="none" stroke="url(#zg_light)" stroke-width="60" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>

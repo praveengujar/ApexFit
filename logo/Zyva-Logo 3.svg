@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="2400" viewBox="0 0 2400 2400">
+<defs>
+  <linearGradient id="zg" x1="0" y1="0" x2="2400" y2="2400" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#E45A3E"/>
+    <stop offset="45%" stop-color="#EB7A54"/>
+    <stop offset="100%" stop-color="#F0A04B"/>
+  </linearGradient>
+  <radialGradient id="bg" cx="50%" cy="46%" r="56%">
+    <stop offset="0%" stop-color="#FDFAF6"/>
+    <stop offset="100%" stop-color="#F5ECE1"/>
+  </radialGradient>
+</defs>
+<rect x="60" y="60" width="2280" height="2280" rx="440" ry="440" fill="url(#bg)"/>
+<path d="M 660,680
+L 1600,680
+Q 1740,680 1740,820
+L 1290.0,1136.7
+L 1290.1,1203.8
+L 1073.4,1020.1
+L 1110.0,1263.3
+L 660,1580
+Q 660,1720 800,1720
+L 1740,1720" fill="none" stroke="url(#zg)" stroke-width="130" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

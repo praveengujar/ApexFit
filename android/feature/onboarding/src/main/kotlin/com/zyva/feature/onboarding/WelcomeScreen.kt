@@ -2,6 +2,7 @@ package com.zyva.feature.onboarding
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,10 +14,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Bolt
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FitnessCenter
 import androidx.compose.material.icons.filled.Nightlight
@@ -35,11 +34,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.zyva.core.designsystem.R as DesignR
 import com.zyva.core.designsystem.theme.BackgroundPrimary
 import com.zyva.core.designsystem.theme.CornerRadius
 import com.zyva.core.designsystem.theme.Lavender
@@ -90,24 +90,14 @@ fun WelcomeScreen(onGetStarted: () -> Unit) {
         Spacer(Modifier.weight(1f))
 
         // Logo
-        Box(
+        Image(
+            painter = painterResource(id = DesignR.drawable.zyva_logo),
+            contentDescription = "Zyva",
             modifier = Modifier
-                .size(100.dp)
+                .size(120.dp)
                 .scale(logoScale)
-                .alpha(logoAlpha)
-                .background(
-                    brush = Brush.linearGradient(colors = listOf(PrimaryBlue, Teal)),
-                    shape = CircleShape,
-                ),
-            contentAlignment = Alignment.Center,
-        ) {
-            Icon(
-                imageVector = Icons.Filled.Bolt,
-                contentDescription = "Zyva",
-                tint = Color.White,
-                modifier = Modifier.size(48.dp),
-            )
-        }
+                .alpha(logoAlpha),
+        )
 
         Spacer(Modifier.height(Spacing.md))
 

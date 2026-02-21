@@ -16,23 +16,12 @@ struct WelcomeView: View {
 
                 // Logo and App Name
                 VStack(spacing: AppTheme.spacingMD) {
-                    ZStack {
-                        Circle()
-                            .fill(
-                                LinearGradient(
-                                    colors: [AppColors.primaryBlue, AppColors.teal],
-                                    startPoint: .topLeading,
-                                    endPoint: .bottomTrailing
-                                )
-                            )
-                            .frame(width: 100, height: 100)
-
-                        Image(systemName: "bolt.heart.fill")
-                            .font(.system(size: 48, weight: .medium))
-                            .foregroundStyle(.white)
-                    }
-                    .scaleEffect(logoAppeared ? 1 : 0.5)
-                    .opacity(logoAppeared ? 1 : 0)
+                    Image("ZyvaLogo")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 120, height: 120)
+                        .scaleEffect(logoAppeared ? 1 : 0.5)
+                        .opacity(logoAppeared ? 1 : 0)
 
                     Text("Zyva")
                         .font(AppTypography.metricLarge)

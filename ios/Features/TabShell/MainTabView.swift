@@ -55,13 +55,42 @@ struct MainTabView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(.ultraThinMaterial)
                 .ignoresSafeArea()
+            } else if case .error(let message) = dataLoadingCoordinator.state {
+                VStack(spacing: AppTheme.spacingMD) {
+                    Image(systemName: "exclamationmark.triangle.fill")
+                        .font(.largeTitle)
+                        .foregroundStyle(.yellow)
+                    Text("Data Loading Error")
+                        .font(AppTypography.heading3)
+                        .foregroundStyle(AppColors.textPrimary)
+                    Text(message)
+                        .font(AppTypography.bodySmall)
+                        .foregroundStyle(AppColors.textSecondary)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(.ultraThinMaterial)
+                .ignoresSafeArea()
+                .onTapGesture {
+                    dataLoadingCoordinator.state = .idle
+                }
             }
         }
         .task {
+            // Re-establish authorization state on every launch
+            print("[Zyva] MainTabView.task started")
+            do {
+                try await healthKitManager.requestAuthorization()
+                print("[Zyva] HealthKit authorized: \(healthKitManager.isAuthorized)")
+            } catch {
+                print("[Zyva] HealthKit auth error: \(error)")
+            }
             await dataLoadingCoordinator.loadDataIfNeeded(
-                modelContainer: modelContext.container,
+                modelContext: modelContext,
                 isAuthorized: healthKitManager.isAuthorized
             )
+            print("[Zyva] Data loading complete, state: \(dataLoadingCoordinator.state)")
         }
     }
 }
